@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./root/app.component";
-import { StudentTableComponent } from "./components/students/student-table/student-table/student-table.component";
+import { StudentTableComponent } from "./components/students/student-table/student-table.component";
 
 @NgModule({
   declarations: [
