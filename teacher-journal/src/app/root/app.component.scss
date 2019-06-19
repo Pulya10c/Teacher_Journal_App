@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  margin: auto;
+  max-width: 1000px;
+  background-color: $color;
+
+  .header {
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.5rem;
+    .header__name {
+      font-weight: bold;
+      margin: 0px 0px 35px 0px;
+    }
+    .header__logo {
+      width: 60px;
+      height: 80px;
+      margin: 30px 25px 0 105px;
+      background-color: $activ-color;
+      background: 
+        linear-gradient(-35deg, transparent 20px, $activ-color 0) right,
+        linear-gradient(35deg, transparent 20px, $activ-color 0) left;
+      background-size: 50% 100%;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.navigation__item {
+  font-size: 2rem;
+  text-align: center;
+  background-color: grey;
+  margin: 3rem 1rem;
+  padding: 0.2rem 1.5rem 0.5rem;
+  border-radius: 10px;
+}
