@@ -17,10 +17,10 @@
       width: 60px;
       height: 80px;
       margin: 30px 25px 0 105px;
-      background-color: $activ-color;
-      background: 
-        linear-gradient(-35deg, transparent 20px, $activ-color 0) right,
-        linear-gradient(35deg, transparent 20px, $activ-color 0) left;
+      background-color: $active-color;
+      background: linear-gradient(-35deg, transparent 20px, $active-color 0)
+          right,
+        linear-gradient(35deg, transparent 20px, $active-color 0) left;
       background-size: 50% 100%;
       background-repeat: no-repeat;
     }
@@ -40,4 +40,16 @@
   margin: 3rem 1rem;
   padding: 0.2rem 1.5rem 0.5rem;
   border-radius: 10px;
+  text-decoration: none;
+  color: $text-color;
+}
+
+.navigation__item-active {
+  color: $active-color;
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 900px;
 }

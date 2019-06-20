@@ -1,3 +1,16 @@
-<p>
-  student-table works!
-</p>
+
+<section class="wrapper">
+    <table class="students__table" cellspacing="4">
+      <tr>
+        <th class="students__cell header" *ngFor="let columnName of columnStudentsName">{{ columnName | uppercase }}</th>
+      </tr>
+      <tr *ngFor="let student of students">
+        <td class="students__cell">{{ student.index + 1 }}</td>
+        <td class="students__cell">{{ student.name }}</td>
+        <td class="students__cell">{{ student.lastName }}</td>
+        <td class="students__cell">{{ student.adress }}</td>
+        <td class="students__cell">{{ student.about }}</td>
+      </tr>
+    </table>
+    <button class="add">&#10010;</button>
+  </section>

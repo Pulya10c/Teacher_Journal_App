@@ -1,2 +1,21 @@
 @import "../../../../styles/variables.scss";
 
+.wrapper {
+  max-width: 1000px;
+
+  .students__cell {
+    text-align: center;
+    border: solid 2px;
+    background-color: $color;
+    padding: 7px;
+  }
+
+  .students__table {
+    background-color: $text-color;
+  }
+
+  .students__cell.header {
+    background-color: #1c3549;
+    padding: 20px;
+  }
+}

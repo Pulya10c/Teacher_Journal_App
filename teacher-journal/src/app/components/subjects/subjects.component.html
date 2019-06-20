@@ -1,0 +1,32 @@
+<section class="wrapper">
+  <h2 class="subject__text">
+    List of subjects:
+  </h2>
+  <div class="subject__buttons">
+    <button class="subject__buttons__item" mat-raised-button *ngFor="let subject of subjects">
+      {{ subject.nameSubject }}
+    </button>
+  </div>
+</section>
+
+<!-- <div class="subject-wrapper">
+    <div class="container" *ngIf="!formVisible; else formBlock"></div>
+      <h2 class="container__text">List of subjects:</h2>
+      <div class="buttons-container">
+        <button
+          *ngFor="let marks of subjects"
+          class="buttons-container__button btn"
+        >
+          {{ marks.subject }}
+        </button>
+      </div>
+      <div class="button-plus" (click)="formVisible = true"></div>
+    </div>
+    <ng-template #formBlock>
+      <app-form
+        [nameOfInputs]="nameOfInputs"
+        (changeViewToSubjects)="changeViewToSubjects($event)"
+        ><h2 class="container__text">Add new subject:</h2></app-form
+      >
+    </ng-template>
+  </div> -->
