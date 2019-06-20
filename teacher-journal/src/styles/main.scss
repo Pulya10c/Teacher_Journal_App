@@ -12,3 +12,13 @@ body {
   color: $text-color;
   font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
 }
+
+.button__add {
+  color: $color;
+  background-color: $text-color;
+  width: 6rem;
+  height: 6rem;
+  margin: 53px 45%;
+  text-align: center;
+  font-size: 5rem;
+}

@@ -19,3 +19,14 @@
     padding: 20px;
   }
 }
+
+.button__add {
+  color: $color;
+  background-color: $text-color;
+  width: 6rem;
+  height: 6rem;
+  margin: 53px 45%;
+  text-align: center;
+  font-size: 5rem;
+  border-radius: 50%;
+}
