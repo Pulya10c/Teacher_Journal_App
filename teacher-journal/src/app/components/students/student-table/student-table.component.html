@@ -1,16 +1,38 @@
-
 <section class="wrapper">
-    <table class="students__table" cellspacing="4">
+  <table class="students__table" cellspacing="4">
+    <thead>
       <tr>
-        <th class="students__cell header" *ngFor="let columnName of columnStudentsName">{{ columnName | uppercase }}</th>
+        <th
+          class="students__cell header"
+          [class.active]="order === columnName"
+          *ngFor="let columnName of columnStudentsName"
+          (click)="setOrder(columnName)"
+        >
+          <div class="students__cell__row__container">
+            <div class="students__row__name">
+              {{ columnName | uppercase }}
+            </div>
+            <div class="students__cell__revers">
+              <span [hidden]="isReverse">▼</span>
+              <span [hidden]="!isReverse">▲</span>
+            </div>
+          </div>
+        </th>
       </tr>
-      <tr *ngFor="let student of students">
-        <td class="students__cell">{{ student.index + 1 }}</td>
-        <td class="students__cell">{{ student.name }}</td>
-        <td class="students__cell">{{ student.lastName }}</td>
-        <td class="students__cell">{{ student.adress }}</td>
-        <td class="students__cell">{{ student.about }}</td>
-      </tr>
-    </table>
-    <button class="button__add" mat-stroked-button="warn">&#10010;</button>
-  </section>
+    </thead>
+    <tr
+      *ngFor="
+        let student of sortedStudents
+          | orderBy: order:isReverse:'case-insensitive'
+      "
+    >
+      <td class="students__cell">{{ student.index + 1 }}</td>
+      <td class="students__cell">{{ student.name }}</td>
+      <td class="students__cell">{{ student.lastName }}</td>
+      <td class="students__cell">{{ student.adress }}</td>
+      <td class="students__cell">{{ student.about }}</td>
+    </tr>
+  </table>
+
+  <button class="button__add" mat-stroked-button="warn">&#10010;</button>
+</section>

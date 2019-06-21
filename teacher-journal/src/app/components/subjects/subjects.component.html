@@ -3,7 +3,12 @@
     List of subjects:
   </h2>
   <div class="subject__buttons">
-    <button class="subject__buttons__item" mat-raised-button *ngFor="let subject of subjects">
+    <button 
+    class="subject__buttons__item"
+    mat-raised-button
+    *ngFor="let subject of subjects"
+    (click) = "onViewSubjectList($event)"
+    >
       {{ subject.nameSubject }}
     </button>
   </div>
