@@ -3,6 +3,6 @@ export interface IStudent {
   index: number;
   name: string;
   lastName: string;
-  adress: string;
+  address: string;
   about: string;
 }

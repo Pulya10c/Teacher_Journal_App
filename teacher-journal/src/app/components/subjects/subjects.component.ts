@@ -31,7 +31,7 @@ export class SubjectsComponent implements OnInit {
         this.subject = subjectItem;
       }
     });
-    // console.log(this.subject);
+    console.log(this.subject);
   }
 
   public ngOnInit(): void {

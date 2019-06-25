@@ -8,16 +8,24 @@ import { SubjectsComponent } from "./components/subjects/subjects.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SharedModule } from "./shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
+import { StudentFormComponent } from "./components/students/student-form/student-form.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [AppComponent, StudentTableComponent, SubjectsComponent],
+  declarations: [
+    AppComponent,
+    StudentTableComponent,
+    SubjectsComponent,
+    StudentFormComponent
+  ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    OrderModule
+    OrderModule,
+    ReactiveFormsModule
   ],
 
   providers: [],

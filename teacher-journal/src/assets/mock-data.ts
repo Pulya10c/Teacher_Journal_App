@@ -5,7 +5,7 @@ export const data: any = {
       index: 0,
       name: "Best",
       lastName: "Gross",
-      adress: "Baker, Orange Street, d.9166",
+      address: "Baker, Orange Street, d.9166",
       about: "Officia excepteur excepteur nulla sunt aliquip duis minim ex."
     },
     {
@@ -13,7 +13,7 @@ export const data: any = {
       index: 1,
       name: "Lester",
       lastName: "Franks",
-      adress: "Inkerman, Beayer Place, d.5402",
+      address: "Inkerman, Beayer Place, d.5402",
       about:
         "Ullamco labore occaecat nostrud magna ipsum aliqua nostrud est enim eiusmod reprehenderit adipisicing."
     },
@@ -22,7 +22,7 @@ export const data: any = {
       index: 2,
       name: "Delacruz",
       lastName: "Jenkins",
-      adress: "Ogema, Dodworth Street, d.4806",
+      address: "Ogema, Dodworth Street, d.4806",
       about: "Cupidatat nulla eiusmod ullamco quis nulla ut tempor nisi."
     },
     {
@@ -30,7 +30,7 @@ export const data: any = {
       index: 3,
       name: "Grimes",
       lastName: "Eaton",
-      adress: "Helen, Gerritsen Avenue, d.8745",
+      address: "Helen, Gerritsen Avenue, d.8745",
       about:
         "Do qui dolore pariatur tempor commodo aute non minim non adipisicing est qui adipisicing."
     },
@@ -39,7 +39,7 @@ export const data: any = {
       index: 4,
       name: "Shelby",
       lastName: "Richardson",
-      adress: "Fairacres, Sumner Place, d.3022",
+      address: "Fairacres, Sumner Place, d.3022",
       about:
         "Duis voluptate est duis aute dolore est cillum aliquip deserunt Lorem sint nulla aute aliquip."
     },
@@ -48,7 +48,7 @@ export const data: any = {
       index: 5,
       name: "Lauri",
       lastName: "Ochoa",
-      adress: "Wollochet, Madison Street, d.3654",
+      address: "Wollochet, Madison Street, d.3654",
       about:
         "Non reprehenderit ut aliqua pariatur aliqua aliqua consequat dolore fugiat anim tempor."
     }
