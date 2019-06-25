@@ -10,13 +10,17 @@ import { SharedModule } from "./shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
 import { StudentFormComponent } from "./components/students/student-form/student-form.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { ExportComponent } from './components/export/export.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentTableComponent,
     SubjectsComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    StatisticsComponent,
+    ExportComponent
   ],
 
   imports: [
