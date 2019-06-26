@@ -1,3 +1,85 @@
-<p>
-  subject-form works!
-</p>
+<section class="wrapper">
+  <h2 class="subject__text">Add new subject:</h2>
+  <form class="subject__form" [formGroup]="subjectForm" (submit)="onSubmit()">
+    <table class="subject__form__table" cellspacing="0">
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('name')">
+          * Name:
+        </td>
+        <td>
+          <mat-form-field class="subject__form__width">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                isControlInvalid('name') ? 'Enter subject name' : 'Mathematics'
+              "
+              id="name"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('teacher')">
+          * Teacher:
+        </td>
+        <td>
+          <mat-form-field class="subject__form__width">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                isControlInvalid('teacher') ? 'Enter theacher name' : 'M. Ivanovna'
+              "
+              id="teacher"
+              formControlName="teacher"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('cabiner')">Cabiner:</td>
+        <td>
+          <mat-form-field class="subject__form__width">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                isControlInvalid('cabiner') ? 'Enter number' : '106'
+              "
+              id="cabiner"
+              formControlName="cabiner"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td>
+          <mat-form-field class="subject__form__width">
+            <textarea
+              matInput
+              type="text"
+              autocomplete="off"
+              placeholder="Blow your mind..."
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <div class="subject__form__button">
+      <button mat-stroked-button type="submit">Add</button>
+      <button mat-stroked-button type="button" (click)="onCancel()">
+        Back
+      </button>
+    </div>
+  </form>
+</section>

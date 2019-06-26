@@ -8,17 +8,15 @@
 //   color: green;
 // }
 
-// ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label { 
-//   color: green; 
+// ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+//   color: green;
 // }
-::ng-deep .mat-form-field.mat-focused
-.mat-form-field-label {
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
   color: $text-color;
   border-color: $text-color;
 }
 
-::ng-deep .mat-form-field.mat-focused
-.mat-form-field-ripple {
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: $text-color;
 }
 
@@ -31,6 +29,8 @@
   margin: 0 auto 3rem;
 
   .student__text {
+    font-weight: 400;
+    margin-top: 0;
     margin-left: 10%;
   }
 

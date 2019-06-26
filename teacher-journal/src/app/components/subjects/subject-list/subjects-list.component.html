@@ -1,16 +1,27 @@
 <section class="wrapper">
+  <section class="subject__list" *ngIf="isVisibleSubjectList">
   <h2 class="subject__text">
     List of subjects:
   </h2>
   <div class="subject__buttons">
-    <button 
-    class="subject__buttons__item"
-    mat-raised-button
-    *ngFor="let subject of subjects"
-    (click) = "onViewSubjectList($event)"
+    <button
+      class="subject__buttons__item"
+      mat-raised-button
+      *ngFor="let subject of subjects"
+      (click)="onViewSubjectList($event)"
     >
       {{ subject.nameSubject }}
     </button>
   </div>
-  <button class="button__add" mat-stroked-button="warn">&#10010;</button>
+  <button
+    class="button__add"
+    mat-stroked-button="warn"
+    (click)="onVisibleFormSubject()"
+  >
+    &#10010;
+  </button>
+</section>
+  <section class="subject__new" *ngIf="!isVisibleSubjectList">
+    <app-subject-form (onVisibleForm) = "addSubject($event)" ></app-subject-form>
+  </section>
 </section>

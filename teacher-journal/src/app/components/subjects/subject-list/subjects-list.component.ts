@@ -15,26 +15,43 @@ export class SubjectsListComponent implements OnInit {
   private subjects: ISubject[];
   private getDataService: DataService;
   private subjectName: string;
-  private isVisibleSubjectList: boolean;
+  private isVisibleSubjectList: boolean = true;
   private subject: ISubject;
 
   constructor(dataService: DataService) {
     this.getDataService = dataService;
-    this.isVisibleSubjectList = false;
   }
 
   private onViewSubjectList(event: Event): void {
     this.subjectName = (<HTMLButtonElement>event.target).innerText;
-    this.isVisibleSubjectList = true;
+    // this.isVisibleSubjectList = true;
     this.subjects.forEach(subjectItem => {
       if (subjectItem.nameSubject === this.subjectName) {
         this.subject = subjectItem;
       }
     });
-    console.log(this.subject);
+    // console.log(this.subject);
+  }
+
+  private initForm(): void {
+    this.subjects = this.getDataService.getSubjects();
+  }
+
+  private onVisibleFormSubject(): void {
+    this.isVisibleSubjectList = !this.isVisibleSubjectList;
+  }
+
+  private addSubject(value: {
+    visible: boolean;
+    newSubject: ISubject;
+  }): void {
+    this.isVisibleSubjectList = value.visible;
+    this.subjects = this.getDataService.addNewSubject(value.newSubject);
+    console.log(value.newSubject);
+    this.initForm();
   }
 
   public ngOnInit(): void {
-    this.subjects = this.getDataService.getSubjects();
+    this.initForm();
   }
 }

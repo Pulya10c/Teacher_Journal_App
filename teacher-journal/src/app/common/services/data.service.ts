@@ -43,4 +43,20 @@ export class DataService {
     ];
     return this.students;
   }
+  public addNewSubject(newSubject: any): ISubject[] {
+    this.subjects = [
+      ...this.subjects,
+      {
+        "_id": createId(),
+        "index": this.subjects.length,
+        "nameSubject": newSubject.name,
+        "teacher": newSubject.teacher,
+        "cabinet": newSubject.cabinet,
+        "description": newSubject.description,
+        "marks": {}
+      }
+    ];
+    return this.subjects;
+  }
+
 }

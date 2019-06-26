@@ -1,0 +1,68 @@
+@import "../../../../styles/variables.scss";
+
+// ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+//   color: green;
+// }
+
+// ::ng-deep .mat-form-field {
+//   color: green;
+// }
+
+// ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+//   color: green;
+// }
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: $text-color;
+  border-color: $text-color;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $text-color;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: $text-color;
+}
+
+.wrapper {
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  margin: 0 auto 3rem;
+
+  .subject__text {
+    font-weight: 400;
+    margin-top: 0;
+  }
+
+  .subject__form {
+    // margin: 0 10%;
+    border: 0.3rem solid grey;
+    border-radius: 1.5rem;
+
+    .subject__form__table {
+      margin: 20px auto;
+      width: 80%;
+    }
+  }
+
+  .subject__form__width {
+    width: 90%;
+  }
+
+  td {
+    padding-right: 8px;
+  }
+
+  .subject__form__button {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    button {
+      width: 20%;
+      font-size: 1.5rem;
+      padding: 1%;
+      margin: 0 2%;
+      background-color: gray;
+      color: $active-color;
+    }
+  }
+}
