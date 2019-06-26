@@ -1,17 +1,17 @@
 import { Component, OnInit, NgModule } from "@angular/core";
-import { DataService } from "../../../app/common/services/data.service";
-import { ISubject } from "../../../app/common/entities/subject";
-import { SharedModule } from "../../shared/shared.module";
+import { DataService } from "../../../common/services/data.service";
+import { ISubject } from "../../../common/entities/subject";
+import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
   selector: "app-subjects",
-  templateUrl: "./subjects.component.html",
-  styleUrls: ["./subjects.component.scss"]
+  templateUrl: "./subjects-list.component.html",
+  styleUrls: ["./subjects-list.component.scss"]
 })
 @NgModule({
   imports: [SharedModule]
 })
-export class SubjectsComponent implements OnInit {
+export class SubjectsListComponent implements OnInit {
   private subjects: ISubject[];
   private getDataService: DataService;
   private subjectName: string;
@@ -36,6 +36,5 @@ export class SubjectsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.subjects = this.getDataService.getSubjects();
-    // console.log(this.subjects);
   }
 }

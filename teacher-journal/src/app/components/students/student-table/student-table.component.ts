@@ -46,7 +46,7 @@ export class StudentTableComponent implements OnInit {
   }): void {
     this.isStudentTableActive = value.visible;
     this.students = this.getDataService.addNewStudent(value.newStudent);
-    this.sortedStudents = this.orderPipe.transform(this.students, this.isReverse);
+    this.initForm();
   }
 
   private onVisibleFormStudent(): void {

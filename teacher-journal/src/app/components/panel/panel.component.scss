@@ -1,10 +1,6 @@
 @import "../../../styles/variables.scss";
 
 .wrapper {
-  // margin: auto;
-  // max-width: 1000px;
-  // background-color: $color;
-
   .header {
     display: flex;
     align-items: flex-end;
@@ -47,9 +43,4 @@
 .navigation__item-active {
   color: $active-color;
   text-decoration: none;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 900px;
 }
