@@ -30,7 +30,7 @@ export class DataService {
   }
 
   public addNewStudent(newStudent: any): IStudent[] {
-    return [
+    this.students = [
       ...this.students,
       {
         "_id": id(),
@@ -41,5 +41,6 @@ export class DataService {
         "about": newStudent.description
       }
     ];
+    return this.students;
   }
 }
