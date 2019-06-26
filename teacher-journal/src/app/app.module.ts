@@ -12,6 +12,7 @@ import { StudentFormComponent } from "./components/students/student-form/student
 import { ReactiveFormsModule } from "@angular/forms";
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ExportComponent } from './components/export/export.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ExportComponent } from './components/export/export.component';
     SubjectsComponent,
     StudentFormComponent,
     StatisticsComponent,
-    ExportComponent
+    ExportComponent,
+    PanelComponent
   ],
 
   imports: [

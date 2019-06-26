@@ -40,7 +40,7 @@ export class StudentTableComponent implements OnInit {
     this.storageService.setSaveStorage(this.order, this.isReverse);
   }
 
-  private addNewStudent(value: {
+  private addStudent(value: {
     visible: boolean;
     newStudent: IStudent;
   }): void {

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { data } from "../../../assets/mock-data";
 import { IStudent } from "../entities/student";
 import { ISubject } from "../entities/subject";
-import * as id from "uuid/v1";
+import * as createId from "uuid/v1";
 
 @Injectable({
   providedIn: "root"
@@ -33,7 +33,7 @@ export class DataService {
     this.students = [
       ...this.students,
       {
-        "_id": id(),
+        "_id": createId(),
         "index": this.students.length,
         "name": newStudent.firstName,
         "lastName": newStudent.lastName,
