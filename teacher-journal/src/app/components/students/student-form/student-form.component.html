@@ -1,4 +1,5 @@
 <section class="wrapper">
+  <h2 class="student__text">Add new student:</h2>
   <form class="student__form" [formGroup]="studentsForm" (submit)="onSubmit()">
     <table class="student__form__table" cellspacing="0">
       <tr>
@@ -10,7 +11,7 @@
             <input
               matInput
               type="text"
-              autocomplete = "off"
+              autocomplete="off"
               [placeholder]="
                 isControlInvalid('firstName') ? 'Enter first name' : 'Jack'
               "
@@ -29,8 +30,10 @@
             <input
               matInput
               type="text"
-              autocomplete = "off"
-              [placeholder]= "isControlInvalid('firstName')?'Enter last name':'Black'"
+              autocomplete="off"
+              [placeholder]="
+                isControlInvalid('firstName') ? 'Enter last name' : 'Black'
+              "
               id="lastName"
               formControlName="lastName"
             />
@@ -45,7 +48,7 @@
             <input
               matInput
               type="text"
-              autocomplete = "off"
+              autocomplete="off"
               placeholder="pr. Zhukova 2"
               id="address"
               formControlName="address"
@@ -60,7 +63,7 @@
             <textarea
               matInput
               type="text"
-              autocomplete = "off"
+              autocomplete="off"
               placeholder="Good guy, work hard"
               id="description"
               formControlName="description"
@@ -72,7 +75,9 @@
 
     <div class="student__form__button">
       <button mat-stroked-button type="submit">Add</button>
-      <button mat-stroked-button type="button" (click) = "onCancel()">Back</button>
+      <button mat-stroked-button type="button" (click)="onCancel()">
+        Back
+      </button>
     </div>
   </form>
 </section>

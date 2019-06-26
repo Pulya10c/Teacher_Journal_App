@@ -38,13 +38,13 @@
     <button
       class="button__add"
       mat-stroked-button="warn"
-      (click)="addNewStudent()"
+      (click)="onVisibleFormStudent()"
     >
       &#10010;
     </button>
   </section>
 
   <section class="student__new" *ngIf="!isStudentTableActive">
-    <app-student-form (onVisibleForm) = "setVisibleForm($event)" ></app-student-form>
+    <app-student-form (onVisibleForm) = "addNewStudent($event)" ></app-student-form>
   </section>
 </section>

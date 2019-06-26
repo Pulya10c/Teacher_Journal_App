@@ -40,16 +40,16 @@ export class StudentTableComponent implements OnInit {
     this.storageService.setSaveStorage(this.order, this.isReverse);
   }
 
-  private setVisibleForm(value: {
+  private addNewStudent(value: {
     visible: boolean;
     newStudent: IStudent;
   }): void {
     this.isStudentTableActive = value.visible;
     this.students = this.getDataService.addNewStudent(value.newStudent);
-    this.sortedStudents = this.orderPipe.transform(this.students, "index");
+    this.sortedStudents = this.orderPipe.transform(this.students, this.isReverse);
   }
 
-  private addNewStudent(): void {
+  private onVisibleFormStudent(): void {
     this.isStudentTableActive = !this.isStudentTableActive;
   }
 

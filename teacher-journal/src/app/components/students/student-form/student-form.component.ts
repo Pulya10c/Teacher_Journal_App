@@ -37,7 +37,7 @@ export class StudentFormComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.pattern(/^[A-zА-я]*$/),
+          Validators.pattern(/^[A-zА-я -]*$/),
           Validators.minLength(2)
         ]
       ],
@@ -45,7 +45,7 @@ export class StudentFormComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.pattern(/^[A-zА-я]*$/),
+          Validators.pattern(/^[A-zА-я -]*$/),
           Validators.minLength(2)
         ]
       ],
@@ -63,8 +63,6 @@ export class StudentFormComponent implements OnInit {
   private onSubmit(): void {
     const controls: any = this.studentsForm.controls;
 
-    /** Проверяем форму на валидность */
-
     if (this.studentsForm.invalid) {
       Object.keys(controls).forEach(controlName =>
         controls[controlName].markAsTouched()
@@ -72,13 +70,10 @@ export class StudentFormComponent implements OnInit {
       return;
     }
 
-    /** Обработка данных формы */
-    console.log(this.studentsForm.value);
     this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value});
   }
 
   private onCancel(): void {
-    // console.log("cansel on");
     this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value});
   }
 
