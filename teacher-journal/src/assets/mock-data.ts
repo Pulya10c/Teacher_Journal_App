@@ -64,52 +64,34 @@ export const data: any = {
         "Ut magna ex ipsum commodo quis fugiat in et reprehenderit adipisicing.",
       marks: {
         "14.02.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
-          "5d08bea47d78c8449f01c08c": "5"
+          "5d08bea47e85e353cadda16c": "1",
+          "5d08bea43f5f27fbe9f5dff9": "1",
+          "5d08bea44c4eaff0331de0ba": "1",
+          "5d08bea47d78c8449f01c08c": "1"
         },
         "28.02.19": {
-          "5d08bea47e85e353cadda16c": "",
-          "5d08bea43f5f27fbe9f5dff9": "",
-          "5d08bea4f975b3057ef940df": "3",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
+          "5d08bea4f975b3057ef940df": "1"
         },
         "18.03.19": {
-          "5d08bea47e85e353cadda16c": "5",
-          "5d08bea43f5f27fbe9f5dff9": "",
-          "5d08bea4f975b3057ef940df": "",
+          "5d08bea47e85e353cadda16c": "2",
           "5d08bea4a276efdd10e3776c": "1",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
         },
         "14.04.19": {
           "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
-          "5d08bea47d78c8449f01c08c": "5"
+          "5d08bea43f5f27fbe9f5dff9": "2",
+          "5d08bea44c4eaff0331de0ba": "1",
+          "5d08bea47d78c8449f01c08c": "2"
         },
         "13.05.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
-          "5d08bea47d78c8449f01c08c": "5"
+          "5d08bea47e85e353cadda16c": "4",
+          "5d08bea43f5f27fbe9f5dff9": "3",
+          "5d08bea44c4eaff0331de0ba": "2",
+          "5d08bea47d78c8449f01c08c": "2"
         },
         "12.06.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "5",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": "0"
+          "5d08bea47e85e353cadda16c": "5",
+          "5d08bea43f5f27fbe9f5dff9": "4",
+          "5d08bea4a276efdd10e3776c": "2",
         }
       }
     },
@@ -125,50 +107,29 @@ export const data: any = {
         "14.02.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "28.02.19": {
-          "5d08bea47e85e353cadda16c": "",
-          "5d08bea43f5f27fbe9f5dff9": "",
           "5d08bea4f975b3057ef940df": "3",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
         },
         "18.03.19": {
           "5d08bea47e85e353cadda16c": "5",
-          "5d08bea43f5f27fbe9f5dff9": "",
-          "5d08bea4f975b3057ef940df": "",
           "5d08bea4a276efdd10e3776c": "1",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
         },
         "14.04.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "13.05.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "12.06.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4f975b3057ef940df": "",
           "5d08bea4a276efdd10e3776c": "5",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": "0"
         }
       }
     },
@@ -184,50 +145,32 @@ export const data: any = {
         "14.02.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "28.02.19": {
-          "5d08bea47e85e353cadda16c": "",
-          "5d08bea43f5f27fbe9f5dff9": "",
           "5d08bea4f975b3057ef940df": "3",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
         },
         "18.03.19": {
           "5d08bea47e85e353cadda16c": "5",
-          "5d08bea43f5f27fbe9f5dff9": "",
-          "5d08bea4f975b3057ef940df": "",
           "5d08bea4a276efdd10e3776c": "1",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
         },
         "14.04.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea44c4eaff0331de0ba": "1",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "13.05.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea44c4eaff0331de0ba": "2",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "12.06.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4f975b3057ef940df": "",
           "5d08bea4a276efdd10e3776c": "5",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": "0"
+          "5d08bea47d78c8449f01c08c": "5"
         }
       }
     },
@@ -242,50 +185,33 @@ export const data: any = {
         "14.02.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea44c4eaff0331de0ba": "2",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "28.02.19": {
-          "5d08bea47e85e353cadda16c": "",
-          "5d08bea43f5f27fbe9f5dff9": "",
           "5d08bea4f975b3057ef940df": "3",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
+          "5d08bea47d78c8449f01c08c": "2"
         },
         "18.03.19": {
           "5d08bea47e85e353cadda16c": "5",
-          "5d08bea43f5f27fbe9f5dff9": "",
-          "5d08bea4f975b3057ef940df": "",
           "5d08bea4a276efdd10e3776c": "1",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": ""
         },
         "14.04.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "13.05.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea4f975b3057ef940df": "",
-          "5d08bea4a276efdd10e3776c": "",
-          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea44c4eaff0331de0ba": "8",
           "5d08bea47d78c8449f01c08c": "5"
         },
         "12.06.19": {
           "5d08bea47e85e353cadda16c": "3",
           "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4f975b3057ef940df": "",
           "5d08bea4a276efdd10e3776c": "5",
-          "5d08bea44c4eaff0331de0ba": "",
-          "5d08bea47d78c8449f01c08c": "0"
+          "5d08bea47d78c8449f01c08c": "10"
         }
       }
     }

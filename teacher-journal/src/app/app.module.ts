@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SharedModule } from "./shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
 import { StudentFormComponent } from "./components/students/student-form/student-form.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { StatisticsComponent } from "./components/statistics/statistics.component";
 import { ExportComponent } from "./components/export/export.component";
 import { PanelComponent } from "./components/panel/panel.component";
@@ -31,6 +31,7 @@ import { SubjectPageComponent } from "./components/subjects/subject-page/subject
 
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,

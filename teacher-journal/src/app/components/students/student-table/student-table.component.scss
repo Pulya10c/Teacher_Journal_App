@@ -2,7 +2,6 @@
 
 .wrapper {
   max-width: 1000px;
-
   .students__cell__row__container {
     display: flex;
     justify-content: center;
@@ -23,11 +22,13 @@
   }
 
   .students__table {
+    font-size: 1rem;
     background-color: $text-color;
     table-layout: fixed;
   }
 
   .students__cell.header {
+    font-weight: 500;
     background-color: #1c3549;
     padding: 20px;
     font-size: 1.2rem;

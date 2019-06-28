@@ -21,8 +21,16 @@ export class DataService {
     return this.students;
   }
 
+  public setStudents(students: IStudent[]): void {
+    this.students = students;
+  }
+
   public getSubjects(): ISubject[] {
     return this.subjects;
+  }
+
+  public setSubjects(subjects: ISubject[]): void {
+    this.subjects = subjects;
   }
 
   public getKeysObject(object: any): string[] {
@@ -30,33 +38,36 @@ export class DataService {
   }
 
   public addNewStudent(newStudent: any): IStudent[] {
-    this.students = [
-      ...this.students,
-      {
-        "_id": createId(),
-        "index": this.students.length,
-        "name": newStudent.firstName,
-        "lastName": newStudent.lastName,
-        "address": newStudent.address,
-        "about": newStudent.description
-      }
-    ];
+    if (newStudent.firstName) {
+      this.students = [
+        ...this.students,
+        {
+          _id: createId(),
+          index: this.students.length,
+          name: newStudent.firstName,
+          lastName: newStudent.lastName,
+          address: newStudent.address,
+          about: newStudent.description
+        }
+      ];
+    }
     return this.students;
   }
   public addNewSubject(newSubject: any): ISubject[] {
-    this.subjects = [
-      ...this.subjects,
-      {
-        "_id": createId(),
-        "index": this.subjects.length,
-        "nameSubject": newSubject.name,
-        "teacher": newSubject.teacher,
-        "cabinet": newSubject.cabinet,
-        "description": newSubject.description,
-        "marks": {}
-      }
-    ];
+    if (newSubject.name) {
+      this.subjects = [
+        ...this.subjects,
+        {
+          _id: createId(),
+          index: this.subjects.length,
+          nameSubject: newSubject.name,
+          teacher: newSubject.teacher,
+          cabinet: newSubject.cabinet,
+          description: newSubject.description,
+          marks: {}
+        }
+      ];
+    }
     return this.subjects;
   }
-
 }

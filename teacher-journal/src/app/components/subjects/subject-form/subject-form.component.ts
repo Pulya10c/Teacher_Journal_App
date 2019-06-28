@@ -51,11 +51,6 @@ export class SubjectFormComponent implements OnInit {
         ]
       ],
       cabiner: ["",
-      [
-        Validators.required,
-        Validators.pattern(/^[0-9]*$/),
-        Validators.minLength(2)
-      ]
     ],
       description: [""]
     });

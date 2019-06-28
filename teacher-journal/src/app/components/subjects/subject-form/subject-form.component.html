@@ -42,12 +42,12 @@
       </tr>
 
       <tr>
-        <td [class.class__invalid]="isControlInvalid('cabiner')">Cabiner:</td>
+        <td>Cabiner:</td>
         <td>
           <mat-form-field class="subject__form__width">
             <input
               matInput
-              type="text"
+              type="number"
               autocomplete="off"
               [placeholder]="
                 isControlInvalid('cabiner') ? 'Enter number' : '106'

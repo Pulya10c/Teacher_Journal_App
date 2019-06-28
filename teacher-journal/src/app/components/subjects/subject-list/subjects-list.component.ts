@@ -17,6 +17,7 @@ export class SubjectsListComponent implements OnInit {
   private subjectName: string;
   private isVisibleSubjectList: boolean = true;
   private subject: ISubject;
+  private isVisibleSubjectPage: boolean = false;
 
   constructor(dataService: DataService) {
     this.getDataService = dataService;
@@ -24,7 +25,7 @@ export class SubjectsListComponent implements OnInit {
 
   private onViewSubjectList(event: Event): void {
     this.subjectName = (<HTMLButtonElement>event.target).innerText;
-    // this.isVisibleSubjectList = true;
+    this.isVisibleSubjectPage = true;
     this.subjects.forEach(subjectItem => {
       if (subjectItem.nameSubject === this.subjectName) {
         this.subject = subjectItem;
@@ -47,7 +48,6 @@ export class SubjectsListComponent implements OnInit {
   }): void {
     this.isVisibleSubjectList = value.visible;
     this.subjects = this.getDataService.addNewSubject(value.newSubject);
-    console.log(value.newSubject);
     this.initForm();
   }
 

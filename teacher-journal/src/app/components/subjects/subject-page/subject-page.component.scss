@@ -1,0 +1,173 @@
+@import "../../../../styles/variables.scss";
+
+.wrapper {
+  font-size: 1rem;
+
+  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    border-top: 0;
+  }
+
+  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding: 0;
+  }
+
+  ::ng-deep .mat-input-element {
+    caret-color: $text-color;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  ::ng-deep .mat-input-element :last-child {
+    margin-left: 15%;
+    padding: 5%;
+    border: 3px solide;
+    font-size: 3rem;
+  }
+
+  mat-form-field.subject__date__wraper {
+    display: none;
+  }
+
+  ::ng-deep body .cdk-overlay-container {
+    top: 32%;
+    left: 60%;
+  }
+
+  .subject__text {
+    margin-left: 9%;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .button__add__new-date {
+    background-color: $active-color;
+    font-size: 1.9rem;
+    margin: 0 0 1% 97%;
+    width: 2.1rem;
+    height: 2.1rem;
+    ::ng-deep span {
+      padding: 0;
+    }
+  }
+  .subject__form {
+    overflow: scroll;
+    max-height: 22rem;
+    &::-webkit-scrollbar {
+      width: 25px;
+      height: 25px;
+    }
+
+    & ::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      width: 50px;
+      height: 50px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      height: 12px;
+      background-color: #474747;
+      border: 7px solid black;
+    }
+
+    &::-webkit-scrollbar-corner {
+      display: none;
+    }
+  }
+
+  .subject__cell {
+    text-align: center;
+    border: solid 2px;
+    background-color: $color;
+    padding: 7px;
+  }
+
+  span {
+    visibility: hidden;
+  }
+
+  .subject__table {
+    background-color: $text-color;
+    width: 100%;
+  }
+
+  .subject__table__cell__width {
+    width: 65px;
+  }
+
+  .subject__cell.header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: #1c3549;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 200;
+  }
+  .fix {
+    position: sticky;
+    
+    z-index: 1;
+    width: 10%;
+  }
+
+  .first {
+    left: 0;
+
+  }
+
+  .second {
+    left: 207px;
+
+  }
+
+  .third {
+    left: 463px;
+
+  }
+
+  .subject__theacher {
+    margin: 5rem 0;
+    height: 100%;
+    .subject__theacher_container {
+      margin: 0 0 8% 9%;
+      display: flex;
+      align-items: center;
+      label {
+        font-size: 2rem;
+        vertical-align: middle;
+      }
+      input {
+        margin-left: 5%;
+        width: 50%;
+        padding: 1%;
+        border: 5px solid grey;
+        font-size: 2rem;
+        color: $text-color;
+        background-color: $color;
+      }
+    }
+
+    .subject__form__button {
+      margin-bottom: 5rem;
+      display: flex;
+      justify-content: center;
+      button {
+        width: 20%;
+        font-size: 1.5rem;
+        padding: 1%;
+        margin: 0 2%;
+        background-color: gray;
+        color: $active-color;
+      }
+    }
+  }
+}

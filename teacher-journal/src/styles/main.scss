@@ -5,6 +5,19 @@ html {
 }
 
 body {
+  .cdk-overlay-container {
+    top: 32%;
+    left: 60%;
+    .cdk-overlay-connected-position-bounding-box {
+      top: 32%;
+      left: 60%;
+      .cdk-overlay-pane.mat-datepicker-popup {
+        top: 0;
+      }
+    }
+  }
+  
+
   max-height: fit-content;
   font-size: 1.5rem;
   margin: 1% auto;
