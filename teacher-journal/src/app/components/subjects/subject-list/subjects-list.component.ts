@@ -2,6 +2,10 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { DataService } from "../../../common/services/data.service";
 import { ISubject } from "../../../common/entities/subject";
 import { SharedModule } from "../../../shared/shared.module";
+import {
+  NotificationService,
+  NotificationModel
+} from "../../../common/services/notification.service";
 
 @Component({
   selector: "app-subjects",
@@ -18,9 +22,14 @@ export class SubjectsListComponent implements OnInit {
   private isVisibleSubjectList: boolean = true;
   private subject: ISubject;
   private isVisibleSubjectPage: boolean = false;
+  private notificationService: NotificationService;
 
-  constructor(dataService: DataService) {
+  constructor(
+    dataService: DataService,
+    notificationService: NotificationService
+  ) {
     this.getDataService = dataService;
+    this.notificationService = notificationService;
   }
 
   private onViewSubjectList(event: Event): void {
@@ -31,7 +40,16 @@ export class SubjectsListComponent implements OnInit {
         this.subject = subjectItem;
       }
     });
-    // console.log(this.subject);
+  }
+
+  private showToast(
+    header: string,
+    description: string,
+    success: boolean
+  ): void {
+    this.notificationService.showToast(
+      new NotificationModel(header, description, success)
+    );
   }
 
   private initForm(): void {
@@ -40,15 +58,37 @@ export class SubjectsListComponent implements OnInit {
 
   private onVisibleFormSubject(): void {
     this.isVisibleSubjectList = !this.isVisibleSubjectList;
+    
   }
 
-  private addSubject(value: {
-    visible: boolean;
-    newSubject: ISubject;
-  }): void {
+  private addSubject(value: { visible: boolean; newSubject: ISubject }): void {
     this.isVisibleSubjectList = value.visible;
-    this.subjects = this.getDataService.addNewSubject(value.newSubject);
+    if (
+      this.subjects.find(
+        (subject: ISubject) =>
+          subject.nameSubject === value.newSubject.nameSubject
+      )
+    ) {
+      this.showToast(
+        "Warning",
+        `Subject ${value.newSubject.nameSubject} already exists!`,
+        false
+      );
+    } else {
+      if (value.newSubject.nameSubject) {
+        this.subjects = this.getDataService.addNewSubject(value.newSubject);
+        this.showToast(
+          "Success",
+          `Subject ${value.newSubject.nameSubject} successfully added!`,
+          true
+        );
+      }
+    }
     this.initForm();
+  }
+
+  private isVisible(value: boolean): void {
+    this.isVisibleSubjectPage = value;
   }
 
   public ngOnInit(): void {

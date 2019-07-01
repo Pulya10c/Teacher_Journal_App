@@ -1,9 +1,9 @@
 <section class="wrapper">
-  <h2 class="subject__text">Add new subject:</h2>
+    <ng-content></ng-content>
   <form class="subject__form" [formGroup]="subjectForm" (submit)="onSubmit()">
     <table class="subject__form__table" cellspacing="0">
       <tr>
-        <td [class.class__invalid]="isControlInvalid('name')">
+        <td [class.class__invalid]="isControlInvalid('nameSubject')">
           * Name:
         </td>
         <td>
@@ -13,10 +13,10 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('name') ? 'Enter subject name' : 'Mathematics'
+                isControlInvalid('nameSubject') ? 'Enter subject name' : 'Mathematics'
               "
-              id="name"
-              formControlName="name"
+              id="nameSubject"
+              formControlName="nameSubject"
             />
           </mat-form-field>
         </td>

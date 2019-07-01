@@ -7,8 +7,6 @@ import { IResultTableSubject } from "../entities/resultsTableSubject";
 @Injectable()
 export class MarksService {
   private getDataService: DataService;
-  // private students: IStudent[];
-  // private subject: ISubject;
 
   constructor(dataService: DataService) {
     this.getDataService = dataService;
@@ -56,25 +54,21 @@ export class MarksService {
     resultsTableSubject: IResultTableSubject[],
     headerNameDate: string[],
     subject: ISubject
-
-  ): { subject: ISubject, date: string } {
+  ): { subject: ISubject; date: string } {
     let date: any;
     if (!change) {
       subject.marks[headerNameDate[idxMarks]][
         resultsTableSubject[idxStudent]._id
       ] = event;
-      console.log(headerNameDate[idxMarks]);
     } else {
-      date = event.match(/^(0?[1-9]|[12][0-9]|3[01])[\.\-](0?[1-9]|1[012])[\.\-]\d{2}$/);
+      date = event.match(
+        /^(0?[1-9]|[12][0-9]|3[01])[\.\-](0?[1-9]|1[012])[\.\-]\d{2}$/
+      );
       if (date && event.length === 8) {
-        subject.marks[date[0]] = subject.marks[
-          headerNameDate[idxMarks]
-        ];
+        subject.marks[date[0]] = subject.marks[headerNameDate[idxMarks]];
         delete subject.marks[headerNameDate[idxMarks]];
       }
     }
-    return { subject, date};
+    return { subject, date };
   }
-
-  public addNewDate(nameSubject: string): void {}
 }

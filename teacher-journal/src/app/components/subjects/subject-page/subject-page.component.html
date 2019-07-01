@@ -1,7 +1,5 @@
 <section class="wrapper">
-  <h2 class="subject__text">
-    {{ subjectName }}
-  </h2>
+    <ng-content></ng-content>
   <section class="subject_date">
     <mat-form-field class="subject__date__wraper">
       <input
@@ -9,6 +7,7 @@
         class="date"
         [matDatepicker]="picker"
         [(ngModel)] = "newDate"
+        (ngModelChange) = "onAddDate($event)"
       />
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -17,7 +16,6 @@
       mat-fab
       color="warn"
       (click)="picker.open()"
-      (click) ="onAddDate(picker.value)"
     >
       &#10010;
     </button>
@@ -59,7 +57,7 @@
           <mat-form-field class="subject__table__cell__width">
             <input
               matInput
-              type="text"
+              type="number"
               autocomplete="off"
               [ngModel]="resultsTableSubject[idxStudent].marks[idxMarks]"
               (ngModelChange)="
@@ -84,6 +82,7 @@
     </div>
     <div class="subject__form__button">
       <button mat-stroked-button type="button" (click)="onSave()">Save</button>
+      <button mat-stroked-button type="button" (click)="onCancel()">Back</button>
     </div>
   </section>
 </section>

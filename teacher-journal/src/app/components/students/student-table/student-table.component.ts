@@ -4,6 +4,10 @@ import { OrderPipe } from "ngx-order-pipe";
 import { DataService } from "../../../common/services/data.service";
 import { StorageService } from "../../../common/services/storage.service";
 import { IStudent } from "../../../common/entities/student";
+import {
+  NotificationService,
+  NotificationModel
+} from "../../../common/services/notification.service";
 
 @Component({
   selector: "app-student-table",
@@ -21,15 +25,28 @@ export class StudentTableComponent implements OnInit {
   private isReverse: boolean = false;
   private orderPipe: OrderPipe;
   private isStudentTableActive: boolean = true;
+  private notificationService: NotificationService;
 
   constructor(
     dataService: DataService,
     orderPipe: OrderPipe,
-    storageService: StorageService
+    storageService: StorageService,
+    notificationService: NotificationService
   ) {
     this.getDataService = dataService;
     this.orderPipe = orderPipe;
     this.storageService = storageService;
+    this.notificationService = notificationService;
+  }
+
+  private showToast(
+    header: string,
+    description: string,
+    success: boolean
+  ): void {
+    this.notificationService.showToast(
+      new NotificationModel(header, description, success)
+    );
   }
 
   private setOrder(newValueOrder: string): void {
@@ -40,13 +57,17 @@ export class StudentTableComponent implements OnInit {
     this.storageService.setSaveStorage(this.order, this.isReverse);
   }
 
-  private addStudent(value: {
-    visible: boolean;
-    newStudent: IStudent;
-  }): void {
+  private addStudent(value: { visible: boolean; newStudent: IStudent }): void {
     this.isStudentTableActive = value.visible;
     this.students = this.getDataService.addNewStudent(value.newStudent);
     this.initForm();
+    if (value.newStudent.lastName) {
+      this.showToast(
+        "Success",
+        `Student ${value.newStudent.lastName} successfully added!`,
+        true
+      );
+    }
   }
 
   private onVisibleFormStudent(): void {

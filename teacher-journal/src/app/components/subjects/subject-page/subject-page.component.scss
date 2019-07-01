@@ -30,30 +30,19 @@
     font-size: 3rem;
   }
 
-  mat-form-field.subject__date__wraper {
-    display: none;
-  }
-
-  ::ng-deep body .cdk-overlay-container {
-    top: 32%;
-    left: 60%;
-  }
-
-  .subject__text {
-    margin-left: 9%;
-    font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
   .button__add__new-date {
     background-color: $active-color;
     font-size: 1.9rem;
-    margin: 0 0 1% 97%;
+    margin: 0 0 1% 76%;
     width: 2.1rem;
     height: 2.1rem;
     ::ng-deep span {
       padding: 0;
     }
+  }
+
+  .subject_date {
+    display: flex;
   }
   .subject__form {
     overflow: scroll;
@@ -135,7 +124,7 @@
   }
 
   .subject__theacher {
-    margin: 5rem 0;
+    margin: 3rem 0;
     height: 100%;
     .subject__theacher_container {
       margin: 0 0 8% 9%;

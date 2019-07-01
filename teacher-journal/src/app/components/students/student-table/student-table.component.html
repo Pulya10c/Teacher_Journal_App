@@ -1,5 +1,6 @@
 <section class="wrapper">
-  <section class="students" *ngIf="isStudentTableActive" >
+  <notification></notification>
+  <section class="students" *ngIf="isStudentTableActive">
     <table class="students__table" cellspacing="3">
       <thead>
         <tr>
@@ -44,6 +45,7 @@
     </button>
   </section>
   <section class="student__new" *ngIf="!isStudentTableActive">
-    <app-student-form (onVisibleForm) = "addStudent($event)" ></app-student-form>
+    <app-student-form (onVisibleForm)="addStudent($event)">
+      <h2 class="student__text">Add new student:</h2></app-student-form>
   </section>
 </section>

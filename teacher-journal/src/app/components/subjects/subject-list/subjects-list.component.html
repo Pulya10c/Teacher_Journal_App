@@ -1,4 +1,5 @@
 <section class="wrapper">
+  <notification></notification>
   <section
     class="subject__list"
     *ngIf="isVisibleSubjectList && !isVisibleSubjectPage"
@@ -28,9 +29,13 @@
     class="subject__new"
     *ngIf="!isVisibleSubjectList && !isVisibleSubjectPage"
   >
-    <app-subject-form (onVisibleForm)="addSubject($event)"></app-subject-form>
+    <app-subject-form (onVisibleForm)="addSubject($event)">
+      <h2 class="subject__text">Add new subject:</h2></app-subject-form>
   </section>
   <section *ngIf="isVisibleSubjectPage">
-    <app-subject-page [subjectName]="subjectName"></app-subject-page>
+    <app-subject-page [subjectName]="subjectName" (onVisiblePage)="isVisible($event)">
+      <h2 class="subject__text marks">
+        {{ subjectName }}
+      </h2></app-subject-page>
   </section>
 </section>

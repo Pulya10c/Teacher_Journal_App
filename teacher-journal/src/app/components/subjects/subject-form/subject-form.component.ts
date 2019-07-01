@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   NgModule,
-  Input,
   Output,
   EventEmitter
 } from "@angular/core";
@@ -34,7 +33,7 @@ export class SubjectFormComponent implements OnInit {
 
   private initForm(): void {
     this.subjectForm = this.subjectsFormBuilder.group({
-      name: [
+      nameSubject: [
         "",
         [
           Validators.required,

@@ -1,4 +1,11 @@
-import { Component, OnInit, NgModule, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  NgModule,
+  Input,
+  EventEmitter,
+  Output
+} from "@angular/core";
 import { DataService } from "../../../common/services/data.service";
 import { ISubject } from "../../../common/entities/subject";
 import { IStudent } from "../../../common/entities/student";
@@ -18,6 +25,9 @@ import { FormsModule } from "@angular/forms";
   imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class SubjectPageComponent implements OnInit {
+
+  @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<false>();
+
   private getDataService: DataService;
   private students: IStudent[];
   private subject: ISubject;
@@ -34,7 +44,6 @@ export class SubjectPageComponent implements OnInit {
     this.getMarksService = marksService;
   }
   private initForm(): void {
-    console.log(this.subjectName);
     this.students = this.getDataService.getStudents();
     this.subject = this.getDataService
       .getSubjects()
@@ -44,10 +53,19 @@ export class SubjectPageComponent implements OnInit {
     this.resultsTableSubject = this.getMarksService.getMarks(this.subjectName);
   }
 
-  private onAddDate(abs: any): void {}
+  private onAddDate(event: Date): void {
+    const date: string = event
+      .toLocaleDateString("en-GB")
+      .replace("/20", ".")
+      .replace("/", ".");
+    this.headerNameDate = [...this.headerNameDate, date];
+    this.subject.marks[date] = {};
+    this.resultsTableSubject.forEach((student: IResultTableSubject) =>
+      student.marks.push(undefined)
+    );
+  }
 
   private onSave(): void {
-    console.log(this.newDate);
     this.getDataService.addNewSubject(this.subject);
     this.initForm();
   }
@@ -74,6 +92,10 @@ export class SubjectPageComponent implements OnInit {
       this.headerNameDate[idxMarks] = response.date[0];
     }
     this.subject = response.subject;
+  }
+
+  private onCancel(): void {
+    this.onVisiblePage.emit(false);
   }
 
   public ngOnInit(): void {

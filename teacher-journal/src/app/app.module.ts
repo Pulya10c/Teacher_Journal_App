@@ -15,6 +15,7 @@ import { ExportComponent } from "./components/export/export.component";
 import { PanelComponent } from "./components/panel/panel.component";
 import { SubjectFormComponent } from "./components/subjects/subject-form/subject-form.component";
 import { SubjectPageComponent } from "./components/subjects/subject-page/subject-page.component";
+import { NotificationComponent } from "./shared/components/notification/notification.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SubjectPageComponent } from "./components/subjects/subject-page/subject
     ExportComponent,
     PanelComponent,
     SubjectFormComponent,
-    SubjectPageComponent
+    SubjectPageComponent,
+    NotificationComponent
   ],
 
   imports: [

@@ -53,14 +53,19 @@ export class DataService {
     }
     return this.students;
   }
-  public addNewSubject(newSubject: any): ISubject[] {
-    if (newSubject.name) {
+  public addNewSubject(newSubject: ISubject): ISubject[] {
+    if (
+      newSubject.nameSubject &&
+      !this.subjects.find(
+        (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
+      )
+    ) {
       this.subjects = [
         ...this.subjects,
         {
           _id: createId(),
           index: this.subjects.length,
-          nameSubject: newSubject.name,
+          nameSubject: newSubject.nameSubject,
           teacher: newSubject.teacher,
           cabinet: newSubject.cabinet,
           description: newSubject.description,
