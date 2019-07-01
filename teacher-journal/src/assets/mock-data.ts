@@ -1,0 +1,293 @@
+export const data: any = {
+  students: [
+    {
+      _id: "5d08bea47e85e353cadda16c",
+      index: 0,
+      name: "Best",
+      lastName: "Gross",
+      address: "Baker, Orange Street, d.9166",
+      about: "Officia excepteur excepteur nulla sunt aliquip duis minim ex."
+    },
+    {
+      _id: "5d08bea43f5f27fbe9f5dff9",
+      index: 1,
+      name: "Lester",
+      lastName: "Franks",
+      address: "Inkerman, Beayer Place, d.5402",
+      about:
+        "Ullamco labore occaecat nostrud magna ipsum aliqua nostrud est enim eiusmod reprehenderit adipisicing."
+    },
+    {
+      _id: "5d08bea4f975b3057ef940df",
+      index: 2,
+      name: "Delacruz",
+      lastName: "Jenkins",
+      address: "Ogema, Dodworth Street, d.4806",
+      about: "Cupidatat nulla eiusmod ullamco quis nulla ut tempor nisi."
+    },
+    {
+      _id: "5d08bea4a276efdd10e3776c",
+      index: 3,
+      name: "Grimes",
+      lastName: "Eaton",
+      address: "Helen, Gerritsen Avenue, d.8745",
+      about:
+        "Do qui dolore pariatur tempor commodo aute non minim non adipisicing est qui adipisicing."
+    },
+    {
+      _id: "5d08bea44c4eaff0331de0ba",
+      index: 4,
+      name: "Shelby",
+      lastName: "Richardson",
+      address: "Fairacres, Sumner Place, d.3022",
+      about:
+        "Duis voluptate est duis aute dolore est cillum aliquip deserunt Lorem sint nulla aute aliquip."
+    },
+    {
+      _id: "5d08bea47d78c8449f01c08c",
+      index: 5,
+      name: "Lauri",
+      lastName: "Ochoa",
+      address: "Wollochet, Madison Street, d.3654",
+      about:
+        "Non reprehenderit ut aliqua pariatur aliqua aliqua consequat dolore fugiat anim tempor."
+    }
+  ],
+  subjects: [
+    {
+      _id: "5d08d837790ddb4d92553bda",
+      index: 0,
+      nameSubject: "Physics",
+      teacher: "Alicia Gilbert",
+      cabinet: 26,
+      description:
+        "Ut magna ex ipsum commodo quis fugiat in et reprehenderit adipisicing.",
+      marks: {
+        "14.02.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "28.02.19": {
+          "5d08bea47e85e353cadda16c": "",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "3",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "18.03.19": {
+          "5d08bea47e85e353cadda16c": "5",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "1",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "14.04.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "13.05.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "12.06.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "2",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "5",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": "0"
+        }
+      }
+    },
+    {
+      _id: "5d08d837f33d83a109a31128",
+      index: 1,
+      nameSubject: "Chemistry",
+      teacher: "Richardson Workman",
+      cabinet: 25,
+      description:
+        "Id ut aute minim consequat cupidatat sit adipisicing cupidatat enim consectetur voluptate dolor commodo anim.",
+      marks: {
+        "14.02.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "28.02.19": {
+          "5d08bea47e85e353cadda16c": "",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "3",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "18.03.19": {
+          "5d08bea47e85e353cadda16c": "5",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "1",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "14.04.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "13.05.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "12.06.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "2",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "5",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": "0"
+        }
+      }
+    },
+    {
+      _id: "5d08d837d6d3502487c148bd",
+      index: 2,
+      nameSubject: "Biology",
+      teacher: "Todd Maxwell",
+      cabinet: 15,
+      description:
+        "Magna adipisicing minim minim aliquip culpa aute dolore consectetur.",
+      marks: {
+        "14.02.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "28.02.19": {
+          "5d08bea47e85e353cadda16c": "",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "3",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "18.03.19": {
+          "5d08bea47e85e353cadda16c": "5",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "1",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "14.04.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "13.05.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "12.06.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "2",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "5",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": "0"
+        }
+      }
+    },
+    {
+      _id: "5d08d837e31826de8722690f",
+      index: 3,
+      nameSubject: "Literature",
+      teacher: "Selma Pope",
+      cabinet: 20,
+      description: "Cupidatat in mollit magna qui ea minim.",
+      marks: {
+        "14.02.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "28.02.19": {
+          "5d08bea47e85e353cadda16c": "",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "3",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "18.03.19": {
+          "5d08bea47e85e353cadda16c": "5",
+          "5d08bea43f5f27fbe9f5dff9": "",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "1",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": ""
+        },
+        "14.04.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "13.05.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "6",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "",
+          "5d08bea44c4eaff0331de0ba": "0",
+          "5d08bea47d78c8449f01c08c": "5"
+        },
+        "12.06.19": {
+          "5d08bea47e85e353cadda16c": "3",
+          "5d08bea43f5f27fbe9f5dff9": "2",
+          "5d08bea4f975b3057ef940df": "",
+          "5d08bea4a276efdd10e3776c": "5",
+          "5d08bea44c4eaff0331de0ba": "",
+          "5d08bea47d78c8449f01c08c": "0"
+        }
+      }
+    }
+  ]
+};

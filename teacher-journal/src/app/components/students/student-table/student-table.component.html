@@ -1,0 +1,50 @@
+<section class="wrapper">
+  <section class="students" *ngIf="isStudentTableActive" >
+    <table class="students__table" cellspacing="3">
+      <thead>
+        <tr>
+          <th
+            class="students__cell header"
+            [class.active]="order === columnName"
+            *ngFor="let columnName of columnStudentsName"
+            (click)="setOrder(columnName)"
+          >
+            <div class="students__cell__row__container">
+              <div class="students__row__name">
+                {{ columnName | uppercase }}
+              </div>
+              <div class="students__cell__revers">
+                <span [hidden]="isReverse">▼</span>
+                <span [hidden]="!isReverse">▲</span>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tr
+        *ngFor="
+          let student of sortedStudents
+            | orderBy: order:isReverse:'case-insensitive'
+        "
+      >
+        <td class="students__cell">{{ student.index + 1 }}</td>
+        <td class="students__cell">{{ student.name }}</td>
+        <td class="students__cell">{{ student.lastName }}</td>
+        <td class="students__cell">{{ student.address }}</td>
+        <td class="students__cell">{{ student.about }}</td>
+      </tr>
+    </table>
+
+    <button
+      class="button__add"
+      mat-stroked-button="warn"
+      (click)="onVisibleFormStudent()"
+    >
+      &#10010;
+    </button>
+  </section>
+
+  <section class="student__new" *ngIf="!isStudentTableActive">
+    <app-student-form (onVisibleForm) = "addStudent($event)" ></app-student-form>
+  </section>
+</section>

@@ -1,0 +1,16 @@
+<section class="wrapper">
+  <h2 class="subject__text">
+    List of subjects:
+  </h2>
+  <div class="subject__buttons">
+    <button 
+    class="subject__buttons__item"
+    mat-raised-button
+    *ngFor="let subject of subjects"
+    (click) = "onViewSubjectList($event)"
+    >
+      {{ subject.nameSubject }}
+    </button>
+  </div>
+  <button class="button__add" mat-stroked-button="warn">&#10010;</button>
+</section>
