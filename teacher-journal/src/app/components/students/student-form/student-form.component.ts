@@ -23,7 +23,8 @@ export class StudentFormComponent implements OnInit {
   @Output() private onVisibleForm: EventEmitter<{
     visible: boolean;
     newStudent: IStudent;
-  }> = new EventEmitter<{ visible: boolean; newStudent: IStudent }>();
+    add: boolean;
+  }> = new EventEmitter<{ visible: boolean; newStudent: IStudent; add: boolean }>();
 
   private studentsForm: FormGroup;
   private studentFormBuilder: FormBuilder;
@@ -71,11 +72,12 @@ export class StudentFormComponent implements OnInit {
       return;
     }
 
-    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value});
+    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, add: true});
   }
 
   private onCancel(): void {
-    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value});
+
+    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, add: false});
   }
 
   public ngOnInit(): void {

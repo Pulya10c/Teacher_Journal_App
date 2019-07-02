@@ -72,6 +72,24 @@ export class DataService {
           marks: {}
         }
       ];
+      return this.subjects;
+    }
+    if (
+      newSubject.nameSubject &&
+      this.subjects.find(
+        (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
+      )
+    ) {
+      const index: number = this.subjects.findIndex(el => el.nameSubject === newSubject.nameSubject);
+      this.subjects[index] = {
+          _id: newSubject._id,
+          index: this.subjects.length,
+          nameSubject: newSubject.nameSubject,
+          teacher: newSubject.teacher,
+          cabinet: newSubject.cabinet,
+          description: newSubject.description,
+          marks: newSubject.marks
+        };
     }
     return this.subjects;
   }

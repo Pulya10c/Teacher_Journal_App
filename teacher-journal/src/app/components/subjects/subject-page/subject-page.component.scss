@@ -43,7 +43,12 @@
 
   .subject_date {
     display: flex;
+    ::ng-deep .mat-form-field-infix {
+      border-top: 0;
+      visibility: hidden;
+    }
   }
+
   .subject__form {
     overflow: scroll;
     max-height: 22rem;
@@ -103,24 +108,8 @@
   }
   .fix {
     position: sticky;
-    
     z-index: 1;
     width: 10%;
-  }
-
-  .first {
-    left: 0;
-
-  }
-
-  .second {
-    left: 207px;
-
-  }
-
-  .third {
-    left: 463px;
-
   }
 
   .subject__theacher {

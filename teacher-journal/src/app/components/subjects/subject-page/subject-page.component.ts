@@ -4,7 +4,8 @@ import {
   NgModule,
   Input,
   EventEmitter,
-  Output
+  Output,
+  ɵConsole
 } from "@angular/core";
 import { DataService } from "../../../common/services/data.service";
 import { ISubject } from "../../../common/entities/subject";
@@ -25,8 +26,9 @@ import { FormsModule } from "@angular/forms";
   imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class SubjectPageComponent implements OnInit {
-
-  @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<false>();
+  @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<
+    false
+  >();
 
   private getDataService: DataService;
   private students: IStudent[];
@@ -35,7 +37,7 @@ export class SubjectPageComponent implements OnInit {
   private headerNameStudents: string[];
   private getMarksService: MarksService;
   private resultsTableSubject: IResultTableSubject[];
-  private newDate: any;
+  private subjectBackup: ISubject;
 
   @Input() public subjectName: string;
 
@@ -48,8 +50,10 @@ export class SubjectPageComponent implements OnInit {
     this.subject = this.getDataService
       .getSubjects()
       .filter(subject => subject.nameSubject === this.subjectName)[0];
+    this.subjectBackup = this.subject;
+    this.subject = JSON.parse(JSON.stringify(this.subject));
     this.headerNameStudents = ["Name", "Last Name", "Average Mark"];
-    this.headerNameDate = Object.keys(this.subject.marks);
+    this.headerNameDate = Object.keys(this.subject.marks).sort();
     this.resultsTableSubject = this.getMarksService.getMarks(this.subjectName);
   }
 
@@ -91,11 +95,12 @@ export class SubjectPageComponent implements OnInit {
     if (response.date && change) {
       this.headerNameDate[idxMarks] = response.date[0];
     }
-    this.subject = response.subject;
+    this.subject = { ...response.subject };
   }
 
   private onCancel(): void {
     this.onVisiblePage.emit(false);
+    this.initForm();
   }
 
   public ngOnInit(): void {

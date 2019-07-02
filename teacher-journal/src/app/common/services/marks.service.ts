@@ -22,13 +22,13 @@ export class MarksService {
         _id: student._id,
         name: student.name,
         lastName: student.lastName,
-        marks: Object.keys(subject.marks).map((day: string) =>
+        marks: Object.keys(subject.marks).sort().map((day: string) =>
           +subject.marks[day][student._id]
             ? +subject.marks[day][student._id]
             : undefined
         ),
         averageMark: Object.keys(subject.marks).length
-          ? +Object.keys(subject.marks)
+          ? +Object.keys(subject.marks).sort()
               .map((day: string) =>
                 +subject.marks[day][student._id]
                   ? +subject.marks[day][student._id]

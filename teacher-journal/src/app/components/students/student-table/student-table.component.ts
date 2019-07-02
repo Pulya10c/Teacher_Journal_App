@@ -57,16 +57,16 @@ export class StudentTableComponent implements OnInit {
     this.storageService.setSaveStorage(this.order, this.isReverse);
   }
 
-  private addStudent(value: { visible: boolean; newStudent: IStudent }): void {
+  private addStudent(value: { visible: boolean; newStudent: IStudent; add: boolean }): void {
     this.isStudentTableActive = value.visible;
-    this.students = this.getDataService.addNewStudent(value.newStudent);
-    this.initForm();
-    if (value.newStudent.lastName) {
+    if (value.add) {
+      this.students = this.getDataService.addNewStudent(value.newStudent);
       this.showToast(
         "Success",
         `Student ${value.newStudent.lastName} successfully added!`,
         true
       );
+      this.initForm();
     }
   }
 

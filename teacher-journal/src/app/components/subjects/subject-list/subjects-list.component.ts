@@ -58,10 +58,9 @@ export class SubjectsListComponent implements OnInit {
 
   private onVisibleFormSubject(): void {
     this.isVisibleSubjectList = !this.isVisibleSubjectList;
-    
   }
 
-  private addSubject(value: { visible: boolean; newSubject: ISubject }): void {
+  private addSubject(value: { visible: boolean; newSubject: ISubject; add: boolean }): void {
     this.isVisibleSubjectList = value.visible;
     if (
       this.subjects.find(
@@ -75,7 +74,7 @@ export class SubjectsListComponent implements OnInit {
         false
       );
     } else {
-      if (value.newSubject.nameSubject) {
+      if (value.add) {
         this.subjects = this.getDataService.addNewSubject(value.newSubject);
         this.showToast(
           "Success",
