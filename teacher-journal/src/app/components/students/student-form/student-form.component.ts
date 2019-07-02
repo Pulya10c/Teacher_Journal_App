@@ -10,7 +10,6 @@ import { SharedModule } from "../../../shared/shared.module";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { IStudent } from "../../../common/entities/student";
 
-
 @Component({
   selector: "app-student-form",
   templateUrl: "./student-form.component.html",

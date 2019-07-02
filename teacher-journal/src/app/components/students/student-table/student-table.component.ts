@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgModule } from "@angular/core";
 import { OrderPipe } from "ngx-order-pipe";
-
+import { SharedModule } from "../../../shared/shared.module";
 import { DataService } from "../../../common/services/data.service";
 import { StorageService } from "../../../common/services/storage.service";
 import { IStudent } from "../../../common/entities/student";
@@ -8,12 +8,17 @@ import {
   NotificationService,
   NotificationModel
 } from "../../../common/services/notification.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-student-table",
   templateUrl: "./student-table.component.html",
   styleUrls: ["./student-table.component.scss"],
   providers: [StorageService]
+})
+@NgModule({
+  imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class StudentTableComponent implements OnInit {
   private students: IStudent[];
@@ -57,7 +62,11 @@ export class StudentTableComponent implements OnInit {
     this.storageService.setSaveStorage(this.order, this.isReverse);
   }
 
-  private addStudent(value: { visible: boolean; newStudent: IStudent; add: boolean }): void {
+  private addStudent(value: {
+    visible: boolean;
+    newStudent: IStudent;
+    add: boolean;
+  }): void {
     this.isStudentTableActive = value.visible;
     if (value.add) {
       this.students = this.getDataService.addNewStudent(value.newStudent);
