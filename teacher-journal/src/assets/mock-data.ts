@@ -62,38 +62,110 @@ export const data: any = {
       cabinet: 26,
       description:
         "Ut magna ex ipsum commodo quis fugiat in et reprehenderit adipisicing.",
-      marks: {
-        "14.02.19": {
-          "5d08bea47e85e353cadda16c": "1",
-          "5d08bea43f5f27fbe9f5dff9": "1",
-          "5d08bea44c4eaff0331de0ba": "1",
-          "5d08bea47d78c8449f01c08c": "1"
+      marks: [
+        {
+          date: 1550091600000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 1
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 1
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 1
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 1
+            }
+          ]
         },
-        "28.02.19": {
-          "5d08bea4f975b3057ef940df": "1"
+        {
+          date: 1551301200000,
+          students: [
+            {
+              _id: "5d08bea4f975b3057ef940df",
+              mark: 1
+            }
+          ]
         },
-        "18.03.19": {
-          "5d08bea47e85e353cadda16c": "2",
-          "5d08bea4a276efdd10e3776c": "1",
+        {
+          date: 1552856400000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 1
+            },
+            {
+              _id: "5d08bea4a276efdd10e3776c",
+              mark: 1
+            }
+          ]
         },
-        "14.04.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea44c4eaff0331de0ba": "1",
-          "5d08bea47d78c8449f01c08c": "2"
+        {
+          date: 1555189200000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 1
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 1
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 1
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 1
+            }
+          ]
         },
-        "13.05.19": {
-          "5d08bea47e85e353cadda16c": "4",
-          "5d08bea43f5f27fbe9f5dff9": "3",
-          "5d08bea44c4eaff0331de0ba": "2",
-          "5d08bea47d78c8449f01c08c": "2"
+        {
+          date: 1557694800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 1
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 1
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 1
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 1
+            }
+          ]
         },
-        "12.06.19": {
-          "5d08bea47e85e353cadda16c": "5",
-          "5d08bea43f5f27fbe9f5dff9": "4",
-          "5d08bea4a276efdd10e3776c": "2",
+        {
+          date: 1560286800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 1
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 1
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 1
+            }
+          ]
         }
-      }
+      ]
     },
     {
       _id: "5d08d837f33d83a109a31128",
@@ -103,35 +175,106 @@ export const data: any = {
       cabinet: 25,
       description:
         "Id ut aute minim consequat cupidatat sit adipisicing cupidatat enim consectetur voluptate dolor commodo anim.",
-      marks: {
-        "14.02.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea47d78c8449f01c08c": "5"
+      marks: [
+        {
+          date: 1550091600000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 2
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 2
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 2
+            }
+          ]
         },
-        "28.02.19": {
-          "5d08bea4f975b3057ef940df": "3",
+        {
+          date: 1551301200000,
+          students: [
+            {
+              _id: "5d08bea4f975b3057ef940df",
+              mark: 2
+            }
+          ]
         },
-        "18.03.19": {
-          "5d08bea47e85e353cadda16c": "5",
-          "5d08bea4a276efdd10e3776c": "1",
+        {
+          date: 1552856400000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 2
+            },
+            {
+              _id: "5d08bea4a276efdd10e3776c",
+              mark: 2
+            }
+          ]
         },
-        "14.04.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1555189200000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 2
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 2
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 2
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 2
+            }
+          ]
         },
-        "13.05.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1557694800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 2
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 2
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 2
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 2
+            }
+          ]
         },
-        "12.06.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4a276efdd10e3776c": "5",
+        {
+          date: 1560286800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 2
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 2
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 2
+            }
+          ]
         }
-      }
+      ]
     },
     {
       _id: "5d08d837d6d3502487c148bd",
@@ -141,38 +284,106 @@ export const data: any = {
       cabinet: 15,
       description:
         "Magna adipisicing minim minim aliquip culpa aute dolore consectetur.",
-      marks: {
-        "14.02.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea47d78c8449f01c08c": "5"
+      marks: [
+        {
+          date: 1550091600000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 3
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 3
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 3
+            }
+          ]
         },
-        "28.02.19": {
-          "5d08bea4f975b3057ef940df": "3",
+        {
+          date: 1551301200000,
+          students: [
+            {
+              _id: "5d08bea4f975b3057ef940df",
+              mark: 3
+            }
+          ]
         },
-        "18.03.19": {
-          "5d08bea47e85e353cadda16c": "5",
-          "5d08bea4a276efdd10e3776c": "1",
+        {
+          date: 1552856400000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 3
+            },
+            {
+              _id: "5d08bea4a276efdd10e3776c",
+              mark: 3
+            }
+          ]
         },
-        "14.04.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea44c4eaff0331de0ba": "1",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1555189200000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 3
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 3
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 3
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 3
+            }
+          ]
         },
-        "13.05.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea44c4eaff0331de0ba": "2",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1557694800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 3
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 3
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 3
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 3
+            }
+          ]
         },
-        "12.06.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4a276efdd10e3776c": "5",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1560286800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 3
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 3
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 3
+            }
+          ]
         }
-      }
+      ]
     },
     {
       _id: "5d08d837e31826de8722690f",
@@ -181,39 +392,106 @@ export const data: any = {
       teacher: "Selma Pope",
       cabinet: 20,
       description: "Cupidatat in mollit magna qui ea minim.",
-      marks: {
-        "14.02.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea44c4eaff0331de0ba": "2",
-          "5d08bea47d78c8449f01c08c": "5"
+      marks: [
+        {
+          date: 1550091600000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 4
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 4
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 4
+            }
+          ]
         },
-        "28.02.19": {
-          "5d08bea4f975b3057ef940df": "3",
-          "5d08bea47d78c8449f01c08c": "2"
+        {
+          date: 1551301200000,
+          students: [
+            {
+              _id: "5d08bea4f975b3057ef940df",
+              mark: 4
+            }
+          ]
         },
-        "18.03.19": {
-          "5d08bea47e85e353cadda16c": "5",
-          "5d08bea4a276efdd10e3776c": "1",
+        {
+          date: 1552856400000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 4
+            },
+            {
+              _id: "5d08bea4a276efdd10e3776c",
+              mark: 4
+            }
+          ]
         },
-        "14.04.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1555189200000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 4
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 4
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 4
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 4
+            }
+          ]
         },
-        "13.05.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "6",
-          "5d08bea44c4eaff0331de0ba": "8",
-          "5d08bea47d78c8449f01c08c": "5"
+        {
+          date: 1557694800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 4
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 4
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 4
+            },
+            {
+              _id: "5d08bea47d78c8449f01c08c",
+              mark: 4
+            }
+          ]
         },
-        "12.06.19": {
-          "5d08bea47e85e353cadda16c": "3",
-          "5d08bea43f5f27fbe9f5dff9": "2",
-          "5d08bea4a276efdd10e3776c": "5",
-          "5d08bea47d78c8449f01c08c": "10"
+        {
+          date: 1560286800000,
+          students: [
+            {
+              _id: "5d08bea47e85e353cadda16c",
+              mark: 4
+            },
+            {
+              _id: "5d08bea43f5f27fbe9f5dff9",
+              mark: 4
+            },
+            {
+              _id: "5d08bea44c4eaff0331de0ba",
+              mark: 4
+            }
+          ]
         }
-      }
+      ]
     }
   ]
 };

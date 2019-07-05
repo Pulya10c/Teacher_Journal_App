@@ -1,13 +1,13 @@
 <section class="wrapper">
     <ng-content></ng-content>
   <form class="subject__form" [formGroup]="subjectForm" (submit)="onSubmit()">
-    <table class="subject__form__table" cellspacing="0">
+    <table class="subject__form-table" cellspacing="0">
       <tr>
         <td [class.class__invalid]="isControlInvalid('nameSubject')">
           * Name:
         </td>
         <td>
-          <mat-form-field class="subject__form__width">
+          <mat-form-field class="subject__form-table-cell">
             <input
               matInput
               type="text"
@@ -26,7 +26,7 @@
           * Teacher:
         </td>
         <td>
-          <mat-form-field class="subject__form__width">
+          <mat-form-field class="subject__form-table-cell">
             <input
               matInput
               type="text"
@@ -44,7 +44,7 @@
       <tr>
         <td>Cabiner:</td>
         <td>
-          <mat-form-field class="subject__form__width">
+          <mat-form-field class="subject__form-table-cell">
             <input
               matInput
               type="number"
@@ -61,7 +61,7 @@
       <tr>
         <td>Description:</td>
         <td>
-          <mat-form-field class="subject__form__width">
+          <mat-form-field class="subject__form-table-cell">
             <textarea
               matInput
               type="text"
@@ -75,9 +75,9 @@
       </tr>
     </table>
 
-    <div class="subject__form__button">
-      <button mat-stroked-button type="submit">Add</button>
-      <button mat-stroked-button type="button" (click)="onCancel()">
+    <div class="subject__form-buttons">
+      <button class="subject__form-buttons-item" mat-stroked-button type="submit">Add</button>
+      <button class="subject__form-buttons-item" mat-stroked-button type="button" (click)="onCancel()">
         Back
       </button>
     </div>

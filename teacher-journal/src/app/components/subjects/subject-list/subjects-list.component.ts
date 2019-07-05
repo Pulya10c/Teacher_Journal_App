@@ -75,7 +75,7 @@ export class SubjectsListComponent implements OnInit {
       );
     } else {
       if (value.add) {
-        this.subjects = this.getDataService.addNewSubject(value.newSubject);
+        this.subjects = this.getDataService.addNewSubject(this.subjects, value.newSubject);
         this.showToast(
           "Success",
           `Subject ${value.newSubject.nameSubject} successfully added!`,
@@ -83,7 +83,7 @@ export class SubjectsListComponent implements OnInit {
         );
       }
     }
-    this.initForm();
+    // this.initForm();
   }
 
   private isVisible(value: boolean): void {

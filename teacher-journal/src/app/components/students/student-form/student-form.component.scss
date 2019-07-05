@@ -1,6 +1,8 @@
 @import "../../../../styles/variables.scss";
 
 .wrapper {
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  margin: 0 auto 3rem;
 
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: $text-color;
@@ -15,39 +17,28 @@
     caret-color: $text-color;
   }
 
-  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
-  margin: 0 auto 3rem;
-
   .student__form {
     margin: 0 10%;
     border: 0.3rem solid grey;
     border-radius: 1.5rem;
 
-    .student__form__table {
+    .student__form-table {
       margin: 20px auto;
       width: 80%;
+      .student__form-table-cell {
+        width: 90%;
+      }
+      td {
+        padding-right: 8px;
+      }
     }
   }
 
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-
-  .student__form__width {
-    width: 90%;
-  }
-
-  td {
-    padding-right: 8px;
-  }
-
-  .student__form__button {
+  .student__form-buttons {
     margin-bottom: 3rem;
     display: flex;
     justify-content: center;
-    button {
+    .student__form-buttons-item {
       width: 20%;
       font-size: 1.5rem;
       padding: 1%;

@@ -4,46 +4,28 @@ import { data } from "../../../assets/mock-data";
 import { IStudent } from "../entities/student";
 import { ISubject } from "../entities/subject";
 import * as createId from "uuid/v1";
+import { URL_DB_STUDENTS, URL_DB_SUBJECTS } from "../constants/data-constants";
 
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
-  public students: IStudent[];
-  public subjects: ISubject[];
-
-  constructor() {
-    this.students = data.students;
-    this.subjects = data.subjects;
-  }
 
   public getStudents(): IStudent[] {
-    return this.students;
-  }
-
-  public setStudents(students: IStudent[]): void {
-    this.students = students;
+    return data.students;
   }
 
   public getSubjects(): ISubject[] {
-    return this.subjects;
+    return data.subjects;
   }
 
-  public setSubjects(subjects: ISubject[]): void {
-    this.subjects = subjects;
-  }
-
-  public getKeysObject(object: any): string[] {
-    return Object.keys(object);
-  }
-
-  public addNewStudent(newStudent: any): IStudent[] {
+  public addNewStudent(students: IStudent[], newStudent: any): IStudent[] {
     if (newStudent.firstName) {
-      this.students = [
-        ...this.students,
+      students = [
+        ...students,
         {
           _id: createId(),
-          index: this.students.length,
+          index: students.length,
           name: newStudent.firstName,
           lastName: newStudent.lastName,
           address: newStudent.address,
@@ -51,39 +33,39 @@ export class DataService {
         }
       ];
     }
-    return this.students;
+    return students;
   }
-  public addNewSubject(newSubject: ISubject): ISubject[] {
-    if (
-      newSubject.nameSubject &&
-      !this.subjects.find(
-        (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
-      )
-    ) {
-      this.subjects = [
-        ...this.subjects,
+
+  public addNewSubject(subjects: ISubject[], newSubject: ISubject): ISubject[] {
+
+    const isAddNewSubject: boolean = !subjects.find(
+      (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
+    );
+
+    if (newSubject.nameSubject && isAddNewSubject) {
+      subjects = [
+        ...subjects,
         {
           _id: createId(),
-          index: this.subjects.length,
+          index: subjects.length,
           nameSubject: newSubject.nameSubject,
           teacher: newSubject.teacher,
           cabinet: newSubject.cabinet,
           description: newSubject.description,
-          marks: {}
+          marks: []
         }
       ];
-      return this.subjects;
+
+      return subjects;
     }
-    if (
-      newSubject.nameSubject &&
-      this.subjects.find(
-        (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
-      )
-    ) {
-      const index: number = this.subjects.findIndex(el => el.nameSubject === newSubject.nameSubject);
-      this.subjects[index] = {
+
+    if (newSubject.nameSubject && !isAddNewSubject) {
+
+      const index: number = subjects.findIndex(el => el.nameSubject === newSubject.nameSubject);
+
+      subjects[index] = {
           _id: newSubject._id,
-          index: this.subjects.length,
+          index: subjects.length,
           nameSubject: newSubject.nameSubject,
           teacher: newSubject.teacher,
           cabinet: newSubject.cabinet,
@@ -91,6 +73,6 @@ export class DataService {
           marks: newSubject.marks
         };
     }
-    return this.subjects;
+    return subjects;
   }
 }

@@ -17,16 +17,17 @@
   }
 
   ::ng-deep .mat-form-field-infix {
-    width: 315px;
+    width: 200px;
   }
 
   ::ng-deep .mat-form-field {
     display: flex;
     justify-content: flex-end;
+    margin-right: 26px;
   }
 
-  .students {
-    .students__container {
+  .students__list {
+    .students__list-table-container {
       overflow: scroll;
       max-height: 24rem;
       &::-webkit-scrollbar {
@@ -53,64 +54,66 @@
         display: none;
       }
 
-      .students__cell__row__container {
-        display: flex;
-        justify-content: center;
-        .students__cell__revers {
-          margin-left: 7px;
-          margin-top: -3px;
-        }
-      }
-
-      .students__cell {
-        text-align: center;
-        border: solid 2px;
-        background-color: $color;
-        padding: 7px;
-      }
-      span {
-        visibility: hidden;
-      }
-
-      .students__table {
+      .students__list-table {
+        min-width: 100%;
         font-size: 1rem;
         background-color: $text-color;
         table-layout: fixed;
-      }
 
-      .students__cell.header {
-        position: sticky;
-        top: 0;
-        z-index: 5;
-        font-weight: 500;
-        background-color: #1c3549;
-        padding: 20px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        &.active {
-          span {
-            visibility: visible;
+        .students__list-table-cell {
+          text-align: center;
+          border: solid 2px;
+          background-color: $color;
+          padding: 7px;
+          &.header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            font-weight: 400;
+            background-color: #1c3549;
+            padding: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            &.active {
+              span {
+                visibility: visible;
+              }
+            }
           }
+        }
+
+        .students__list-table-cell-container {
+          display: flex;
+          justify-content: center;
+          .students__list-table-cell-revers {
+            margin-left: 7px;
+            margin-top: -3px;
+          }
+        }
+        span {
+          visibility: hidden;
         }
       }
     }
   }
-}
 
-.student__text {
-  font-weight: 400;
-  margin-top: 0;
-  margin-left: 10%;
-  font-size: 2rem;
-}
+  .students__form {
+    .students__form-text {
+      font-weight: 400;
+      margin-top: 0;
+      margin-left: 10%;
+      font-size: 2rem;
+    }
+  }
 
-.button__add {
-  color: $color;
-  background-color: $text-color;
-  width: 6rem;
-  height: 6rem;
-  margin: 53px 43%;
-  text-align: center;
-  font-size: 5rem;
-  border-radius: 50%;
+  .students__list-add-new-item {
+    color: $color;
+    background-color: $text-color;
+    width: 6rem;
+    height: 6rem;
+    margin: 53px 46%;
+    text-align: center;
+    font-size: 5rem;
+    border-radius: 50%;
+  }
 }

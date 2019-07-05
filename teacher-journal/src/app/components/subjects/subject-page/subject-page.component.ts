@@ -4,23 +4,26 @@ import {
   NgModule,
   Input,
   EventEmitter,
-  Output,
-  ɵConsole
+  Output
 } from "@angular/core";
+import {
+  NotificationService,
+  NotificationModel
+} from "../../../common/services/notification.service";
 import { DataService } from "../../../common/services/data.service";
 import { ISubject } from "../../../common/entities/subject";
 import { IStudent } from "../../../common/entities/student";
 import { SharedModule } from "../../../shared/shared.module";
 import { MarksService } from "../../../common/services/marks.service";
-import { IResultTableSubject } from "../../../common/entities/resultstablesubject";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
+import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
+import sortDate from "../../../common/helpers/sort-date";
 
 @Component({
   selector: "app-subject-page",
   templateUrl: "./subject-page.component.html",
-  styleUrls: ["./subject-page.component.scss"],
-  providers: [MarksService]
+  styleUrls: ["./subject-page.component.scss"]
 })
 @NgModule({
   imports: [SharedModule, BrowserModule, FormsModule]
@@ -33,74 +36,124 @@ export class SubjectPageComponent implements OnInit {
   private getDataService: DataService;
   private students: IStudent[];
   private subject: ISubject;
-  private headerNameDate: string[];
-  private headerNameStudents: string[];
+  private subjectCopy: ISubject;
+  private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
   private getMarksService: MarksService;
-  private resultsTableSubject: IResultTableSubject[];
-  private subjectBackup: ISubject;
+
+  private notificationService: NotificationService;
+  private subjects: ISubject[];
+  private dateClick: number;
 
   @Input() public subjectName: string;
 
-  constructor(dataService: DataService, marksService: MarksService) {
+  constructor(
+    dataService: DataService,
+    marksService: MarksService,
+    notificationService: NotificationService
+  ) {
     this.getDataService = dataService;
     this.getMarksService = marksService;
+    this.notificationService = notificationService;
   }
   private initForm(): void {
+    this.subjects = this.getDataService.getSubjects();
     this.students = this.getDataService.getStudents();
     this.subject = this.getDataService
       .getSubjects()
-      .filter(subject => subject.nameSubject === this.subjectName)[0];
-    this.subjectBackup = this.subject;
-    this.subject = JSON.parse(JSON.stringify(this.subject));
-    this.headerNameStudents = ["Name", "Last Name", "Average Mark"];
-    this.headerNameDate = Object.keys(this.subject.marks).sort();
-    this.resultsTableSubject = this.getMarksService.getMarks(this.subjectName);
+      .find(subject => subject.nameSubject === this.subjectName);
+    this.subject.marks.sort(sortDate);
+    // console.log(this.subject);
+    this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
   }
 
-  private onAddDate(event: Date): void {
-    const date: string = event
-      .toLocaleDateString("en-GB")
-      .replace("/20", ".")
-      .replace("/", ".");
-    this.headerNameDate = [...this.headerNameDate, date];
-    this.subject.marks[date] = {};
-    this.resultsTableSubject.forEach((student: IResultTableSubject) =>
-      student.marks.push(undefined)
+  private showToast(
+    header: string,
+    description: string,
+    success: boolean
+  ): void {
+    this.notificationService.showToast(
+      new NotificationModel(header, description, success)
     );
+  }
+
+  private calculationAverageMark(idStudent: string): number {
+    let numberOfMarks: number = 0;
+    let averageMark: number = this.subject.marks.reduce(
+      (summ: number, { students }: any) => {
+        const findStudent: any = students.find(({ _id }) => _id === idStudent);
+
+        if (findStudent) {
+          summ += findStudent.mark;
+          numberOfMarks++;
+        }
+
+        return summ;
+      },
+      0
+    );
+
+    averageMark =
+      Math.round(
+        ((averageMark / numberOfMarks) * Math.pow(10, 21)) / Math.pow(10, 19)
+      ) / 100;
+
+    return averageMark;
+  }
+
+  private findStudentMark(
+    marks: { _id: string; mark: number }[],
+    idStudent: string
+  ): any {
+    const markStudent: { _id: string; mark: number } = marks.find(
+      ({ _id }: { _id: String }) => _id === idStudent
+    );
+    return markStudent ? markStudent.mark : undefined;
+  }
+
+  private onAddDate(newDate: Date): void {
+    const newObjectDate: { date: number; students: undefined[] } = {
+      date: new Date(newDate).getTime(),
+      students: []
+    };
+    this.subject.marks.push(newObjectDate);
+    this.subject.marks.sort(sortDate);
+  }
+
+  private onChangeDate(changeData: Date): void {
+    this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
+    const dateCheck: number = changeData.getTime();
+    this.subject.marks.forEach(dateMarksList => {
+      if (dateMarksList.date === this.dateClick) {
+        dateMarksList.date = dateCheck;
+      }
+    });
   }
 
   private onSave(): void {
-    this.getDataService.addNewSubject(this.subject);
-    this.initForm();
+    this.showToast("Success", `Changes saved!`, true);
+    console.log("до", this.subject.marks);
+    console.log(this.subjectCopy.marks);
+    this.subjectCopy.marks = this.subject.marks;
   }
 
-  private modelChanged(
-    event: string,
-    idxStudent: number,
-    idxMarks: number,
-    change: boolean
-  ): void {
-    const response: {
-      subject: ISubject;
-      date: any;
-    } = this.getMarksService.updateChanges(
-      event,
-      idxStudent,
-      idxMarks,
-      change,
-      this.resultsTableSubject,
-      this.headerNameDate,
-      this.subject
+  private onClickInput(date: Date): void {
+    this.dateClick = +date;
+  }
+
+  private modelChanged(newMark: number, date: number, studentId: string): void {
+    this.subject.marks = this.getMarksService.changeMark(
+      this.subject.marks,
+      date,
+      studentId,
+      newMark
     );
-    if (response.date && change) {
-      this.headerNameDate[idxMarks] = response.date[0];
-    }
-    this.subject = { ...response.subject };
   }
 
   private onCancel(): void {
+    console.log(this.subject.marks);
+    console.log(this.subjectCopy.marks);
     this.onVisiblePage.emit(false);
-    this.initForm();
+    this.subject.marks = this.subjectCopy.marks;
   }
 
   public ngOnInit(): void {

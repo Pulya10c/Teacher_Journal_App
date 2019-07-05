@@ -31,6 +31,7 @@ export class StudentTableComponent implements OnInit {
   private orderPipe: OrderPipe;
   private isStudentTableActive: boolean = true;
   private notificationService: NotificationService;
+  private searchStudent: string = "";
 
   constructor(
     dataService: DataService,
@@ -69,13 +70,15 @@ export class StudentTableComponent implements OnInit {
   }): void {
     this.isStudentTableActive = value.visible;
     if (value.add) {
-      this.students = this.getDataService.addNewStudent(value.newStudent);
+      this.students = this.getDataService.addNewStudent(this.students, value.newStudent);
+      console.log(this.students);
       this.showToast(
         "Success",
         `Student ${value.newStudent.lastName} successfully added!`,
         true
       );
-      this.initForm();
+      this.sortedStudents = this.orderPipe.transform(this.students, this.order);
+      // this.initForm();
     }
   }
 
@@ -92,8 +95,7 @@ export class StudentTableComponent implements OnInit {
     }
 
     this.students = this.getDataService.getStudents();
-    this.columnStudentsName = this.getDataService
-      .getKeysObject(this.students[0])
+    this.columnStudentsName = Object.keys(this.students[0])
       .slice(1);
     this.sortedStudents = this.orderPipe.transform(this.students, this.order);
   }

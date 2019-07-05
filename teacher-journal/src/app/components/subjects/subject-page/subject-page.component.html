@@ -1,18 +1,29 @@
-<section class="wrapper">
-    <ng-content></ng-content>
-  <section class="subject_date">
-    <mat-form-field class="subject__date__wraper">
+<section class="subject-page">
+  <ng-content></ng-content>
+  <notification></notification>
+  <section class="subject-page__date">
+    <mat-form-field>
       <input
         matInput
         class="date"
         [matDatepicker]="picker"
-        [(ngModel)] = "newDate"
-        (ngModelChange) = "onAddDate($event)"
+        [(ngModel)]="newDate"
+        (ngModelChange)="onAddDate($event)"
       />
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        class="date"
+        [matDatepicker]="pickerInput"
+        [(ngModel)]="newDate2"
+        (ngModelChange)="onChangeDate($event)"
+      />
+      <mat-datepicker #pickerInput></mat-datepicker>
+    </mat-form-field>
     <button
-      class="button__add__new-date"
+      class="subject-page__date-button-add-new-date"
       mat-fab
       color="warn"
       (click)="picker.open()"
@@ -20,69 +31,87 @@
       &#10010;
     </button>
   </section>
-  <section class="subject__form">
-    <table class="subject__table" cellspacing="2">
+  <section class="subject-page__form-table-container">
+    <table class="subject-page__form-table" cellspacing="2">
       <thead>
         <tr>
           <th
-            class="subject__cell header"
+            class="subject-page__form-table-cell header"
             *ngFor="let columnName of headerNameStudents"
           >
             {{ columnName | uppercase }}
           </th>
           <th
-            class="subject__cell header"
-            *ngFor="let nameDate of headerNameDate; index as idx"
+            class="subject-page__form-table-cell header"
+            *ngFor="let itemDate of subject.marks"
           >
-            <mat-form-field class="subject__table__cell__width">
+            <mat-form-field class="subject-page__form-table-cell-input">
               <input
                 matInput
                 type="text"
                 autocomplete="off"
-                [ngModel]="nameDate"
-                (ngModelChange)="modelChanged($event, 0, idx, true)"
+                [ngModel]="itemDate.date | date: 'dd.M.yy'"
+                (click)="pickerInput.open(); onClickInput(itemDate.date)"
+                (ngModelChange)="onChangeDate(itemDate.date)"
               />
             </mat-form-field>
           </th>
         </tr>
       </thead>
-      <tr *ngFor="let result of resultsTableSubject; index as idxStudent">
-        <td class="subject__cell">{{ result.name }}</td>
-        <td class="subject__cell">{{ result.lastName }}</td>
-        <td class="subject__cell">{{ result.averageMark }}</td>
+      <tr *ngFor="let student of students; index as idxStudent">
+        <td class="subject-page__form-table-cell">{{ student.name }}</td>
+        <td class="subject-page__form-table-cell">{{ student.lastName }}</td>
+        <td class="subject-page__form-table-cell">
+          {{ calculationAverageMark(student._id) }}
+        </td>
         <td
-          class="subject__cell"
-          *ngFor="let mark of result.marks; index as idxMarks"
+          class="subject-page__form-table-cell"
+          *ngFor="let date of subject.marks; index as idxMarks"
         >
-          <mat-form-field class="subject__table__cell__width">
+          <mat-form-field class="subject-page__form-table-cell-input">
             <input
               matInput
               type="number"
               autocomplete="off"
-              [ngModel]="resultsTableSubject[idxStudent].marks[idxMarks]"
-              (ngModelChange)="
-                modelChanged($event, idxStudent, idxMarks, false)
-              "
+              [ngModel]="findStudentMark(date.students, student._id)"
+              (ngModelChange)="modelChanged($event, date.date, student._id)"
             />
           </mat-form-field>
         </td>
       </tr>
     </table>
   </section>
-  <section class="subject__theacher">
-    <div class="subject__theacher_container">
-      <label for="theacher">Teacher:</label>
+  <section class="subject-page__form-info">
+    <div class="subject-page__form-info-theacher">
+      <label for="theacher" class="subject-page__form-info-theacher-label"
+        >Teacher:</label
+      >
 
       <input
+        class="subject-page__form-info-theacher-name"
         id="theacher"
         type="text"
         autocomplete="off"
         [(ngModel)]="subject.teacher"
       />
     </div>
-    <div class="subject__form__button">
-      <button mat-stroked-button type="button" (click)="onSave()">Save</button>
-      <button mat-stroked-button type="button" (click)="onCancel()">Back</button>
+    <div class="subject-page__form-info-buttons">
+      <button
+        class="subject-page__form-info-buttons item"
+        mat-stroked-button
+        type="button"
+        (click)="onSave()"
+      >
+        Save
+      </button>
+      <button
+        class="subject-page__form-info-buttons item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
+        Back
+      </button>
     </div>
   </section>
 </section>

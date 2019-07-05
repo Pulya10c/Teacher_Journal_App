@@ -1,9 +1,11 @@
-interface IList {
-  [propName: string]: string;
+interface IMark {
+  _id: string;
+  mark: number;
 }
 
-interface IMark {
-  [propName: string]: IList;
+interface IMarks {
+  date: number;
+  students: IMark[];
 }
 
 export interface ISubject {
@@ -13,5 +15,5 @@ export interface ISubject {
   teacher: string;
   cabinet: number;
   description: string;
-  marks: IMark;
+  marks: IMarks[];
 }

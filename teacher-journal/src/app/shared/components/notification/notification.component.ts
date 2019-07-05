@@ -19,7 +19,7 @@ export class NotificationComponent {
         this.notifications.add(notification);
         setTimeout(() => {
           this.closeNotification(notification);
-        },         5000);
+        },         3000);
       });
   }
 
