@@ -1,21 +1,21 @@
 export default function changeStudentMark(
-  listMarks: { _id: string; mark: number }[],
+  listMarks: { id: string; mark: number }[],
   idStudent: string,
   newMark: number
 ): void {
-  const isStudent: any = listMarks.find(({ _id }) => _id === idStudent);
+  const isStudent: any = listMarks.find(({ id }) => id === idStudent);
   if (isStudent) {
     listMarks.forEach(studentMark => {
-      if (studentMark._id === idStudent) {
+      if (studentMark.id === idStudent) {
         studentMark.mark = newMark;
       }
     });
   } else {
     const newStudent: {
-      _id: string;
+      id: string;
       mark: number;
     } = {
-      _id: idStudent,
+      id: idStudent,
       mark: newMark
     };
 

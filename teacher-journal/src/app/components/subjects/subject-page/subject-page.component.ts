@@ -19,6 +19,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
 import sortDate from "../../../common/helpers/sort-date";
+import { URL_DB_STUDENTS, URL_DB_SUBJECTS } from "../../../common/constants/data-constants";
 
 @Component({
   selector: "app-subject-page",
@@ -34,14 +35,14 @@ export class SubjectPageComponent implements OnInit {
   >();
 
   private getDataService: DataService;
-  private students: IStudent[];
+  private students: IStudent[] = [];
   private subject: ISubject;
   private subjectCopy: ISubject;
   private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
   private getMarksService: MarksService;
 
   private notificationService: NotificationService;
-  private subjects: ISubject[];
+  private subjects: ISubject[] = [];
   private dateClick: number;
 
   @Input() public subjectName: string;
@@ -56,14 +57,29 @@ export class SubjectPageComponent implements OnInit {
     this.notificationService = notificationService;
   }
   private initForm(): void {
-    this.subjects = this.getDataService.getSubjects();
-    this.students = this.getDataService.getStudents();
-    this.subject = this.getDataService
-      .getSubjects()
-      .find(subject => subject.nameSubject === this.subjectName);
-    this.subject.marks.sort(sortDate);
-    // console.log(this.subject);
-    this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
+    this.subject =  {
+      id: "",
+      index: 0,
+      nameSubject: "",
+      teacher: "",
+      cabinet: 0,
+      description: "",
+      marks: []
+    };
+
+    this.getDataService.getHttp(URL_DB_STUDENTS).subscribe(data => {
+      this.students = data;
+    });
+
+    this.getDataService.getHttp(URL_DB_SUBJECTS).subscribe(data => {
+      this.subjects = data;
+      this.subject = this.subjects.find(
+        subject => subject.nameSubject === this.subjectName
+      );
+      console.log(this.subject);
+      this.subject.marks.sort(sortDate);
+      this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
+    });
   }
 
   private showToast(
@@ -80,7 +96,7 @@ export class SubjectPageComponent implements OnInit {
     let numberOfMarks: number = 0;
     let averageMark: number = this.subject.marks.reduce(
       (summ: number, { students }: any) => {
-        const findStudent: any = students.find(({ _id }) => _id === idStudent);
+        const findStudent: any = students.find(({ id }) => id === idStudent);
 
         if (findStudent) {
           summ += findStudent.mark;
@@ -101,11 +117,11 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private findStudentMark(
-    marks: { _id: string; mark: number }[],
+    marks: { id: string; mark: number }[],
     idStudent: string
   ): any {
-    const markStudent: { _id: string; mark: number } = marks.find(
-      ({ _id }: { _id: String }) => _id === idStudent
+    const markStudent: { id: string; mark: number } = marks.find(
+      ({ id }: { id: String }) => id === idStudent
     );
     return markStudent ? markStudent.mark : undefined;
   }
@@ -130,9 +146,7 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private onSave(): void {
-    this.showToast("Success", `Changes saved!`, true);
-    console.log("до", this.subject.marks);
-    console.log(this.subjectCopy.marks);
+    this.showToast("Success", "Changes saved!", true);
     this.subjectCopy.marks = this.subject.marks;
   }
 
@@ -150,8 +164,6 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private onCancel(): void {
-    console.log(this.subject.marks);
-    console.log(this.subjectCopy.marks);
     this.onVisiblePage.emit(false);
     this.subject.marks = this.subjectCopy.marks;
   }

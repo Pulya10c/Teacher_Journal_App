@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { DataService } from "../../../common/services/data.service";
 import { ISubject } from "../../../common/entities/subject";
 import { SharedModule } from "../../../shared/shared.module";
+import { URL_DB_SUBJECTS } from "../../../common/constants/data-constants";
 import {
   NotificationService,
   NotificationModel
@@ -16,7 +17,7 @@ import {
   imports: [SharedModule]
 })
 export class SubjectsListComponent implements OnInit {
-  private subjects: ISubject[];
+  private subjects: ISubject[] = [];
   private getDataService: DataService;
   private subjectName: string;
   private isVisibleSubjectList: boolean = true;
@@ -53,7 +54,9 @@ export class SubjectsListComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.subjects = this.getDataService.getSubjects();
+    this.getDataService.getHttp(URL_DB_SUBJECTS).subscribe(data => {
+      this.subjects = data;
+    });
   }
 
   private onVisibleFormSubject(): void {

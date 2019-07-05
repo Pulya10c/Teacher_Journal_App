@@ -62,19 +62,19 @@
         <td class="subject-page__form-table-cell">{{ student.name }}</td>
         <td class="subject-page__form-table-cell">{{ student.lastName }}</td>
         <td class="subject-page__form-table-cell">
-          {{ calculationAverageMark(student._id) }}
+          {{ calculationAverageMark(student.id) }}
         </td>
         <td
           class="subject-page__form-table-cell"
-          *ngFor="let date of subject.marks; index as idxMarks"
+          *ngFor="let date of subject.marks"
         >
           <mat-form-field class="subject-page__form-table-cell-input">
             <input
               matInput
               type="number"
               autocomplete="off"
-              [ngModel]="findStudentMark(date.students, student._id)"
-              (ngModelChange)="modelChanged($event, date.date, student._id)"
+              [ngModel]="findStudentMark(date.students, student.id)"
+              (ngModelChange)="modelChanged($event, date.date, student.id)"
             />
           </mat-form-field>
         </td>

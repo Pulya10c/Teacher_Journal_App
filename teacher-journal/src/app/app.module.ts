@@ -18,6 +18,7 @@ import { SubjectPageComponent } from "./components/subjects/subject-page/subject
 import { NotificationComponent } from "./shared/components/notification/notification.component";
 import { SearchPipe } from "./common/helpers/search.pipe";
 import { MarksService } from "./common/services/marks.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MarksService } from "./common/services/marks.service";
     BrowserAnimationsModule,
     SharedModule,
     OrderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
 
   providers: [MarksService],

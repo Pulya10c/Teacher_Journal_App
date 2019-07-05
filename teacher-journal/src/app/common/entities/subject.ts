@@ -1,5 +1,5 @@
 interface IMark {
-  _id: string;
+  id: string;
   mark: number;
 }
 
@@ -9,7 +9,7 @@ interface IMarks {
 }
 
 export interface ISubject {
-  _id: string;
+  id: string;
   index: number;
   nameSubject: string;
   teacher: string;

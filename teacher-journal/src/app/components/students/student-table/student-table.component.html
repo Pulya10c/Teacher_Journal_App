@@ -35,7 +35,7 @@
         <tr
           *ngFor="
             let student of sortedStudents | search: searchStudent
-              | orderBy: order:isReverse:'case-insensitive'
+              | orderBy: order: isReverse:'case-insensitive'
           "
         >
           <td class="students__list-table-cell">{{ student.index + 1 }}</td>

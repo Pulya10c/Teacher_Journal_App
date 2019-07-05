@@ -10,6 +10,9 @@ import {
 } from "../../../common/services/notification.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
+import { Observable, of } from "rxjs";
+import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
+import { URL_DB_STUDENTS } from "../../../common/constants/data-constants";
 
 @Component({
   selector: "app-student-table",
@@ -21,16 +24,17 @@ import { FormsModule } from "@angular/forms";
   imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class StudentTableComponent implements OnInit {
-  private students: IStudent[];
+  private students: IStudent[] = [];
   private getDataService: DataService;
   private storageService: StorageService;
-  private columnStudentsName: string[];
-  private sortedStudents: IStudent[];
+  private columnStudentsName: string[] = HEDER_NAME_STUDENT_TABL;
+  private sortedStudents: IStudent[] = [];
   private order: string = "index";
   private isReverse: boolean = false;
   private orderPipe: OrderPipe;
   private isStudentTableActive: boolean = true;
   private notificationService: NotificationService;
+  private data: any;
   private searchStudent: string = "";
 
   constructor(
@@ -43,6 +47,20 @@ export class StudentTableComponent implements OnInit {
     this.orderPipe = orderPipe;
     this.storageService = storageService;
     this.notificationService = notificationService;
+  }
+
+  private initForm(): void {
+    if (!this.storageService.getValueStorage()) {
+      this.storageService.setSaveStorage(this.order, this.isReverse);
+    } else {
+      this.order = this.storageService.getValueStorage().sortName;
+      this.isReverse = this.storageService.getValueStorage().revers;
+    }
+
+    this.getDataService.getHttp(URL_DB_STUDENTS).subscribe(data => {
+      this.students = data;
+      this.sortedStudents = this.orderPipe.transform(this.students, this.order);
+    });
   }
 
   private showToast(
@@ -63,41 +81,41 @@ export class StudentTableComponent implements OnInit {
     this.storageService.setSaveStorage(this.order, this.isReverse);
   }
 
-  private addStudent(value: {
+  private addStudent({
+    visible,
+    newStudent,
+    add
+  }: {
     visible: boolean;
     newStudent: IStudent;
     add: boolean;
   }): void {
-    this.isStudentTableActive = value.visible;
-    if (value.add) {
-      this.students = this.getDataService.addNewStudent(this.students, value.newStudent);
-      console.log(this.students);
+    this.isStudentTableActive = visible;
+    if (add) {
+      const student: IStudent = this.getDataService.addNewStudent(
+        this.students.length,
+        newStudent
+      );
+      this.getDataService
+        .postHttp(URL_DB_STUDENTS, student)
+        .subscribe(response => this.students.push(response));
+
+      // this.students = this.getDataService.addNewStudent(
+      //   this.students,
+      //   newStudent
+      // );
+
       this.showToast(
         "Success",
-        `Student ${value.newStudent.lastName} successfully added!`,
+        `Student ${newStudent.lastName} successfully added!`,
         true
       );
       this.sortedStudents = this.orderPipe.transform(this.students, this.order);
-      // this.initForm();
     }
   }
 
   private onVisibleFormStudent(): void {
     this.isStudentTableActive = !this.isStudentTableActive;
-  }
-
-  private initForm(): void {
-    if (!this.storageService.getValueStorage()) {
-      this.storageService.setSaveStorage(this.order, this.isReverse);
-    } else {
-      this.order = this.storageService.getValueStorage().sortName;
-      this.isReverse = this.storageService.getValueStorage().revers;
-    }
-
-    this.students = this.getDataService.getStudents();
-    this.columnStudentsName = Object.keys(this.students[0])
-      .slice(1);
-    this.sortedStudents = this.orderPipe.transform(this.students, this.order);
   }
 
   public ngOnInit(): void {

@@ -13,7 +13,7 @@ export class SearchPipe implements PipeTransform {
         name: "",
         address: "",
         about: "",
-        _id: "",
+        id: "",
         index: -1
       }
     ];
@@ -22,13 +22,14 @@ export class SearchPipe implements PipeTransform {
     }
     const resultFilter: IStudent[] = students.filter(
       (student: IStudent) =>
-        student.lastName.toLowerCase().indexOf(searchStudent.toLowerCase()) !==
-          -1 ||
-        student.name.toLowerCase().indexOf(searchStudent.toLowerCase()) !==
-          -1 ||
-        student.address.toLowerCase().indexOf(searchStudent.toLowerCase()) !==
-          -1 ||
-        student.about.toLowerCase().indexOf(searchStudent.toLowerCase()) !== -1
+        student.lastName.toLowerCase().indexOf(searchStudent.toLowerCase())
+        !== -1 ||
+        student.name.toLowerCase().indexOf(searchStudent.toLowerCase())
+        !== -1 ||
+        student.address.toLowerCase().indexOf(searchStudent.toLowerCase())
+        !== -1 ||
+        student.about.toLowerCase().indexOf(searchStudent.toLowerCase())
+        !== -1
     );
     return resultFilter.length ? resultFilter : empty;
   }

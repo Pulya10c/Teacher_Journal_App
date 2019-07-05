@@ -3,41 +3,73 @@ import { Injectable } from "@angular/core";
 import { data } from "../../../assets/mock-data";
 import { IStudent } from "../entities/student";
 import { ISubject } from "../entities/subject";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import * as createId from "uuid/v1";
-import { URL_DB_STUDENTS, URL_DB_SUBJECTS } from "../constants/data-constants";
+import { Observable, of } from "rxjs";
+import { catchError, map } from "rxjs/operators";
+import { HTTP_HEADERS } from "../constants/data-constants";
 
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
+  private http: HttpClient;
+  private httpOptions: any = {
+    headers: new HttpHeaders(HTTP_HEADERS)
+  };
 
-  public getStudents(): IStudent[] {
-    return data.students;
+  private constructor(http: HttpClient) {
+    this.http = http;
   }
 
-  public getSubjects(): ISubject[] {
-    return data.subjects;
+  // public getStudents(): IStudent[] {
+  //   return data.students;
+  // }
+
+  public getHttp(URL: string): Observable<any> {
+    return this.http
+      .get<any>(URL)
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      )
+      .pipe(
+        catchError(err => {
+          console.log("data loading error", err);
+          return of([]);
+        })
+      );
   }
 
-  public addNewStudent(students: IStudent[], newStudent: any): IStudent[] {
-    if (newStudent.firstName) {
-      students = [
-        ...students,
-        {
-          _id: createId(),
-          index: students.length,
-          name: newStudent.firstName,
-          lastName: newStudent.lastName,
-          address: newStudent.address,
-          about: newStudent.description
-        }
-      ];
-    }
-    return students;
+  public postHttp(URL: string, addItem: any): Observable<any> {
+    return this.http.post<any>(URL, addItem, this.httpOptions).pipe(
+      map((response: any) => {
+        return response;
+      })
+    );
+  }
+
+  // public getSubjects(): ISubject[] {
+  //   return data.subjects;
+  // }
+
+  public addNewStudent(
+    index: number,
+    { firstName, lastName, address, description }: any
+  ): IStudent {
+    const student: IStudent = {
+      id: createId(),
+      index,
+      name: firstName,
+      lastName,
+      address,
+      about: description
+    };
+    return student;
   }
 
   public addNewSubject(subjects: ISubject[], newSubject: ISubject): ISubject[] {
-
     const isAddNewSubject: boolean = !subjects.find(
       (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
     );
@@ -46,7 +78,7 @@ export class DataService {
       subjects = [
         ...subjects,
         {
-          _id: createId(),
+          id: createId(),
           index: subjects.length,
           nameSubject: newSubject.nameSubject,
           teacher: newSubject.teacher,
@@ -60,18 +92,19 @@ export class DataService {
     }
 
     if (newSubject.nameSubject && !isAddNewSubject) {
-
-      const index: number = subjects.findIndex(el => el.nameSubject === newSubject.nameSubject);
+      const index: number = subjects.findIndex(
+        el => el.nameSubject === newSubject.nameSubject
+      );
 
       subjects[index] = {
-          _id: newSubject._id,
-          index: subjects.length,
-          nameSubject: newSubject.nameSubject,
-          teacher: newSubject.teacher,
-          cabinet: newSubject.cabinet,
-          description: newSubject.description,
-          marks: newSubject.marks
-        };
+        id: newSubject.id,
+        index: subjects.length,
+        nameSubject: newSubject.nameSubject,
+        teacher: newSubject.teacher,
+        cabinet: newSubject.cabinet,
+        description: newSubject.description,
+        marks: newSubject.marks
+      };
     }
     return subjects;
   }
