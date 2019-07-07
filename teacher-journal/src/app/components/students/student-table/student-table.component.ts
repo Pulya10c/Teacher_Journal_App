@@ -57,7 +57,7 @@ export class StudentTableComponent implements OnInit {
       this.isReverse = this.storageService.getValueStorage().revers;
     }
 
-    this.getDataService.getHttp(URL_DB_STUDENTS).subscribe(data => {
+    this.getDataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
       this.students = data;
       this.sortedStudents = this.orderPipe.transform(this.students, this.order);
     });
@@ -98,12 +98,10 @@ export class StudentTableComponent implements OnInit {
       );
       this.getDataService
         .postHttp(URL_DB_STUDENTS, student)
-        .subscribe(response => this.students.push(response));
-
-      // this.students = this.getDataService.addNewStudent(
-      //   this.students,
-      //   newStudent
-      // );
+        .subscribe(response => {
+          this.students = [...this.students, response];
+          this.sortedStudents = this.orderPipe.transform(this.students, this.order);
+        });
 
       this.showToast(
         "Success",

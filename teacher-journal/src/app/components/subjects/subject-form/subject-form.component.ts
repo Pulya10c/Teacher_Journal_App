@@ -22,8 +22,8 @@ export class SubjectFormComponent implements OnInit {
   @Output() private onVisibleForm: EventEmitter<{
     visible: boolean;
     newSubject: ISubject;
-    add: boolean;
-  }> = new EventEmitter<{ visible: boolean; newSubject: ISubject, add: boolean }>();
+    isAdd: boolean;
+  }> = new EventEmitter<{ visible: boolean; newSubject: ISubject, isAdd: boolean }>();
 
   private subjectForm: FormGroup;
   private subjectsFormBuilder: FormBuilder;
@@ -72,11 +72,11 @@ export class SubjectFormComponent implements OnInit {
       return;
     }
 
-    this.onVisibleForm.emit({visible: true, newSubject: this.subjectForm.value, add: true});
+    this.onVisibleForm.emit({visible: true, newSubject: this.subjectForm.value, isAdd: true});
   }
 
   private onCancel(): void {
-    this.onVisibleForm.emit({visible: true, newSubject: this.subjectForm.value, add: false});
+    this.onVisibleForm.emit({visible: true, newSubject: this.subjectForm.value, isAdd: false});
   }
 
   public ngOnInit(): void {

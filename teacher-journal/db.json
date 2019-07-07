@@ -47,14 +47,6 @@
       "lastName": "Ochoa",
       "address": "Wollochet, Madison Street, d.3654",
       "about": "Non reprehenderit ut aliqua pariatur aliqua aliqua consequat dolore fugiat anim tempor."
-    },
-    {
-      "id": "9bdbcf90-9f43-11e9-a596-99fafbd5dd46",
-      "index": 6,
-      "name": "Aleh",
-      "lastName": "Serhienya",
-      "address": "ul.Pobedy 35",
-      "about": "late"
     }
   ],
   "subjects": [
@@ -490,6 +482,20 @@
               "id": "5d08bea44c4eaff0331de0ba",
               "mark": 4
             }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ebc35d50-a0fd-11e9-9b08-4d1b314053d7",
+      "index": 4,
+      "nameSubject": "Mathematics",
+      "teacher": "Petrov Ivan",
+      "description": "very old teacher",
+      "marks": [
+        {
+          "students": [
+            {}
           ]
         }
       ]

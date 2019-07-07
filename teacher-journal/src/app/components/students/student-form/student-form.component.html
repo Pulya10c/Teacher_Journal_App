@@ -3,7 +3,7 @@
   <form class="student__form" [formGroup]="studentsForm" (submit)="onSubmit()">
     <table class="student__form-table" cellspacing="0">
       <tr>
-        <td [class.class__invalid]="isControlInvalid('firstName')">
+        <td [class.class__invalid]="isControlInvalid('name')">
           * First name:
         </td>
         <td>
@@ -13,10 +13,10 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('firstName') ? 'Enter first name' : 'Jack'
+                isControlInvalid('name') ? 'Enter first name' : 'Jack'
               "
-              id="firstName"
-              formControlName="firstName"
+              id="name"
+              formControlName="name"
             />
           </mat-form-field>
         </td>
@@ -32,7 +32,7 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('firstName') ? 'Enter last name' : 'Black'
+                isControlInvalid('lastName') ? 'Enter last name' : 'Black'
               "
               id="lastName"
               formControlName="lastName"
@@ -65,8 +65,8 @@
               type="text"
               autocomplete="off"
               placeholder="Good guy, work hard"
-              id="description"
-              formControlName="description"
+              id="about"
+              formControlName="about"
             ></textarea>
           </mat-form-field>
         </td>

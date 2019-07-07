@@ -30,9 +30,6 @@ import { URL_DB_STUDENTS, URL_DB_SUBJECTS } from "../../../common/constants/data
   imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class SubjectPageComponent implements OnInit {
-  @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<
-    false
-  >();
 
   private getDataService: DataService;
   private students: IStudent[] = [];
@@ -40,11 +37,13 @@ export class SubjectPageComponent implements OnInit {
   private subjectCopy: ISubject;
   private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
   private getMarksService: MarksService;
-
   private notificationService: NotificationService;
   private subjects: ISubject[] = [];
   private dateClick: number;
 
+  @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<
+    false
+  >();
   @Input() public subjectName: string;
 
   constructor(
@@ -57,7 +56,7 @@ export class SubjectPageComponent implements OnInit {
     this.notificationService = notificationService;
   }
   private initForm(): void {
-    this.subject =  {
+    this.subject = {
       id: "",
       index: 0,
       nameSubject: "",
@@ -67,16 +66,15 @@ export class SubjectPageComponent implements OnInit {
       marks: []
     };
 
-    this.getDataService.getHttp(URL_DB_STUDENTS).subscribe(data => {
+    this.getDataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
       this.students = data;
     });
 
-    this.getDataService.getHttp(URL_DB_SUBJECTS).subscribe(data => {
+    this.getDataService.getHttpSubjects(URL_DB_SUBJECTS).subscribe(data => {
       this.subjects = data;
       this.subject = this.subjects.find(
         subject => subject.nameSubject === this.subjectName
       );
-      console.log(this.subject);
       this.subject.marks.sort(sortDate);
       this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
     });
@@ -94,15 +92,18 @@ export class SubjectPageComponent implements OnInit {
 
   private calculationAverageMark(idStudent: string): number {
     let numberOfMarks: number = 0;
+    console.log(idStudent, this.subject);
+    if (!this.subject.marks.length) {
+      return 0;
+    }
+
     let averageMark: number = this.subject.marks.reduce(
       (summ: number, { students }: any) => {
         const findStudent: any = students.find(({ id }) => id === idStudent);
-
         if (findStudent) {
           summ += findStudent.mark;
           numberOfMarks++;
         }
-
         return summ;
       },
       0
@@ -113,7 +114,7 @@ export class SubjectPageComponent implements OnInit {
         ((averageMark / numberOfMarks) * Math.pow(10, 21)) / Math.pow(10, 19)
       ) / 100;
 
-    return averageMark;
+    return averageMark ? averageMark : 0;
   }
 
   private findStudentMark(
@@ -148,6 +149,15 @@ export class SubjectPageComponent implements OnInit {
   private onSave(): void {
     this.showToast("Success", "Changes saved!", true);
     this.subjectCopy.marks = this.subject.marks;
+    console.log(this.subject);
+
+    // this.getDataService
+    // .postHttp(URL_DB_SUBJECTS, newSubject)
+    // .subscribe(response => {
+    //   // this.subjects = [...this.subjects, response];
+    //   this.subjects = this.getDataService.addNewSubject(this.subjects, response);
+    // });
+
   }
 
   private onClickInput(date: Date): void {

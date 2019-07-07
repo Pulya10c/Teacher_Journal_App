@@ -34,7 +34,7 @@ export class StudentFormComponent implements OnInit {
 
   private initForm(): void {
     this.studentsForm = this.studentFormBuilder.group({
-      firstName: [
+      name: [
         "",
         [
           Validators.required,
@@ -51,7 +51,7 @@ export class StudentFormComponent implements OnInit {
         ]
       ],
       address: [""],
-      description: [""]
+      about: [""]
     });
   }
 

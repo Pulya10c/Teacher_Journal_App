@@ -22,20 +22,28 @@ export class DataService {
     this.http = http;
   }
 
-  // public getStudents(): IStudent[] {
-  //   return data.students;
-  // }
-
-  public getHttp(URL: string): Observable<any> {
+  public getHttpStudents(URL: string): Observable<IStudent[]> {
     return this.http
-      .get<any>(URL)
+      .get<IStudent[]>(URL)
       .pipe(
         map((response: any) => {
           return response;
+        }),
+        catchError((err: Observable<any>) => {
+          console.log("data loading error", err);
+          return of([]);
         })
-      )
+      );
+  }
+
+  public getHttpSubjects(URL: string): Observable<ISubject[]> {
+    return this.http
+      .get<ISubject[]>(URL)
       .pipe(
-        catchError(err => {
+        map((response: any) => {
+          return response;
+        }),
+        catchError((err: Observable<any>) => {
           console.log("data loading error", err);
           return of([]);
         })
@@ -50,60 +58,73 @@ export class DataService {
     );
   }
 
-  // public getSubjects(): ISubject[] {
-  //   return data.subjects;
-  // }
-
   public addNewStudent(
     index: number,
-    { firstName, lastName, address, description }: any
+    { name, lastName, address, about }: any
   ): IStudent {
     const student: IStudent = {
       id: createId(),
       index,
-      name: firstName,
+      name,
       lastName,
       address,
-      about: description
+      about
     };
     return student;
   }
 
-  public addNewSubject(subjects: ISubject[], newSubject: ISubject): ISubject[] {
-    const isAddNewSubject: boolean = !subjects.find(
-      (subject: ISubject) => subject.nameSubject === newSubject.nameSubject
+  public addNewSubject(
+    subjects: ISubject[],
+    newSubject: ISubject
+  ): ISubject {
+    const isAddNewSubject: boolean = !!!subjects.find(
+      (item: ISubject) => item.nameSubject === newSubject.nameSubject
     );
-
+    let subject: ISubject;
     if (newSubject.nameSubject && isAddNewSubject) {
-      subjects = [
-        ...subjects,
-        {
-          id: createId(),
-          index: subjects.length,
-          nameSubject: newSubject.nameSubject,
-          teacher: newSubject.teacher,
-          cabinet: newSubject.cabinet,
-          description: newSubject.description,
-          marks: []
-        }
-      ];
 
-      return subjects;
-    }
-
-    if (newSubject.nameSubject && !isAddNewSubject) {
-      const index: number = subjects.findIndex(
-        el => el.nameSubject === newSubject.nameSubject
-      );
-
-      subjects[index] = {
-        id: newSubject.id,
+      subject = {
+        id: createId(),
         index: subjects.length,
         nameSubject: newSubject.nameSubject,
         teacher: newSubject.teacher,
         cabinet: newSubject.cabinet,
         description: newSubject.description,
-        marks: newSubject.marks
+        marks: [{
+          date: undefined,
+          students: [
+            {
+              id: undefined,
+              mark: undefined
+            }]
+        }]
+      };
+
+      return subject;
+    }
+  }
+
+  public changeSubject(
+    subjects: ISubject[],
+    { id, nameSubject, teacher, cabinet, description, marks }: ISubject
+  ): ISubject[] {
+    const isAddNewSubject: boolean = !!!subjects.find(
+      (item: ISubject) => item.nameSubject === nameSubject
+    );
+
+    if (nameSubject && !isAddNewSubject) {
+      const index: number = subjects.findIndex(
+        item => item.nameSubject === nameSubject
+      );
+
+      subjects[index] = {
+        id,
+        index,
+        nameSubject,
+        teacher,
+        cabinet,
+        description,
+        marks
       };
     }
     return subjects;

@@ -54,7 +54,7 @@ export class SubjectsListComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.getDataService.getHttp(URL_DB_SUBJECTS).subscribe(data => {
+    this.getDataService.getHttpSubjects(URL_DB_SUBJECTS).subscribe(data => {
       this.subjects = data;
     });
   }
@@ -63,30 +63,43 @@ export class SubjectsListComponent implements OnInit {
     this.isVisibleSubjectList = !this.isVisibleSubjectList;
   }
 
-  private addSubject(value: { visible: boolean; newSubject: ISubject; add: boolean }): void {
-    this.isVisibleSubjectList = value.visible;
-    if (
-      this.subjects.find(
-        (subject: ISubject) =>
-          subject.nameSubject === value.newSubject.nameSubject
-      )
-    ) {
+  private addSubject(
+    { visible, newSubject, isAdd }:
+      { visible: boolean; newSubject: ISubject; isAdd: boolean }
+  ): void {
+    this.isVisibleSubjectList = visible;
+
+    const isCreateSubject: boolean = !!this.subjects.find(
+      (subject: ISubject) =>
+        subject.nameSubject === newSubject.nameSubject
+    );
+    if (isCreateSubject) {
       this.showToast(
         "Warning",
-        `Subject ${value.newSubject.nameSubject} already exists!`,
+        `Subject ${newSubject.nameSubject} already exists!`,
         false
       );
     } else {
-      if (value.add) {
-        this.subjects = this.getDataService.addNewSubject(this.subjects, value.newSubject);
+      if (isAdd) {
+        const subject: ISubject = this.getDataService.addNewSubject(this.subjects, newSubject);
+
+        this.getDataService
+          .postHttp(URL_DB_SUBJECTS, subject)
+          .subscribe(response => {
+            // this.subjects = [...this.subjects, response];
+            console.log(response);
+            this.subjects = [...this.subjects, subject];
+          });
+
+        // this.subjects = this.getDataService.addNewSubject(this.subjects, newSubject);
+
         this.showToast(
           "Success",
-          `Subject ${value.newSubject.nameSubject} successfully added!`,
+          `Subject ${newSubject.nameSubject} successfully added!`,
           true
         );
       }
     }
-    // this.initForm();
   }
 
   private isVisible(value: boolean): void {
