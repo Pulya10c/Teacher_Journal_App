@@ -1,0 +1,117 @@
+<section class="subject-page">
+  <ng-content></ng-content>
+  <notification></notification>
+  <section class="subject-page__date">
+    <mat-form-field>
+      <input
+        matInput
+        class="date"
+        [matDatepicker]="picker"
+        [(ngModel)]="newDate"
+        (ngModelChange)="onAddDate($event)"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        class="date"
+        [matDatepicker]="pickerInput"
+        [(ngModel)]="newDate2"
+        (ngModelChange)="onChangeDate($event)"
+      />
+      <mat-datepicker #pickerInput></mat-datepicker>
+    </mat-form-field>
+    <button
+      class="subject-page__date-button-add-new-date"
+      mat-fab
+      color="warn"
+      (click)="picker.open()"
+    >
+      &#10010;
+    </button>
+  </section>
+  <section class="subject-page__form-table-container">
+    <table class="subject-page__form-table" cellspacing="2">
+      <thead>
+        <tr>
+          <th
+            class="subject-page__form-table-cell header"
+            *ngFor="let columnName of headerNameStudents"
+          >
+            {{ columnName | uppercase }}
+          </th>
+          <th
+            class="subject-page__form-table-cell header"
+            *ngFor="let itemDate of subject.marks"
+          >
+            <mat-form-field class="subject-page__form-table-cell-input">
+              <input
+                matInput
+                type="text"
+                autocomplete="off"
+                [ngModel]="itemDate.date | date: 'dd.M.yy'"
+                (click)="pickerInput.open(); onClickInput(itemDate.date)"
+                (ngModelChange)="onChangeDate(itemDate.date)"
+              />
+            </mat-form-field>
+          </th>
+        </tr>
+      </thead>
+      <tr *ngFor="let student of students; index as idxStudent">
+        <td class="subject-page__form-table-cell">{{ student.name }}</td>
+        <td class="subject-page__form-table-cell">{{ student.lastName }}</td>
+        <td class="subject-page__form-table-cell">
+          {{ calculationAverageMark(student.id) }}
+        </td>
+        <td
+          class="subject-page__form-table-cell"
+          *ngFor="let date of subject.marks"
+        >
+          <mat-form-field class="subject-page__form-table-cell-input">
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [ngModel]="findStudentMark(date.students, student.id)"
+              (ngModelChange)="modelChanged($event, date.date, student.id)"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <section class="subject-page__form-info">
+    <div class="subject-page__form-info-theacher">
+      <label for="theacher" class="subject-page__form-info-theacher-label"
+        >Teacher:</label
+      >
+
+      <input
+        class="subject-page__form-info-theacher-name"
+        id="theacher"
+        type="text"
+        autocomplete="off"
+        [(ngModel)]="subject.teacher"
+      />
+    </div>
+    <div class="subject-page__form-info-buttons">
+      <button
+        class="subject-page__form-info-buttons item"
+        mat-stroked-button
+        type="button"
+        (click)="onSave()"
+      >
+        Save
+      </button>
+      <button
+        class="subject-page__form-info-buttons item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
+        Back
+      </button>
+    </div>
+  </section>
+</section>

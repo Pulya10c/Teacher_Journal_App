@@ -1,0 +1,44 @@
+<div class="notification-panel">
+  <!-- <div *ngFor="let notification of notifications" class="notification">
+    <div class="header-block">
+      <h3 class="header-title">{{ notification.header }}</h3>
+      <a class="close-button" (click)="closeNotification(notification)">x</a>
+    </div>
+    <div class="content">
+      <span>{{ notification.description }}</span>
+    </div>
+  </div>
+</div> -->
+
+  <div
+    class="singleNotification"
+    [ngClass]="notification.success ? 'success' : 'warning'"
+    *ngFor="let notification of notifications"
+  >
+    <div class="leftPart">
+      <i
+        [ngClass]="
+          notification.success
+            ? 'far fa-check-circle notifIcon'
+            : 'fas fa-exclamation-circle notifIcon'
+        "
+      ></i>
+    </div>
+    <div class="centerPart">
+      <div class="heading">
+        <!-- <div class="headingIcon">
+          <i class="far fa-check-circle"></i>
+        </div> -->
+        <div class="headingText">
+          <h3>{{ notification.header }}</h3>
+        </div>
+      </div>
+      <div class="content">
+        <p class="message">{{ notification.description }}</p>
+      </div>
+    </div>
+    <div class="closeNotification" (click)="closeNotification(notification)">
+      <i class="far fa-times-circle notifIcon"></i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+@import "../../../../styles/variables.scss";
+
+.wrapper {
+  max-width: 1000px;
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: $text-color;
+    border-color: $text-color;
+  }
+
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $text-color;
+  }
+
+  ::ng-deep .mat-input-element {
+    caret-color: $text-color;
+    display: flex;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    width: 200px;
+  }
+
+  ::ng-deep .mat-form-field {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 26px;
+  }
+
+  .students__list {
+    .students__list-table-container {
+      overflow: scroll;
+      max-height: 24rem;
+      &::-webkit-scrollbar {
+        width: 25px;
+        height: 25px;
+      }
+
+      & ::-webkit-scrollbar-button {
+        display: none;
+      }
+
+      &::-webkit-scrollbar-track {
+        width: 50px;
+        height: 50px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        height: 12px;
+        background-color: #474747;
+        border: 7px solid black;
+      }
+
+      &::-webkit-scrollbar-corner {
+        display: none;
+      }
+
+      .students__list-table {
+        min-width: 100%;
+        font-size: 1rem;
+        background-color: $text-color;
+        table-layout: fixed;
+
+        .students__list-table-cell {
+          text-align: center;
+          border: solid 2px;
+          background-color: $color;
+          padding: 7px;
+          &.header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            font-weight: 400;
+            background-color: #1c3549;
+            padding: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            &.active {
+              span {
+                visibility: visible;
+              }
+            }
+          }
+        }
+
+        .students__list-table-cell-container {
+          display: flex;
+          justify-content: center;
+          .students__list-table-cell-revers {
+            margin-left: 7px;
+            margin-top: -3px;
+          }
+        }
+        span {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+
+  .students__form {
+    .students__form-text {
+      font-weight: 400;
+      margin-top: 0;
+      margin-left: 10%;
+      font-size: 2rem;
+    }
+  }
+
+  .students__list-add-new-item {
+    color: $color;
+    background-color: $text-color;
+    width: 6rem;
+    height: 6rem;
+    margin: 53px 46%;
+    text-align: center;
+    font-size: 5rem;
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,63 @@
+<section class="wrapper">
+  <notification></notification>
+  <section class="students__list" *ngIf="isStudentTableActive">
+      <mat-form-field>
+          <input
+            matInput
+            type="text"
+            autocomplete="off"
+            placeholder="Write to search"
+            [(ngModel)] = "searchStudent"
+          />
+        </mat-form-field>
+    <div class="students__list-table-container">
+      <table class="students__list-table" cellspacing="2">
+        <thead>
+          <tr>
+            <th
+              class="students__list-table-cell header"
+              [class.active]="order === columnName"
+              *ngFor="let columnName of columnStudentsName"
+              (click)="setOrder(columnName)"
+            >
+              <div class="students__list-table-cell-container">
+                <div>
+                  {{ columnName | uppercase }}
+                </div>
+                <div class="students__list-table-cell-revers">
+                  <span [hidden]="isReverse">▼</span>
+                  <span [hidden]="!isReverse">▲</span>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tr
+          *ngFor="
+            let student of sortedStudents | search: searchStudent
+              | orderBy: order: isReverse:'case-insensitive'
+          "
+        >
+          <td class="students__list-table-cell">{{ student.index + 1 }}</td>
+          <td class="students__list-table-cell">{{ student.name }}</td>
+          <td class="students__list-table-cell">{{ student.lastName }}</td>
+          <td class="students__list-table-cell">{{ student.address }}</td>
+          <td class="students__list-table-cell">{{ student.about }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <button
+      class="students__list-add-new-item"
+      mat-stroked-button="warn"
+      (click)="onVisibleFormStudent()"
+    >
+      &#10010;
+    </button>
+  </section>
+  <section class="students__form" *ngIf="!isStudentTableActive">
+    <app-student-form (onVisibleForm)="addStudent($event)">
+      <h2 class="students__form-text">Add new student:</h2></app-student-form
+    >
+  </section>
+</section>
