@@ -11,7 +11,7 @@ import {
   NotificationModel
 } from "../../../common/services/notification.service";
 import { DataService } from "../../../common/services/data.service";
-import { ISubject } from "../../../common/entities/subject";
+import { ISubject, IMarks } from "../../../common/entities/subject";
 import { IStudent } from "../../../common/entities/student";
 import { SharedModule } from "../../../shared/shared.module";
 import { MarksService } from "../../../common/services/marks.service";
@@ -19,11 +19,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
 import sortDate from "../../../common/helpers/sort-date";
+import getAverageMark from "../../../common/helpers/average-mark";
 import {
   URL_DB_STUDENTS,
   URL_DB_SUBJECTS
 } from "../../../common/constants/data-constants";
-import { identifierModuleUrl } from "@angular/compiler";
 
 @Component({
   selector: "app-subject-page",
@@ -34,15 +34,22 @@ import { identifierModuleUrl } from "@angular/compiler";
   imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class SubjectPageComponent implements OnInit {
-  private getDataService: DataService;
+  private dataService: DataService;
   private students: IStudent[] = [];
-  private subject: ISubject;
   private subjectCopy: ISubject;
   private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
   private getMarksService: MarksService;
   private notificationService: NotificationService;
-  // private subjects: ISubject[] = [];
   private dateClick: number;
+  private subject: ISubject = {
+    id: "",
+    index: 0,
+    nameSubject: "",
+    teacher: "",
+    cabinet: 0,
+    description: "",
+    marks: []
+  };
 
   @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<
     false
@@ -55,29 +62,19 @@ export class SubjectPageComponent implements OnInit {
     marksService: MarksService,
     notificationService: NotificationService
   ) {
-    this.getDataService = dataService;
+    this.dataService = dataService;
     this.getMarksService = marksService;
     this.notificationService = notificationService;
   }
   private initForm(): void {
-    this.subject = {
-      id: "",
-      index: 0,
-      nameSubject: "",
-      teacher: "",
-      cabinet: 0,
-      description: "",
-      marks: []
-    };
 
-    this.getDataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
+    this.dataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
       this.students = data;
     });
 
-    this.subject = this.subjects
-      .find(
-        subject => subject.nameSubject === this.subjectName
-      );
+    this.subject = this.subjects.find(
+      subject => subject.nameSubject === this.subjectName
+    );
 
     this.subject.marks.sort(sortDate);
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
@@ -94,29 +91,7 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private calculationAverageMark(idStudent: string): number {
-    let numberOfMarks: number = 0;
-    if (!this.subject.marks.length) {
-      return 0;
-    }
-
-    let averageMark: number = this.subject.marks.reduce(
-      (summ: number, { students }: any) => {
-        const findStudent: any = students.find(({ id }) => id === idStudent);
-        if (findStudent) {
-          summ += findStudent.mark;
-          numberOfMarks++;
-        }
-        return summ;
-      },
-      0
-    );
-
-    averageMark =
-      Math.round(
-        ((averageMark / numberOfMarks) * Math.pow(10, 21)) / Math.pow(10, 19)
-      ) / 100;
-
-    return averageMark ? averageMark : 0;
+    return getAverageMark(this.subject, idStudent);
   }
 
   private findStudentMark(
@@ -129,13 +104,23 @@ export class SubjectPageComponent implements OnInit {
     return markStudent ? markStudent.mark : undefined;
   }
 
-  private onAddDate(newDate: Date): void {
-    const newObjectDate: { date: number; students: undefined[] } = {
-      date: new Date(newDate).getTime(),
-      students: []
-    };
-    this.subject.marks.push(newObjectDate);
-    this.subject.marks.sort(sortDate);
+  private onAddDate(date: Date): void {
+    const thisDate: number = new Date(date).getTime();
+    const isThisDate: boolean = !!this.subject.marks.find(
+      (listMarks: IMarks) => listMarks.date === thisDate
+    );
+
+    if (!isThisDate) {
+      const createNewDate: { date: number; students: undefined[] } = {
+        date: thisDate,
+        students: []
+      };
+      this.subject.marks.push(createNewDate);
+      this.subject.marks.sort(sortDate);
+      this.showToast("Success", `Date ${date} successfully added!`, true);
+    } else {
+      this.showToast("Warning", `Date ${date} already exists!`, false);
+    }
   }
 
   private onChangeDate(changeData: Date): void {
@@ -150,11 +135,15 @@ export class SubjectPageComponent implements OnInit {
 
   private onSave(): void {
     this.showToast("Success", "Changes saved!", true);
-    // this.subjectCopy.marks = this.subject.marks;
     const id: string = this.subject.id;
-    this.getDataService
+    this.dataService
       .putHttp(URL_DB_SUBJECTS, this.subject)
-      .subscribe(response => (this.subjectCopy.marks = response.marks));
+      .subscribe((response: ISubject) => (this.subjectCopy.marks = response.marks));
+  }
+
+  private onCancel(): void {
+    this.onVisiblePage.emit(false);
+    this.subject.marks = this.subjectCopy.marks;
   }
 
   private onClickInput(date: Date): void {
@@ -168,11 +157,6 @@ export class SubjectPageComponent implements OnInit {
       studentId,
       newMark
     );
-  }
-
-  private onCancel(): void {
-    this.onVisiblePage.emit(false);
-    this.subject.marks = this.subjectCopy.marks;
   }
 
   public ngOnInit(): void {

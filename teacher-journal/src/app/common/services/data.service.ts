@@ -23,31 +23,27 @@ export class DataService {
   }
 
   public getHttpStudents(URL: string): Observable<IStudent[]> {
-    return this.http
-      .get<IStudent[]>(URL)
-      .pipe(
-        map((response: any) => {
-          return response;
-        }),
-        catchError((err: Observable<any>) => {
-          console.log("data loading error", err);
-          return of([]);
-        })
-      );
+    return this.http.get<IStudent[]>(URL).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError((err: Observable<any>) => {
+        console.log("data loading error", err);
+        return of([]);
+      })
+    );
   }
 
   public getHttpSubjects(URL: string): Observable<ISubject[]> {
-    return this.http
-      .get<ISubject[]>(URL)
-      .pipe(
-        map((response: any) => {
-          return response;
-        }),
-        catchError((err: Observable<any>) => {
-          console.log("data loading error", err);
-          return of([]);
-        })
-      );
+    return this.http.get<ISubject[]>(URL).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError((err: Observable<any>) => {
+        console.log("data loading error", err);
+        return of([]);
+      })
+    );
   }
 
   public postHttp(URL: string, addItem: any): Observable<any> {
@@ -59,12 +55,14 @@ export class DataService {
   }
 
   public putHttp(URL: string, subject: ISubject): Observable<ISubject> {
-    return this.http.put<ISubject>(URL + `/${subject.id}`, subject, this.httpOptions).pipe(
-      map((response: any) => {
-        console.log(typeof response);
-        return response;
-      })
-    );
+    return this.http
+      .put<ISubject>(URL + `/${subject.id}`, subject, this.httpOptions)
+      .pipe(
+        map((response: any) => {
+          console.log(typeof response);
+          return response;
+        })
+      );
   }
 
   public addNewStudent(
@@ -84,51 +82,37 @@ export class DataService {
 
   public addNewSubject(
     subjects: ISubject[],
-    newSubject: ISubject
-  ): ISubject {
+    { nameSubject, teacher, cabinet, description }: ISubject
+  ): { subject: ISubject; isAdd: boolean } {
     const isAddNewSubject: boolean = !!!subjects.find(
-      (item: ISubject) => item.nameSubject === newSubject.nameSubject
+      (itemSubject: ISubject) => itemSubject.nameSubject === nameSubject
     );
-    let subject: ISubject;
-    if (newSubject.nameSubject && isAddNewSubject) {
 
+    let subject: ISubject;
+    if (nameSubject && isAddNewSubject) {
       subject = {
         id: createId(),
         index: subjects.length,
-        nameSubject: newSubject.nameSubject,
-        teacher: newSubject.teacher,
-        cabinet: newSubject.cabinet,
-        description: newSubject.description,
-        marks: []
-      };
-
-      return subject;
-    }
-  }
-
-  public changeSubject(
-    subjects: ISubject[],
-    { id, nameSubject, teacher, cabinet, description, marks }: ISubject
-  ): ISubject[] {
-    const isAddNewSubject: boolean = !!!subjects.find(
-      (item: ISubject) => item.nameSubject === nameSubject
-    );
-
-    if (nameSubject && !isAddNewSubject) {
-      const index: number = subjects.findIndex(
-        item => item.nameSubject === nameSubject
-      );
-
-      subjects[index] = {
-        id,
-        index,
         nameSubject,
         teacher,
         cabinet,
         description,
-        marks
+        marks: []
       };
+
+      return { subject, isAdd: true };
+    } else {
+      subject = {
+        id: "",
+        index: 0,
+        nameSubject: "",
+        teacher: "",
+        cabinet: 0,
+        description: "",
+        marks: []
+      };
+
+      return { subject, isAdd: false };
     }
-    return subjects;
   }
 }

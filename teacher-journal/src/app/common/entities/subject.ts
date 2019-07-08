@@ -8,7 +8,7 @@ interface IMarks {
   students: IMark[];
 }
 
-export interface ISubject {
+interface ISubject {
   id: string;
   index: number;
   nameSubject: string;
@@ -17,3 +17,5 @@ export interface ISubject {
   description: string;
   marks: IMarks[];
 }
+
+export {ISubject, IMarks, IMark};

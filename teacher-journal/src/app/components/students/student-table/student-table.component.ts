@@ -25,7 +25,7 @@ import { URL_DB_STUDENTS } from "../../../common/constants/data-constants";
 })
 export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
-  private getDataService: DataService;
+  private dataService: DataService;
   private storageService: StorageService;
   private columnStudentsName: string[] = HEDER_NAME_STUDENT_TABL;
   private sortedStudents: IStudent[] = [];
@@ -43,7 +43,7 @@ export class StudentTableComponent implements OnInit {
     storageService: StorageService,
     notificationService: NotificationService
   ) {
-    this.getDataService = dataService;
+    this.dataService = dataService;
     this.orderPipe = orderPipe;
     this.storageService = storageService;
     this.notificationService = notificationService;
@@ -57,7 +57,7 @@ export class StudentTableComponent implements OnInit {
       this.isReverse = this.storageService.getValueStorage().revers;
     }
 
-    this.getDataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
+    this.dataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
       this.students = data;
       this.sortedStudents = this.orderPipe.transform(this.students, this.order);
     });
@@ -92,11 +92,11 @@ export class StudentTableComponent implements OnInit {
   }): void {
     this.isStudentTableActive = visible;
     if (add) {
-      const student: IStudent = this.getDataService.addNewStudent(
+      const student: IStudent = this.dataService.addNewStudent(
         this.students.length,
         newStudent
       );
-      this.getDataService
+      this.dataService
         .postHttp(URL_DB_STUDENTS, student)
         .subscribe(response => {
           this.students = [...this.students, response];

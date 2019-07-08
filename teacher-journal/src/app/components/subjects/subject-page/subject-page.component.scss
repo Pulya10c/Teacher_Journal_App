@@ -94,12 +94,19 @@
           padding: 10px;
           font-size: 1rem;
           font-weight: 200;
+          &.date {
+            cursor: pointer;
+          }
         }
         .subject-page__form-table-cell-input {
           width: 65px;
+          &.date {
+            .mat-input-element {
+              cursor: pointer;
+            }
+          }
         }
       }
-
     }
 
     // .subject-page__form-table-cell {

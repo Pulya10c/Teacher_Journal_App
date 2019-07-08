@@ -1,44 +1,33 @@
-<div class="notification-panel">
-  <!-- <div *ngFor="let notification of notifications" class="notification">
-    <div class="header-block">
-      <h3 class="header-title">{{ notification.header }}</h3>
-      <a class="close-button" (click)="closeNotification(notification)">x</a>
-    </div>
-    <div class="content">
-      <span>{{ notification.description }}</span>
-    </div>
-  </div>
-</div> -->
-
+<div class="notification-container">
   <div
-    class="singleNotification"
+    class="notification"
     [ngClass]="notification.success ? 'success' : 'warning'"
     *ngFor="let notification of notifications"
   >
-    <div class="leftPart">
+    <div class="notification__icon">
       <i
         [ngClass]="
           notification.success
-            ? 'far fa-check-circle notifIcon'
-            : 'fas fa-exclamation-circle notifIcon'
+            ? 'far fa-check-circle icon'
+            : 'fas fa-exclamation-circle icon'
         "
       ></i>
     </div>
-    <div class="centerPart">
-      <div class="heading">
+    <div class="notification__message">
+      <div class="notification__message-heading">
         <!-- <div class="headingIcon">
           <i class="far fa-check-circle"></i>
         </div> -->
-        <div class="headingText">
+        <div class="notification__message-heading-text">
           <h3>{{ notification.header }}</h3>
         </div>
       </div>
-      <div class="content">
-        <p class="message">{{ notification.description }}</p>
+      <div class="notification__message-content">
+        <p>{{ notification.description }}</p>
       </div>
     </div>
-    <div class="closeNotification" (click)="closeNotification(notification)">
-      <i class="far fa-times-circle notifIcon"></i>
+    <div class="notification__close" (click)="closeNotification(notification)">
+      <i class="far fa-times-circle icon"></i>
     </div>
   </div>
 </div>

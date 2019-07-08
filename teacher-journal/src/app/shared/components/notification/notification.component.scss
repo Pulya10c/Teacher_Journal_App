@@ -1,19 +1,33 @@
 @import "../../../../styles/variables.scss";
 
-.notification-panel {
+.notification-container {
   position: absolute;
- 
+
   .success {
-    background: rgba(0, 125, 0, 0.8);
-    border-bottom: 5px solid rgba(199, 252, 199, 0.9);
+    background: rgb(87, 86, 86);
+    border-bottom: 5px solid $active-color;
+    .notification__icon {
+      background: rgba(0, 125, 0, 0.8);
+      &:after {
+        border-color: transparent transparent  rgba(0, 125, 0, 0.8)
+        transparent;
+      }
+    }
   }
 
   .warning {
-    background: rgba(200, 0, 0, 0.8);
-    border-bottom: 5px solid rgba(252, 180, 180, 0.9);
+    background: rgb(87, 86, 86);
+    border-bottom: 5px solid $active-color;
+    .notification__icon {
+      background: rgba(200, 0, 0, 0.8);
+      &:after {
+        border-color: transparent transparent rgba(200, 0, 0, 0.8)
+        transparent;
+      }
+    }
   }
 
-  .singleNotification {
+  .notification {
     position: fixed;
     top: 1rem;
     z-index: 10;
@@ -25,14 +39,13 @@
     border-radius: 7px;
     animation: 3s ease-in-out forwards float-in;
     &:hover {
-      transform: scale(1.025);
-      transition: 0.5s ease all;
-      .closeNotification {
+      background: rgb(87, 86, 86);
+      .notification__close {
         color: $text-color;
         &:hover {
           transform: scale(1.1);
           background: rgba(55, 55, 55, 0.9);
-          .closeNotification {
+          .notification__close {
             color: $text-color;
             &:hover {
               transform: scale(1.1);
@@ -42,10 +55,9 @@
         }
       }
     }
-    .leftPart {
+    .notification__icon {
       width: 120px;
       height: 120px;
-      background: rgba(255, 255, 255, 0.6);
       position: relative;
       float: left;
       display: block;
@@ -55,15 +67,13 @@
         height: 0;
         border-style: solid;
         border-width: 0 10px 10px 10px;
-        border-color: transparent transparent rgba(255, 255, 255, 0.6)
-          transparent;
         position: absolute;
         right: -15px;
         top: calc(50% - 5px);
         transform: rotate(90deg);
         line-height: 0px;
       }
-      .notifIcon {
+      .icon {
         font-size: 75px;
         width: 100px;
         height: 100px;
@@ -72,28 +82,29 @@
         line-height: 100px;
       }
     }
-    .centerPart {
-      color: black;
+    .notification__message {
+      color: $text-color;
       width: 290px;
       float: right;
       padding: 10px 20px;
       height: calc(100% - 20px);
       position: relative;
       display: block;
-      .heading {
-        .headingText {
+      .notification__message-heading {
+        .notification__message-heading-text {
           display: inline-block;
           color: $text-color;
           line-height: 1em;
           font-size: 20px;
           h3 {
+            font-size: 2rem;
             margin: 2px;
           }
         }
       }
     }
   }
-  .closeNotification {
+  .notification__close {
     position: absolute;
     padding: 5px;
     right: 0px;
@@ -113,19 +124,6 @@
     }
     100% {
       transform: translateX(1200px);
-      opacity: 0;
-    }
-  }
-
-  @keyframes backgraund-notif {
-    0% {
-      opacity: 0;
-    }
-    30%,
-    85% {
-      opacity: 1;
-    }
-    100% {
       opacity: 0;
     }
   }

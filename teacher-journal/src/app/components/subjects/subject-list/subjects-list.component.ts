@@ -18,7 +18,7 @@ import {
 })
 export class SubjectsListComponent implements OnInit {
   private subjects: ISubject[] = [];
-  private getDataService: DataService;
+  private dataService: DataService;
   private subjectName: string;
   private isVisibleSubjectList: boolean = true;
   private subject: ISubject;
@@ -29,7 +29,7 @@ export class SubjectsListComponent implements OnInit {
     dataService: DataService,
     notificationService: NotificationService
   ) {
-    this.getDataService = dataService;
+    this.dataService = dataService;
     this.notificationService = notificationService;
   }
 
@@ -54,7 +54,7 @@ export class SubjectsListComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.getDataService.getHttpSubjects(URL_DB_SUBJECTS).subscribe(data => {
+    this.dataService.getHttpSubjects(URL_DB_SUBJECTS).subscribe(data => {
       this.subjects = data;
     });
   }
@@ -63,42 +63,71 @@ export class SubjectsListComponent implements OnInit {
     this.isVisibleSubjectList = !this.isVisibleSubjectList;
   }
 
-  private addSubject(
-    { visible, newSubject, isAdd }:
-      { visible: boolean; newSubject: ISubject; isAdd: boolean }
-  ): void {
+  private addSubject({
+    visible,
+    newSubject,
+    isCreateSubject
+  }: {
+    visible: boolean;
+    newSubject: ISubject;
+    isCreateSubject: boolean;
+  }): void {
     this.isVisibleSubjectList = visible;
 
-    const isCreateSubject: boolean = !!this.subjects.find(
-      (subject: ISubject) =>
-        subject.nameSubject === newSubject.nameSubject
-    );
     if (isCreateSubject) {
-      this.showToast(
-        "Warning",
-        `Subject ${newSubject.nameSubject} already exists!`,
-        false
+      const {
+        subject,
+        isAdd
+      }: { subject: ISubject; isAdd: boolean } = this.dataService.addNewSubject(
+        this.subjects,
+        newSubject
       );
-    } else {
-      if (isAdd) {
-        const subject: ISubject = this.getDataService.addNewSubject(this.subjects, newSubject);
 
-        this.getDataService
+      if (isAdd) {
+        this.dataService
           .postHttp(URL_DB_SUBJECTS, subject)
           .subscribe(response => {
-            // this.subjects = [...this.subjects, response];
-            this.subjects = [...this.subjects, subject];
+            this.subjects = [...this.subjects, response];
+            this.subject = response;
           });
-
-        // this.subjects = this.getDataService.addNewSubject(this.subjects, newSubject);
 
         this.showToast(
           "Success",
-          `Subject ${newSubject.nameSubject} successfully added!`,
+          `Subject ${subject.nameSubject} successfully added!`,
           true
+        );
+      } else {
+        this.showToast(
+          "Warning",
+          `Subject ${newSubject.nameSubject} already exists!`,
+          false
         );
       }
     }
+
+    // if (isCreateSubject) {
+    //   this.showToast(
+    //     "Warning",
+    //     `Subject ${newSubject.nameSubject} already exists!`,
+    //     false
+    //   );
+    // } else {
+    //   if (isAdd) {
+    //     const subject: ISubject = this.dataService.addNewSubject(this.subjects, newSubject);
+
+    //     this.dataService
+    //       .postHttp(URL_DB_SUBJECTS, subject)
+    //       .subscribe(response => {
+    //         this.subjects = [...this.subjects, response];
+    //       });
+
+    //     this.showToast(
+    //       "Success",
+    //       `Subject ${newSubject.nameSubject} successfully added!`,
+    //       true
+    //     );
+    //   }
+    // }
   }
 
   private isVisible(value: boolean): void {
