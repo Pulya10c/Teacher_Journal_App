@@ -58,6 +58,15 @@ export class DataService {
     );
   }
 
+  public putHttp(URL: string, subject: ISubject): Observable<ISubject> {
+    return this.http.put<ISubject>(URL + `/${subject.id}`, subject, this.httpOptions).pipe(
+      map((response: any) => {
+        console.log(typeof response);
+        return response;
+      })
+    );
+  }
+
   public addNewStudent(
     index: number,
     { name, lastName, address, about }: any
@@ -90,14 +99,7 @@ export class DataService {
         teacher: newSubject.teacher,
         cabinet: newSubject.cabinet,
         description: newSubject.description,
-        marks: [{
-          date: undefined,
-          students: [
-            {
-              id: undefined,
-              mark: undefined
-            }]
-        }]
+        marks: []
       };
 
       return subject;

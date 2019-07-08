@@ -87,7 +87,6 @@ export class SubjectsListComponent implements OnInit {
           .postHttp(URL_DB_SUBJECTS, subject)
           .subscribe(response => {
             // this.subjects = [...this.subjects, response];
-            console.log(response);
             this.subjects = [...this.subjects, subject];
           });
 

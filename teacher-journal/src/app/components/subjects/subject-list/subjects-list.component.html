@@ -32,7 +32,7 @@
       <h2 class="subjects__list-text">Add new subject:</h2></app-subject-form>
   </section>
   <section *ngIf="isVisibleSubjectPage">
-    <app-subject-page [subjectName]="subjectName" (onVisiblePage)="isVisible($event)">
+    <app-subject-page [subjectName]="subjectName" [subjects] = "subjects" (onVisiblePage)="isVisible($event)">
       <h2 class="subjects__list-text marks">
         {{ subjectName }}
       </h2></app-subject-page>
