@@ -43,7 +43,10 @@ export class ChangeService {
   public addNewSubject(
     subjects: ISubject[],
     { nameSubject, teacher, cabinet, description }: ISubject
-  ): { subject: ISubject; isAdd: boolean } {
+  ): {
+    subject: ISubject;
+    isAdd: boolean;
+  } {
     const isAddNewSubject: boolean = !!!subjects.find(
       (itemSubject: ISubject) => itemSubject.nameSubject === nameSubject
     );

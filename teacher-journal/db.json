@@ -63,6 +63,14 @@
       "lastName": "Komanis",
       "address": "ul. Svetlaya 17",
       "about": "hard student"
+    },
+    {
+      "id": "1c552ae0-a214-11e9-bdcb-47152525a2b6",
+      "index": 8,
+      "name": "Alexsandr",
+      "lastName": "Pushkin",
+      "address": "pr. Mira 34",
+      "about": "writer"
     }
   ],
   "subjects": [
@@ -241,7 +249,11 @@
             },
             {
               "id": "5d08bea4a276efdd10e3776c",
-              "mark": 2
+              "mark": 5
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 10
             }
           ]
         },
@@ -250,11 +262,11 @@
           "students": [
             {
               "id": "5d08bea47e85e353cadda16c",
-              "mark": 2
+              "mark": 10
             },
             {
               "id": "5d08bea43f5f27fbe9f5dff9",
-              "mark": 2
+              "mark": 10
             },
             {
               "id": "5d08bea44c4eaff0331de0ba",
@@ -271,7 +283,7 @@
           "students": [
             {
               "id": "5d08bea47e85e353cadda16c",
-              "mark": 2
+              "mark": 1
             },
             {
               "id": "5d08bea43f5f27fbe9f5dff9",

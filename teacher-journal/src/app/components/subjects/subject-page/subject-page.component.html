@@ -67,9 +67,12 @@
         <td
           class="subject-page__form-table-cell"
           *ngFor="let date of subject.marks"
+          appVisibility
+          [valueMark]="findStudentMark(date.students, student.id)"
         >
           <mat-form-field class="subject-page__form-table-cell-input">
             <input
+              #mark
               matInput
               type="number"
               autocomplete="off"
@@ -99,14 +102,17 @@
       <button
         class="subject-page__form-info-buttons item"
         mat-stroked-button
+        scaleButton
         type="button"
         (click)="onSave()"
+        [(disabled)]="isChangesMade || isMarksCorrect"
       >
         Save
       </button>
       <button
         class="subject-page__form-info-buttons item"
         mat-stroked-button
+        scaleButton
         type="button"
         (click)="onCancel()"
       >

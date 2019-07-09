@@ -18,6 +18,9 @@ import { SubjectPageComponent } from "./components/subjects/subject-page/subject
 import { NotificationComponent } from "./shared/components/notification/notification.component";
 import { SearchPipe } from "./common/pipe/search.pipe";
 import { HttpClientModule } from "@angular/common/http";
+import { VisibilityDirective } from "./common/directives/visibility.directive";
+import { ScaleButtonDirective } from "./common/directives/scale-button.directive";
+import { MarksCorrectionDirective } from './common/directives/marks-correction.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { HttpClientModule } from "@angular/common/http";
     SubjectFormComponent,
     SubjectPageComponent,
     NotificationComponent,
-    SearchPipe
+    SearchPipe,
+    VisibilityDirective,
+    ScaleButtonDirective,
+    MarksCorrectionDirective
   ],
 
   imports: [

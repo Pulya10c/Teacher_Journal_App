@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   NgModule,
-  Input,
   Output,
   EventEmitter
 } from "@angular/core";
@@ -22,8 +21,12 @@ export class StudentFormComponent implements OnInit {
   @Output() private onVisibleForm: EventEmitter<{
     visible: boolean;
     newStudent: IStudent;
-    add: boolean;
-  }> = new EventEmitter<{ visible: boolean; newStudent: IStudent; add: boolean }>();
+    isCreateStudent: boolean;
+  }> = new EventEmitter<{
+    visible: boolean;
+    newStudent: IStudent;
+    isCreateStudent: boolean
+  }>();
 
   private studentsForm: FormGroup;
   private studentFormBuilder: FormBuilder;
@@ -71,12 +74,12 @@ export class StudentFormComponent implements OnInit {
       return;
     }
 
-    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, add: true});
+    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, isCreateStudent: true});
   }
 
   private onCancel(): void {
 
-    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, add: false});
+    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, isCreateStudent: false});
   }
 
   public ngOnInit(): void {

@@ -21,8 +21,9 @@ import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-const
 import sortDate from "../../../common/helpers/sort-date";
 import getAverageMark from "../../../common/helpers/average-mark";
 import {
-  URL_DB_STUDENTS,
-  URL_DB_SUBJECTS
+  DB_STUDENTS,
+  URL_DB_SUBJECTS,
+  URL_DB
 } from "../../../common/constants/data-constants";
 
 @Component({
@@ -41,6 +42,8 @@ export class SubjectPageComponent implements OnInit {
   private changeService: ChangeService;
   private notificationService: NotificationService;
   private dateClick: number;
+  private isChangesMade: boolean = true;
+  private isMarksCorrect: boolean = true;
   private subject: ISubject = {
     id: "",
     index: 0,
@@ -67,8 +70,7 @@ export class SubjectPageComponent implements OnInit {
     this.notificationService = notificationService;
   }
   private initForm(): void {
-
-    this.dataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
+    this.dataService.getHttp<IStudent>(URL_DB, DB_STUDENTS).subscribe(data => {
       this.students = data;
     });
 
@@ -105,6 +107,7 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private onAddDate(date: Date): void {
+    this.isChangesMade = false;
     const thisDate: number = new Date(date).getTime();
     const isThisDate: boolean = !!this.subject.marks.find(
       (listMarks: IMarks) => listMarks.date === thisDate
@@ -124,6 +127,7 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private onChangeDate(changeData: Date): void {
+    this.isChangesMade = false;
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
     const dateCheck: number = changeData.getTime();
     this.subject.marks.forEach(dateMarksList => {
@@ -138,12 +142,16 @@ export class SubjectPageComponent implements OnInit {
     const id: string = this.subject.id;
     this.dataService
       .putHttp(URL_DB_SUBJECTS, this.subject)
-      .subscribe((response: ISubject) => (this.subjectCopy.marks = response.marks));
+      .subscribe(
+        (response: ISubject) => (this.subjectCopy.marks = response.marks)
+      );
+    this.isChangesMade = true;
   }
 
   private onCancel(): void {
     this.onVisiblePage.emit(false);
     this.subject.marks = this.subjectCopy.marks;
+    this.isChangesMade = true;
   }
 
   private onClickInput(date: Date): void {
@@ -157,6 +165,12 @@ export class SubjectPageComponent implements OnInit {
       studentId,
       newMark
     );
+    this.isMarksCorrect = !!this.subject.marks
+      .find(({ students }) =>
+        !!students
+          .find(mark => mark.mark <= 0 || mark.mark > 10)
+      );
+    this.isChangesMade = false;
   }
 
   public ngOnInit(): void {

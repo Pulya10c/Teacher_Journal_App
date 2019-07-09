@@ -14,7 +14,7 @@ import { FormsModule } from "@angular/forms";
 import { Subject } from "rxjs";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
-import { URL_DB_STUDENTS } from "../../../common/constants/data-constants";
+import { URL_DB_STUDENTS, URL_DB, DB_STUDENTS } from "../../../common/constants/data-constants";
 
 @Component({
   selector: "app-student-table",
@@ -63,7 +63,7 @@ export class StudentTableComponent implements OnInit {
       this.isReverse = this.storageService.getValueStorage().revers;
     }
 
-    this.dataService.getHttpStudents(URL_DB_STUDENTS).subscribe(data => {
+    this.dataService.getHttp<IStudent>(URL_DB, DB_STUDENTS).subscribe(data => {
       this.students = data;
       this.sortedStudents = this.orderPipe.transform(this.students, this.order);
     });
@@ -72,8 +72,9 @@ export class StudentTableComponent implements OnInit {
       .pipe(
         debounceTime(800),
         distinctUntilChanged()
-      ).subscribe((event: string) => {
-        this.searchStudent = event;
+      )
+      .subscribe((eventNewText: string) => {
+        this.searchStudent = eventNewText;
       });
   }
 
@@ -102,20 +103,20 @@ export class StudentTableComponent implements OnInit {
   private addStudent({
     visible,
     newStudent,
-    add
+    isCreateStudent
   }: {
     visible: boolean;
     newStudent: IStudent;
-    add: boolean;
+    isCreateStudent: boolean;
   }): void {
     this.isStudentTableActive = visible;
-    if (add) {
+    if (isCreateStudent) {
       const student: IStudent = this.changeService.addNewStudent(
         this.students.length,
         newStudent
       );
       this.dataService
-        .postHttp(URL_DB_STUDENTS, student)
+        .postHttp<IStudent>(URL_DB_STUDENTS, student)
         .subscribe(response => {
           this.students = [...this.students, response];
           this.sortedStudents = this.orderPipe.transform(

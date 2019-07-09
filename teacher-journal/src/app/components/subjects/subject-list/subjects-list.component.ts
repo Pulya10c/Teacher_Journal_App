@@ -3,7 +3,11 @@ import { DataService } from "../../../common/services/data.service";
 import { ChangeService } from "../../../common/services/change.service";
 import { ISubject } from "../../../common/entities/subject";
 import { SharedModule } from "../../../shared/shared.module";
-import { URL_DB_SUBJECTS } from "../../../common/constants/data-constants";
+import {
+  DB_SUBJECTS,
+  URL_DB,
+  URL_DB_SUBJECTS
+} from "../../../common/constants/data-constants";
 import {
   NotificationService,
   NotificationModel
@@ -58,7 +62,7 @@ export class SubjectsListComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.dataService.getHttpSubjects(URL_DB_SUBJECTS).subscribe(data => {
+    this.dataService.getHttp<ISubject>(URL_DB, DB_SUBJECTS).subscribe(data => {
       this.subjects = data;
     });
   }
@@ -82,14 +86,14 @@ export class SubjectsListComponent implements OnInit {
       const {
         subject,
         isAdd
-      }: { subject: ISubject; isAdd: boolean } = this.changeService.addNewSubject(
-        this.subjects,
-        newSubject
-      );
+      }: {
+        subject: ISubject;
+        isAdd: boolean;
+      } = this.changeService.addNewSubject(this.subjects, newSubject);
 
       if (isAdd) {
         this.dataService
-          .postHttp(URL_DB_SUBJECTS, subject)
+          .postHttp<ISubject>(URL_DB_SUBJECTS, subject)
           .subscribe(response => {
             this.subjects = [...this.subjects, response];
             this.subject = response;
