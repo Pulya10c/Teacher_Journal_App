@@ -55,6 +55,14 @@
       "lastName": "Mishin",
       "address": "ek/Rocosovskogo 2a",
       "about": "so so"
+    },
+    {
+      "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+      "index": 7,
+      "name": "Misha",
+      "lastName": "Komanis",
+      "address": "ul. Svetlaya 17",
+      "about": "hard student"
     }
   ],
   "subjects": [
@@ -337,7 +345,7 @@
           "students": [
             {
               "id": "5d08bea47e85e353cadda16c",
-              "mark": 3
+              "mark": 5
             },
             {
               "id": "5d08bea4a276efdd10e3776c",
@@ -587,6 +595,10 @@
             {
               "id": "5d08bea4f975b3057ef940df",
               "mark": 7
+            },
+            {
+              "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+              "mark": 10
             }
           ]
         }

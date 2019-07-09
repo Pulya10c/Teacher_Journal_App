@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-
-import { data } from "../../../assets/mock-data";
 import { IStudent } from "../entities/student";
 import { ISubject } from "../entities/subject";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -24,7 +22,8 @@ export class DataService {
 
   public getHttpStudents(URL: string): Observable<IStudent[]> {
     return this.http.get<IStudent[]>(URL).pipe(
-      map((response: any) => {
+      map((response: IStudent[]) => {
+        console.log(response);
         return response;
       }),
       catchError((err: Observable<any>) => {
@@ -36,7 +35,7 @@ export class DataService {
 
   public getHttpSubjects(URL: string): Observable<ISubject[]> {
     return this.http.get<ISubject[]>(URL).pipe(
-      map((response: any) => {
+      map((response: ISubject[]) => {
         return response;
       }),
       catchError((err: Observable<any>) => {
@@ -59,60 +58,9 @@ export class DataService {
       .put<ISubject>(URL + `/${subject.id}`, subject, this.httpOptions)
       .pipe(
         map((response: any) => {
-          console.log(typeof response);
+          console.log(response);
           return response;
         })
       );
-  }
-
-  public addNewStudent(
-    index: number,
-    { name, lastName, address, about }: any
-  ): IStudent {
-    const student: IStudent = {
-      id: createId(),
-      index,
-      name,
-      lastName,
-      address,
-      about
-    };
-    return student;
-  }
-
-  public addNewSubject(
-    subjects: ISubject[],
-    { nameSubject, teacher, cabinet, description }: ISubject
-  ): { subject: ISubject; isAdd: boolean } {
-    const isAddNewSubject: boolean = !!!subjects.find(
-      (itemSubject: ISubject) => itemSubject.nameSubject === nameSubject
-    );
-
-    let subject: ISubject;
-    if (nameSubject && isAddNewSubject) {
-      subject = {
-        id: createId(),
-        index: subjects.length,
-        nameSubject,
-        teacher,
-        cabinet,
-        description,
-        marks: []
-      };
-
-      return { subject, isAdd: true };
-    } else {
-      subject = {
-        id: "",
-        index: 0,
-        nameSubject: "",
-        teacher: "",
-        cabinet: 0,
-        description: "",
-        marks: []
-      };
-
-      return { subject, isAdd: false };
-    }
   }
 }

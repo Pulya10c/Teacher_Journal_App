@@ -3,6 +3,7 @@ import { OrderPipe } from "ngx-order-pipe";
 import { SharedModule } from "../../../shared/shared.module";
 import { DataService } from "../../../common/services/data.service";
 import { StorageService } from "../../../common/services/storage.service";
+import { ChangeService } from "../../../common/services/change.service";
 import { IStudent } from "../../../common/entities/student";
 import {
   NotificationService,
@@ -10,7 +11,8 @@ import {
 } from "../../../common/services/notification.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { Observable, of } from "rxjs";
+import { Subject } from "rxjs";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
 import { URL_DB_STUDENTS } from "../../../common/constants/data-constants";
 
@@ -27,6 +29,7 @@ export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
   private dataService: DataService;
   private storageService: StorageService;
+  private changeService: ChangeService;
   private columnStudentsName: string[] = HEDER_NAME_STUDENT_TABL;
   private sortedStudents: IStudent[] = [];
   private order: string = "index";
@@ -34,16 +37,19 @@ export class StudentTableComponent implements OnInit {
   private orderPipe: OrderPipe;
   private isStudentTableActive: boolean = true;
   private notificationService: NotificationService;
-  private data: any;
   private searchStudent: string = "";
+  private searchInfo: Subject<string> = new Subject<string>();
+  private searchInputText: string;
 
   constructor(
     dataService: DataService,
+    changeService: ChangeService,
     orderPipe: OrderPipe,
     storageService: StorageService,
     notificationService: NotificationService
   ) {
     this.dataService = dataService;
+    this.changeService = changeService;
     this.orderPipe = orderPipe;
     this.storageService = storageService;
     this.notificationService = notificationService;
@@ -61,6 +67,18 @@ export class StudentTableComponent implements OnInit {
       this.students = data;
       this.sortedStudents = this.orderPipe.transform(this.students, this.order);
     });
+
+    this.searchInfo
+      .pipe(
+        debounceTime(800),
+        distinctUntilChanged()
+      ).subscribe((event: string) => {
+        this.searchStudent = event;
+      });
+  }
+
+  private onSearch(event: string): void {
+    this.searchInfo.next(event);
   }
 
   private showToast(
@@ -92,7 +110,7 @@ export class StudentTableComponent implements OnInit {
   }): void {
     this.isStudentTableActive = visible;
     if (add) {
-      const student: IStudent = this.dataService.addNewStudent(
+      const student: IStudent = this.changeService.addNewStudent(
         this.students.length,
         newStudent
       );
@@ -100,7 +118,10 @@ export class StudentTableComponent implements OnInit {
         .postHttp(URL_DB_STUDENTS, student)
         .subscribe(response => {
           this.students = [...this.students, response];
-          this.sortedStudents = this.orderPipe.transform(this.students, this.order);
+          this.sortedStudents = this.orderPipe.transform(
+            this.students,
+            this.order
+          );
         });
 
       this.showToast(

@@ -16,8 +16,7 @@ import { PanelComponent } from "./components/panel/panel.component";
 import { SubjectFormComponent } from "./components/subjects/subject-form/subject-form.component";
 import { SubjectPageComponent } from "./components/subjects/subject-page/subject-page.component";
 import { NotificationComponent } from "./shared/components/notification/notification.component";
-import { SearchPipe } from "./common/helpers/search.pipe";
-import { MarksService } from "./common/services/marks.service";
+import { SearchPipe } from "./common/pipe/search.pipe";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
@@ -46,7 +45,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule
   ],
 
-  providers: [MarksService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

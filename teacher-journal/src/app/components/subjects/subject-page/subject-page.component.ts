@@ -14,7 +14,7 @@ import { DataService } from "../../../common/services/data.service";
 import { ISubject, IMarks } from "../../../common/entities/subject";
 import { IStudent } from "../../../common/entities/student";
 import { SharedModule } from "../../../shared/shared.module";
-import { MarksService } from "../../../common/services/marks.service";
+import { ChangeService } from "../../../common/services/change.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
@@ -38,7 +38,7 @@ export class SubjectPageComponent implements OnInit {
   private students: IStudent[] = [];
   private subjectCopy: ISubject;
   private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
-  private getMarksService: MarksService;
+  private changeService: ChangeService;
   private notificationService: NotificationService;
   private dateClick: number;
   private subject: ISubject = {
@@ -59,11 +59,11 @@ export class SubjectPageComponent implements OnInit {
 
   constructor(
     dataService: DataService,
-    marksService: MarksService,
+    changeService: ChangeService,
     notificationService: NotificationService
   ) {
     this.dataService = dataService;
-    this.getMarksService = marksService;
+    this.changeService = changeService;
     this.notificationService = notificationService;
   }
   private initForm(): void {
@@ -151,7 +151,7 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private modelChanged(newMark: number, date: number, studentId: string): void {
-    this.subject.marks = this.getMarksService.changeMark(
+    this.subject.marks = this.changeService.changeMark(
       this.subject.marks,
       date,
       studentId,

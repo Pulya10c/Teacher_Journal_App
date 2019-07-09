@@ -1,5 +1,6 @@
 import { Component, OnInit, NgModule } from "@angular/core";
 import { DataService } from "../../../common/services/data.service";
+import { ChangeService } from "../../../common/services/change.service";
 import { ISubject } from "../../../common/entities/subject";
 import { SharedModule } from "../../../shared/shared.module";
 import { URL_DB_SUBJECTS } from "../../../common/constants/data-constants";
@@ -19,6 +20,7 @@ import {
 export class SubjectsListComponent implements OnInit {
   private subjects: ISubject[] = [];
   private dataService: DataService;
+  private changeService: ChangeService;
   private subjectName: string;
   private isVisibleSubjectList: boolean = true;
   private subject: ISubject;
@@ -27,10 +29,12 @@ export class SubjectsListComponent implements OnInit {
 
   constructor(
     dataService: DataService,
+    changeService: ChangeService,
     notificationService: NotificationService
   ) {
     this.dataService = dataService;
     this.notificationService = notificationService;
+    this.changeService = changeService;
   }
 
   private onViewSubjectList(event: Event): void {
@@ -78,7 +82,7 @@ export class SubjectsListComponent implements OnInit {
       const {
         subject,
         isAdd
-      }: { subject: ISubject; isAdd: boolean } = this.dataService.addNewSubject(
+      }: { subject: ISubject; isAdd: boolean } = this.changeService.addNewSubject(
         this.subjects,
         newSubject
       );
@@ -104,30 +108,6 @@ export class SubjectsListComponent implements OnInit {
         );
       }
     }
-
-    // if (isCreateSubject) {
-    //   this.showToast(
-    //     "Warning",
-    //     `Subject ${newSubject.nameSubject} already exists!`,
-    //     false
-    //   );
-    // } else {
-    //   if (isAdd) {
-    //     const subject: ISubject = this.dataService.addNewSubject(this.subjects, newSubject);
-
-    //     this.dataService
-    //       .postHttp(URL_DB_SUBJECTS, subject)
-    //       .subscribe(response => {
-    //         this.subjects = [...this.subjects, response];
-    //       });
-
-    //     this.showToast(
-    //       "Success",
-    //       `Subject ${newSubject.nameSubject} successfully added!`,
-    //       true
-    //     );
-    //   }
-    // }
   }
 
   private isVisible(value: boolean): void {

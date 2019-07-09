@@ -7,7 +7,8 @@
             type="text"
             autocomplete="off"
             placeholder="Write to search"
-            [(ngModel)] = "searchStudent"
+            [(ngModel)] = "searchInputText"
+            (ngModelChange)="onSearch($event)"
           />
         </mat-form-field>
     <div class="students__list-table-container">
