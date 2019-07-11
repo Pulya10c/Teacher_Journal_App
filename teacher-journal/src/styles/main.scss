@@ -33,3 +33,22 @@ body {
 button.scale {
   transform: scale(1.01);
 }
+
+.swal-overlay {
+  background-color: rgba(65, 65, 65, 0.65);
+}
+
+.swal-modal {
+  background-color: rgba(25, 26, 25, 0.95);
+  border: 3px solid $active-color;
+}
+
+.swal-title {
+  font-size: 2rem;
+  color: wheat;
+}
+
+.swal-text {
+ font-size: 1.4rem;
+  color: wheat;
+}

@@ -1,7 +1,7 @@
 <section class="subjects">
   <section
     class="subjects__list"
-    *ngIf="isVisibleSubjectList && !isVisibleSubjectPage"
+    
   >
     <h2 class="subjects__list-text">
       List of subjects:
@@ -12,34 +12,36 @@
         class="subjects__list-buttons-item"
         mat-raised-button
         *ngFor="let subject of subjects"
-        (click)="onViewSubjectList($event)"
+        routerLink="{{ subject.nameSubject }}"
+        
       >
         {{ subject.nameSubject }}
       </button>
     </div>
     <button
+      routerLink="form"
       class="subjects__list-add-new-item"
       mat-stroked-button="warn"
-      (click)="onVisibleFormSubject()"
+      
     >
       &#10010;
     </button>
-    <notification></notification>
+    <!-- <notification></notification> -->
   </section>
-  <section *ngIf="!isVisibleSubjectList && !isVisibleSubjectPage">
+  <!-- <section *ngIf="!isVisibleSubjectList && !isVisibleSubjectPage">
     <app-subject-form (onVisibleForm)="addSubject($event)">
       <h2 class="subjects__list-text">Add new subject:</h2></app-subject-form
     >
-  </section>
-  <section *ngIf="isVisibleSubjectPage">
-    <app-subject-page
+  </section> -->
+  <!-- <section> -->
+    <!-- <app-subject-page
       [subjectName]="subjectName"
       [subjects]="subjects"
       (onVisiblePage)="isVisible($event)"
     >
-      <h2 class="subjects__list-text marks">
+      <!-- <h2 class="subjects__list-text marks">
         {{ subjectName }}
-      </h2></app-subject-page
-    >
-  </section>
+      </h2> -->
+      <!-- </app-subject-page> -->
+  <!-- </section> -->
 </section>

@@ -67,53 +67,6 @@ export class SubjectsListComponent implements OnInit {
     });
   }
 
-  private onVisibleFormSubject(): void {
-    this.isVisibleSubjectList = !this.isVisibleSubjectList;
-  }
-
-  private addSubject({
-    visible,
-    newSubject,
-    isCreateSubject
-  }: {
-    visible: boolean;
-    newSubject: ISubject;
-    isCreateSubject: boolean;
-  }): void {
-    this.isVisibleSubjectList = visible;
-
-    if (isCreateSubject) {
-      const {
-        subject,
-        isAdd
-      }: {
-        subject: ISubject;
-        isAdd: boolean;
-      } = this.changeService.addNewSubject(this.subjects, newSubject);
-
-      if (isAdd) {
-        this.dataService
-          .postHttp<ISubject>(URL_DB_SUBJECTS, subject)
-          .subscribe(response => {
-            this.subjects = [...this.subjects, response];
-            this.subject = response;
-          });
-
-        this.showToast(
-          "Success",
-          `Subject ${subject.nameSubject} successfully added!`,
-          true
-        );
-      } else {
-        this.showToast(
-          "Warning",
-          `Subject ${newSubject.nameSubject} already exists!`,
-          false
-        );
-      }
-    }
-  }
-
   private isVisible(value: boolean): void {
     this.isVisibleSubjectPage = value;
   }

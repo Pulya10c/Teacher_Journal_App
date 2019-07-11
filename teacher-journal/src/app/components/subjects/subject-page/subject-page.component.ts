@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  NgModule,
-  Input,
-  EventEmitter,
-  Output
-} from "@angular/core";
+import { Component, OnInit, NgModule } from "@angular/core";
 import {
   NotificationService,
   NotificationModel
@@ -23,8 +16,13 @@ import getAverageMark from "../../../common/helpers/average-mark";
 import {
   DB_STUDENTS,
   URL_DB_SUBJECTS,
-  URL_DB
+  URL_DB,
+  DB_SUBJECTS
 } from "../../../common/constants/data-constants";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { IComponentCanDeactivate } from "src/app/common/entities/component-can-deactivate";
+import runModalDialog from "src/app/common/helpers/modal-form-guard";
 
 @Component({
   selector: "app-subject-page",
@@ -34,7 +32,7 @@ import {
 @NgModule({
   imports: [SharedModule, BrowserModule, FormsModule]
 })
-export class SubjectPageComponent implements OnInit {
+export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private dataService: DataService;
   private students: IStudent[] = [];
   private subjectCopy: ISubject;
@@ -44,6 +42,9 @@ export class SubjectPageComponent implements OnInit {
   private dateClick: number;
   private isChangesMade: boolean = true;
   private isMarksCorrect: boolean = true;
+  private router: Router;
+  private subjectName: string;
+  private subjects: ISubject[] = [];
   private subject: ISubject = {
     id: "",
     index: 0,
@@ -54,31 +55,33 @@ export class SubjectPageComponent implements OnInit {
     marks: []
   };
 
-  @Output() private onVisiblePage: EventEmitter<boolean> = new EventEmitter<
-    false
-  >();
-  @Input() public subjectName: string;
-  @Input() public subjects: ISubject[];
-
   constructor(
     dataService: DataService,
     changeService: ChangeService,
-    notificationService: NotificationService
+    notificationService: NotificationService,
+    router: Router
   ) {
     this.dataService = dataService;
     this.changeService = changeService;
     this.notificationService = notificationService;
+    this.router = router;
   }
   private initForm(): void {
+    this.subjectName = this.router.url.split("/").pop();
+
     this.dataService.getHttp<IStudent>(URL_DB, DB_STUDENTS).subscribe(data => {
       this.students = data;
     });
 
-    this.subject = this.subjects.find(
-      subject => subject.nameSubject === this.subjectName
-    );
+    this.dataService.getHttp<ISubject>(URL_DB, DB_SUBJECTS).subscribe(data => {
+      this.subjects = data;
+      this.subject = this.subjects.find(
+        subject => subject.nameSubject === this.subjectName
+      );
+      this.subject.marks.sort(sortDate);
+      this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
+    });
 
-    this.subject.marks.sort(sortDate);
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
   }
 
@@ -149,9 +152,7 @@ export class SubjectPageComponent implements OnInit {
   }
 
   private onCancel(): void {
-    this.onVisiblePage.emit(false);
-    this.subject.marks = this.subjectCopy.marks;
-    this.isChangesMade = true;
+    this.router.navigate(["subject"]);
   }
 
   private onClickInput(date: Date): void {
@@ -165,15 +166,26 @@ export class SubjectPageComponent implements OnInit {
       studentId,
       newMark
     );
-    this.isMarksCorrect = !!this.subject.marks
-      .find(({ students }) =>
-        !!students
-          .find(mark => mark.mark <= 0 || mark.mark > 10)
-      );
+    this.isMarksCorrect = !!this.subject.marks.find(
+      ({ students }) =>
+        !!students.find(mark => mark.mark <= 0 || mark.mark > 10)
+    );
     this.isChangesMade = false;
   }
 
   public ngOnInit(): void {
     this.initForm();
+  }
+
+  public canDeactivate(): boolean | Observable<boolean> {
+    console.log(this.isChangesMade, this.isMarksCorrect);
+    if (!this.isChangesMade && !this.isMarksCorrect) {
+      return runModalDialog(
+        "You have saved any changes.",
+        "If you leaving the page all changes will be lost. Are you leaving this page?"
+      );
+    } else {
+      return true;
+    }
   }
 }

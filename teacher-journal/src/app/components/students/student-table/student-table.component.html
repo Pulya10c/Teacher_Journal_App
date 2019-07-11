@@ -1,16 +1,15 @@
 <section class="wrapper">
-  <notification></notification>
-  <section class="students__list" *ngIf="isStudentTableActive">
-      <mat-form-field>
-          <input
-            matInput
-            type="text"
-            autocomplete="off"
-            placeholder="Write to search"
-            [(ngModel)] = "searchInputText"
-            (ngModelChange)="onSearch($event)"
-          />
-        </mat-form-field>
+  <section class="students__list">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        autocomplete="off"
+        placeholder="Write to search"
+        [(ngModel)]="searchInputText"
+        (ngModelChange)="onSearch($event)"
+      />
+    </mat-form-field>
     <div class="students__list-table-container">
       <table class="students__list-table" cellspacing="2">
         <thead>
@@ -35,8 +34,9 @@
         </thead>
         <tr
           *ngFor="
-            let student of sortedStudents | search: searchStudent
-              | orderBy: order: isReverse:'case-insensitive'
+            let student of sortedStudents
+              | search: searchStudent
+              | orderBy: order:isReverse:'case-insensitive'
           "
         >
           <td class="students__list-table-cell">{{ student.index + 1 }}</td>
@@ -49,16 +49,12 @@
     </div>
 
     <button
+      routerLink="form"
+      [queryParams]="{ id: nextIndex }"
       class="students__list-add-new-item"
       mat-stroked-button="warn"
-      (click)="onVisibleFormStudent()"
     >
       &#10010;
     </button>
-  </section>
-  <section class="students__form" *ngIf="!isStudentTableActive">
-    <app-student-form (onVisibleForm)="addStudent($event)">
-      <h2 class="students__form-text">Add new student:</h2></app-student-form
-    >
   </section>
 </section>

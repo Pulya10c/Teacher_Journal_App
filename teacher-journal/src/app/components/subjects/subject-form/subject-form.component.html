@@ -1,5 +1,5 @@
 <section class="wrapper">
-    <ng-content></ng-content>
+  <h2 class="subjects__list-text">Add new subject:</h2>
   <form class="subject__form" [formGroup]="subjectForm" (submit)="onSubmit()">
     <table class="subject__form-table" cellspacing="0">
       <tr>
@@ -13,7 +13,9 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('nameSubject') ? 'Enter subject name' : 'Mathematics'
+                isControlInvalid('nameSubject')
+                  ? 'Enter subject name'
+                  : 'Mathematics'
               "
               id="nameSubject"
               formControlName="nameSubject"
@@ -32,7 +34,9 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('teacher') ? 'Enter theacher name' : 'M. Ivanovna'
+                isControlInvalid('teacher')
+                  ? 'Enter theacher name'
+                  : 'M. Ivanovna'
               "
               id="teacher"
               formControlName="teacher"
@@ -76,8 +80,19 @@
     </table>
 
     <div class="subject__form-buttons">
-      <button class="subject__form-buttons-item" mat-stroked-button type="submit">Add</button>
-      <button class="subject__form-buttons-item" mat-stroked-button type="button" (click)="onCancel()">
+      <button
+        class="subject__form-buttons-item"
+        mat-stroked-button
+        type="submit"
+      >
+        Add
+      </button>
+      <button
+        class="subject__form-buttons-item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
         Back
       </button>
     </div>

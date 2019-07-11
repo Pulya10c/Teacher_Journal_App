@@ -1,5 +1,5 @@
 <section class="wrapper">
-  <ng-content></ng-content>
+  <h2 class="students__form-text">Add new student:</h2>
   <form class="student__form" [formGroup]="studentsForm" (submit)="onSubmit()">
     <table class="student__form-table" cellspacing="0">
       <tr>
@@ -74,8 +74,19 @@
     </table>
 
     <div class="student__form-buttons">
-      <button class="student__form-buttons-item" mat-stroked-button type="submit">Add</button>
-      <button class="student__form-buttons-item" mat-stroked-button type="button" (click)="onCancel()">
+      <button
+        class="student__form-buttons-item"
+        mat-stroked-button
+        type="submit"
+      >
+        Add
+      </button>
+      <button
+        class="student__form-buttons-item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
         Back
       </button>
     </div>

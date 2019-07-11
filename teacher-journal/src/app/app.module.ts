@@ -20,7 +20,9 @@ import { SearchPipe } from "./common/pipe/search.pipe";
 import { HttpClientModule } from "@angular/common/http";
 import { VisibilityDirective } from "./common/directives/visibility.directive";
 import { ScaleButtonDirective } from "./common/directives/scale-button.directive";
-import { MarksCorrectionDirective } from './common/directives/marks-correction.directive';
+import { MarksCorrectionDirective } from "./common/directives/marks-correction.directive";
+import { SubjectPageGuard } from "./components/subjects/subject-page/subject-page.guard";
+import { ExitSubjectPageGuard } from "./components/subjects/subject-page/exit-subject-page.guard";
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ import { MarksCorrectionDirective } from './common/directives/marks-correction.d
     HttpClientModule
   ],
 
-  providers: [],
+  providers: [SubjectPageGuard, ExitSubjectPageGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,13 +1,22 @@
-import {
-  Component,
-  OnInit,
-  NgModule,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, OnInit, NgModule, Input } from "@angular/core";
 import { SharedModule } from "../../../shared/shared.module";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { DataService } from "../../../common/services/data.service";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormsModule
+} from "@angular/forms";
 import { IStudent } from "../../../common/entities/student";
+import { Router } from "@angular/router";
+import { URL_DB_STUDENTS } from "../../../common/constants/data-constants";
+import {
+  NotificationService,
+  NotificationModel
+} from "../../../common/services/notification.service";
+import { ChangeService } from "src/app/common/services/change.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-student-form",
@@ -15,24 +24,32 @@ import { IStudent } from "../../../common/entities/student";
   styleUrls: ["./student-form.component.scss"]
 })
 @NgModule({
-  imports: [SharedModule]
+  imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class StudentFormComponent implements OnInit {
-  @Output() private onVisibleForm: EventEmitter<{
-    visible: boolean;
-    newStudent: IStudent;
-    isCreateStudent: boolean;
-  }> = new EventEmitter<{
-    visible: boolean;
-    newStudent: IStudent;
-    isCreateStudent: boolean
-  }>();
-
   private studentsForm: FormGroup;
   private studentFormBuilder: FormBuilder;
+  private router: Router;
+  private dataService: DataService;
+  private changeService: ChangeService;
+  private index: number = 0;
+  private notificationService: NotificationService;
+  private activateRouter: ActivatedRoute;
 
-  constructor(fb: FormBuilder) {
+  constructor(
+    fb: FormBuilder,
+    router: Router,
+    dataService: DataService,
+    changeService: ChangeService,
+    activateRouter: ActivatedRoute,
+    notificationService: NotificationService
+  ) {
     this.studentFormBuilder = fb;
+    this.router = router;
+    this.dataService = dataService;
+    this.changeService = changeService;
+    this.activateRouter = activateRouter;
+    this.notificationService = notificationService;
   }
 
   private initForm(): void {
@@ -56,6 +73,22 @@ export class StudentFormComponent implements OnInit {
       address: [""],
       about: [""]
     });
+
+    this.activateRouter
+      .queryParams
+      .subscribe(params => {
+        this.index = +params.id;
+      });
+  }
+
+  private showToast(
+    header: string,
+    description: string,
+    success: boolean
+  ): void {
+    this.notificationService.showToast(
+      new NotificationModel(header, description, success)
+    );
   }
 
   private isControlInvalid(controlName: string): boolean {
@@ -74,12 +107,20 @@ export class StudentFormComponent implements OnInit {
       return;
     }
 
-    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, isCreateStudent: true});
+    const student: IStudent = this.changeService.addNewStudent(
+      this.index,
+      this.studentsForm.value
+    );
+    this.dataService
+      .postHttp<IStudent>(URL_DB_STUDENTS, student)
+      .subscribe(response => {
+        this.showToast("Success", "Date  successfully added!", true);
+        this.router.navigate(["student"]);
+      });
   }
 
   private onCancel(): void {
-
-    this.onVisibleForm.emit({visible: true, newStudent: this.studentsForm.value, isCreateStudent: false});
+    this.router.navigate(["student"]);
   }
 
   public ngOnInit(): void {

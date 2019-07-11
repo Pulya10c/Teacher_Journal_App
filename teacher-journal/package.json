@@ -23,6 +23,7 @@
     "@angular/router": "~8.0.1",
     "ngx-order-pipe": "^2.0.2",
     "rxjs": "~6.4.0",
+    "sweetalert": "^2.1.2",
     "tslib": "^1.9.0",
     "uuid": "^3.3.2",
     "zone.js": "~0.9.1"

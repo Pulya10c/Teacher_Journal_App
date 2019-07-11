@@ -8,13 +8,20 @@
     color: $text-color;
     border-color: $text-color;
   }
-  
+
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
     background-color: $text-color;
   }
-  
+
   ::ng-deep .mat-input-element {
     caret-color: $text-color;
+  }
+
+  .students__form-text {
+    font-weight: 400;
+    margin-top: 0;
+    margin-left: 10%;
+    font-size: 2rem;
   }
 
   .student__form {
