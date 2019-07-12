@@ -178,7 +178,6 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   public canDeactivate(): boolean | Observable<boolean> {
-    console.log(this.isChangesMade, this.isMarksCorrect);
     if (!this.isChangesMade && !this.isMarksCorrect) {
       return runModalDialog(
         "You have saved any changes.",
