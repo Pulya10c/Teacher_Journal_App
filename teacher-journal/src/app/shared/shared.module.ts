@@ -19,6 +19,7 @@ import { MatNativeDateModule } from "@angular/material";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule
-  ]
+  ],
+  declarations: []
 })
 export class SharedModule {}

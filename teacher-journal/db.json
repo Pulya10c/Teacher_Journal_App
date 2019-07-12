@@ -71,62 +71,6 @@
       "lastName": "Pushkin",
       "address": "pr. Mira 34",
       "about": "writer"
-    },
-    {
-      "id": "403c6b60-a30b-11e9-9d28-21ef4016899f",
-      "index": 9,
-      "name": "ывапывфап",
-      "lastName": "выапывап",
-      "address": "ывпамывпаи",
-      "about": "ваивапи"
-    },
-    {
-      "id": "4657fcd0-a30b-11e9-9d28-21ef4016899f",
-      "index": 10,
-      "name": "ваивыаип",
-      "lastName": "аипвпаи",
-      "address": "ваипвпаи",
-      "about": "выаипывпа"
-    },
-    {
-      "id": "9bc9eb60-a30b-11e9-beac-a5279bcd531a",
-      "index": 11,
-      "name": "парвт",
-      "lastName": "ырпар",
-      "address": "ыпрпарт",
-      "about": "аптрва"
-    },
-    {
-      "id": "bbf4c860-a30b-11e9-8979-e17adb45fcdf",
-      "index": 12,
-      "name": "выарвто",
-      "lastName": "апворопр",
-      "address": "кпевопао",
-      "about": "ваыроав"
-    },
-    {
-      "id": "fb3b3540-a30b-11e9-9f5c-4dcf23afa338",
-      "index": 13,
-      "name": "авыриыап",
-      "lastName": "ваыирывап",
-      "address": "варивыап",
-      "about": "ваипрапти"
-    },
-    {
-      "id": "747f8400-a317-11e9-8b1b-0dc5e46b25da",
-      "index": 14,
-      "name": "dsvfdsv",
-      "lastName": "sdfvsfdv",
-      "address": "sdfvdszfv",
-      "about": "sdvsdfcv"
-    },
-    {
-      "id": "7ad0cb70-a317-11e9-8b1b-0dc5e46b25da",
-      "index": 15,
-      "name": "sdfsdc",
-      "lastName": "sscde",
-      "address": "sedvcsd",
-      "about": "sdvsdc"
     }
   ],
   "subjects": [
@@ -206,6 +150,10 @@
             {
               "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
               "mark": 9
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 10
             }
           ]
         },
@@ -330,6 +278,10 @@
             {
               "id": "5d08bea4f975b3057ef940df",
               "mark": 2
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 10
             }
           ]
         },
@@ -718,43 +670,11 @@
       ]
     },
     {
-      "id": "da4f6520-a2fe-11e9-be88-89327b442e24",
+      "id": "722c76c0-a3dc-11e9-8ecb-0bdfd43f6ab4",
       "index": 6,
-      "nameSubject": "авпрва",
-      "teacher": "авпрва",
-      "description": "ыричв",
-      "marks": []
-    },
-    {
-      "id": "c352c4e0-a30b-11e9-8979-e17adb45fcdf",
-      "index": 7,
-      "nameSubject": "ваырп",
-      "teacher": "выфари",
-      "description": "врапртвап",
-      "marks": []
-    },
-    {
-      "id": "145dd6e0-a30c-11e9-9f5c-4dcf23afa338",
-      "index": 8,
-      "nameSubject": "ывфпфываип",
-      "teacher": "ываипываи",
-      "description": "аывпывир",
-      "marks": []
-    },
-    {
-      "id": "2c229200-a313-11e9-a1f4-3f9ce5db0ebc",
-      "index": 9,
-      "nameSubject": "asdfcsad",
-      "teacher": "asdfcasdc",
-      "description": "",
-      "marks": []
-    },
-    {
-      "id": "3e677650-a3a5-11e9-9596-a30836c08cab",
-      "index": 10,
-      "nameSubject": "dfgsvdf",
-      "teacher": "sdfvgf",
-      "description": "34tr45tr",
+      "nameSubject": "dsfvgsdf",
+      "teacher": "sdgfdsf",
+      "description": "fdbgvdsvf",
       "marks": []
     }
   ]

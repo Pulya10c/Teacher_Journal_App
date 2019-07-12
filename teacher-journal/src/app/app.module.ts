@@ -17,12 +17,15 @@ import { SubjectFormComponent } from "./components/subjects/subject-form/subject
 import { SubjectPageComponent } from "./components/subjects/subject-page/subject-page.component";
 import { NotificationComponent } from "./shared/components/notification/notification.component";
 import { SearchPipe } from "./common/pipe/search.pipe";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { VisibilityDirective } from "./common/directives/visibility.directive";
 import { ScaleButtonDirective } from "./common/directives/scale-button.directive";
 import { MarksCorrectionDirective } from "./common/directives/marks-correction.directive";
-import { SubjectPageGuard } from "./components/subjects/subject-page/subject-page.guard";
-import { ExitSubjectPageGuard } from "./components/subjects/subject-page/exit-subject-page.guard";
+import { SubjectPageGuard } from "./components/subjects/subject-page/guards/subject-page.guard";
+import { ExitSubjectPageGuard } from "./components/subjects/subject-page/guards/exit-subject-page.guard";
+import { LoaderComponent } from "./shared/components/loader/loader.component";
+import { LoaderInterceptor } from "./common/interceptors/loader.interceptor";
+import { LoaderService } from "./common/services/loader.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { ExitSubjectPageGuard } from "./components/subjects/subject-page/exit-su
     SearchPipe,
     VisibilityDirective,
     ScaleButtonDirective,
-    MarksCorrectionDirective
+    MarksCorrectionDirective,
+    LoaderComponent
   ],
 
   imports: [
@@ -53,7 +57,12 @@ import { ExitSubjectPageGuard } from "./components/subjects/subject-page/exit-su
     HttpClientModule
   ],
 
-  providers: [SubjectPageGuard, ExitSubjectPageGuard],
+  providers: [
+    SubjectPageGuard,
+    ExitSubjectPageGuard,
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

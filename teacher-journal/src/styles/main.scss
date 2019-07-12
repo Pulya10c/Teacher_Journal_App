@@ -4,7 +4,8 @@ html {
   background-color: #808080;
 }
 
-body {
+html body {
+
   .cdk-overlay-container {
     top: 30%;
     left: 47%;
@@ -51,4 +52,8 @@ button.scale {
 .swal-text {
  font-size: 1.4rem;
   color: wheat;
+}
+
+.visible {
+  visibility: visible;
 }

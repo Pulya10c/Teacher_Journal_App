@@ -8,8 +8,8 @@ import { StatisticsComponent } from "./components/statistics/statistics.componen
 import { StudentFormComponent } from "./components/students/student-form/student-form.component";
 import { SubjectFormComponent } from "./components/subjects/subject-form/subject-form.component";
 import { SubjectPageComponent } from "./components/subjects/subject-page/subject-page.component";
-import { SubjectPageGuard } from "./components/subjects/subject-page/subject-page.guard";
-import { ExitSubjectPageGuard } from "./components/subjects/subject-page/exit-subject-page.guard";
+import { SubjectPageGuard } from "./components/subjects/subject-page/guards/subject-page.guard";
+import { ExitSubjectPageGuard } from "./components/subjects/subject-page/guards/exit-subject-page.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "student", pathMatch: "full" },

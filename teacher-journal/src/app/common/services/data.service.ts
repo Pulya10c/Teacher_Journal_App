@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ISubject } from "../entities/subject";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpEventType } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { HTTP_HEADERS } from "../constants/data-constants";
@@ -20,7 +20,7 @@ export class DataService {
 
   public getHttp<T>(URL: string, name: string): Observable<T[]> {
     return this.http.get<T[]>(URL + `/${name}`).pipe(
-      map((response: T[] ) => {
+      map((response: T[]) => {
         return response;
       }),
       catchError((err: Observable<any>) => {
@@ -31,11 +31,16 @@ export class DataService {
   }
 
   public postHttp<T>(URL: string, addItem: T): Observable<T> {
-    return this.http.post<T>(URL, addItem, this.httpOptions).pipe(
-      map((response: any) => {
-        return response;
+    return this.http
+      .post<T>(URL, addItem, {
+        headers: new HttpHeaders(HTTP_HEADERS),
+        reportProgress: true,
       })
-    );
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
   }
 
   public putHttp(URL: string, subject: ISubject): Observable<ISubject> {
