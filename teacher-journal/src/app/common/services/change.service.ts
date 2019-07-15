@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
+
+import * as createId from "uuid/v1";
+
 import { IDateMarksList } from "../entities/date-marks-list";
 import changeStudentMark from "../helpers/change-student-mark";
 import { IStudent } from "../entities/student";
 import { ISubject } from "../entities/subject";
-import * as createId from "uuid/v1";
 
 @Injectable({
   providedIn: "root"

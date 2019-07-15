@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import swal from "sweetalert";
 import { CanActivate } from "@angular/router";
-import { Observable, from } from "rxjs";
+import { Observable } from "rxjs";
+
 import runModalDialog from "src/app/common/helpers/modal-form-guard";
 
 @Injectable()

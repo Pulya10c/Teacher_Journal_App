@@ -1,15 +1,17 @@
 import { Component, OnInit, NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 import { OrderPipe } from "ngx-order-pipe";
+import { Subject } from "rxjs";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+
+import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
+import { URL_DB, DB_STUDENTS } from "../../../common/constants/data-constants";
+
 import { SharedModule } from "../../../shared/shared.module";
 import { DataService } from "../../../common/services/data.service";
 import { StorageService } from "../../../common/services/storage.service";
 import { IStudent } from "../../../common/entities/student";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { Subject } from "rxjs";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
-import { URL_DB, DB_STUDENTS } from "../../../common/constants/data-constants";
 
 @Component({
   selector: "app-student-table",
@@ -17,9 +19,11 @@ import { URL_DB, DB_STUDENTS } from "../../../common/constants/data-constants";
   styleUrls: ["./student-table.component.scss"],
   providers: [StorageService]
 })
+
 @NgModule({
   imports: [SharedModule, BrowserModule, FormsModule]
 })
+
 export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
   private dataService: DataService;
@@ -34,17 +38,14 @@ export class StudentTableComponent implements OnInit {
   private searchInputText: string;
   private nextIndex: number = this.sortedStudents.length;
 
-  constructor(
-    dataService: DataService,
-    orderPipe: OrderPipe,
-    storageService: StorageService
-  ) {
+  constructor(dataService: DataService, orderPipe: OrderPipe, storageService: StorageService) {
     this.dataService = dataService;
     this.orderPipe = orderPipe;
     this.storageService = storageService;
   }
 
   private initForm(): void {
+
     if (!this.storageService.getValueStorage()) {
       this.storageService.setSaveStorage(this.order, this.isReverse);
     } else {
@@ -52,20 +53,24 @@ export class StudentTableComponent implements OnInit {
       this.isReverse = this.storageService.getValueStorage().revers;
     }
 
-    this.dataService.getHttp<IStudent>(URL_DB, DB_STUDENTS).subscribe(data => {
-      this.students = data;
-      this.sortedStudents = this.orderPipe.transform(this.students, this.order);
-      this.nextIndex = this.sortedStudents.length;
-    });
+    this.dataService
+    .getHttp<IStudent>(URL_DB, DB_STUDENTS)
+    .subscribe(
+      data => {
+        this.students = data;
+        this.sortedStudents = this.orderPipe.transform(this.students, this.order);
+        this.nextIndex = this.sortedStudents.length;
+      }
+    );
 
     this.searchInfo
-      .pipe(
-        debounceTime(800),
-        distinctUntilChanged()
-      )
-      .subscribe((eventNewText: string) => {
-        this.searchStudent = eventNewText;
-      });
+    .pipe(
+      debounceTime(800),
+      distinctUntilChanged()
+    )
+    .subscribe(
+      (eventNewText: string) => { this.searchStudent = eventNewText; }
+    );
   }
 
   private onSearch(event: string): void {
@@ -73,6 +78,7 @@ export class StudentTableComponent implements OnInit {
   }
 
   private setOrder(newValueOrder: string): void {
+
     if (this.order === newValueOrder) {
       this.isReverse = !this.isReverse;
     }

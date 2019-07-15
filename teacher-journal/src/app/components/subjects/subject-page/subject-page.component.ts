@@ -1,28 +1,23 @@
 import { Component, OnInit, NgModule } from "@angular/core";
-import {
-  NotificationService,
-  NotificationModel
-} from "../../../common/services/notification.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+
+import { DB_STUDENTS, URL_DB_SUBJECTS, URL_DB, DB_SUBJECTS } from "../../../common/constants/data-constants";
+import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
+
+import runModalDialog from "src/app/common/helpers/modal-form-guard";
+import sortDate from "../../../common/helpers/sort-date";
+import getAverageMark from "../../../common/helpers/average-mark";
+
+import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
 import { DataService } from "../../../common/services/data.service";
 import { ISubject, IMarks } from "../../../common/entities/subject";
 import { IStudent } from "../../../common/entities/student";
 import { SharedModule } from "../../../shared/shared.module";
 import { ChangeService } from "../../../common/services/change.service";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
-import sortDate from "../../../common/helpers/sort-date";
-import getAverageMark from "../../../common/helpers/average-mark";
-import {
-  DB_STUDENTS,
-  URL_DB_SUBJECTS,
-  URL_DB,
-  DB_SUBJECTS
-} from "../../../common/constants/data-constants";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
 import { IComponentCanDeactivate } from "src/app/common/entities/component-can-deactivate";
-import runModalDialog from "src/app/common/helpers/modal-form-guard";
 
 @Component({
   selector: "app-subject-page",
@@ -55,12 +50,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     marks: []
   };
 
-  constructor(
-    dataService: DataService,
-    changeService: ChangeService,
-    notificationService: NotificationService,
-    router: Router
-  ) {
+  constructor(dataService: DataService, changeService: ChangeService, notificationService: NotificationService, router: Router) {
     this.dataService = dataService;
     this.changeService = changeService;
     this.notificationService = notificationService;
@@ -69,52 +59,48 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private initForm(): void {
     this.subjectName = this.router.url.split("/").pop();
 
-    this.dataService.getHttp<IStudent>(URL_DB, DB_STUDENTS).subscribe(data => {
-      this.students = data;
-    });
+    this.dataService
+    .getHttp<IStudent>(URL_DB, DB_STUDENTS)
+    .subscribe(
+      data => {
+        this.students = data;
+      }
+    );
 
-    this.dataService.getHttp<ISubject>(URL_DB, DB_SUBJECTS).subscribe(data => {
-      this.subjects = data;
-      this.subject = this.subjects.find(
-        subject => subject.nameSubject === this.subjectName
-      );
-      this.subject.marks.sort(sortDate);
-      this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
-    });
+    this.dataService
+    .getHttp<ISubject>(URL_DB, DB_SUBJECTS)
+    .subscribe(
+      data => {
+        this.subjects = data;
+        this.subject = this.subjects
+        .find(
+          subject => subject.nameSubject === this.subjectName
+          );
+        this.subject.marks.sort(sortDate);
+        this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
+      }
+    );
 
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
   }
 
-  private showToast(
-    header: string,
-    description: string,
-    success: boolean
-  ): void {
-    this.notificationService.showToast(
-      new NotificationModel(header, description, success)
-    );
+  private showToast(header: string, description: string, success: boolean): void {
+    this.notificationService.showToast(new NotificationModel(header, description, success));
   }
 
   private calculationAverageMark(idStudent: string): number {
     return getAverageMark(this.subject, idStudent);
   }
 
-  private findStudentMark(
-    marks: { id: string; mark: number }[],
-    idStudent: string
-  ): any {
-    const markStudent: { id: string; mark: number } = marks.find(
-      ({ id }: { id: String }) => id === idStudent
-    );
+  private findStudentMark(marks: { id: string; mark: number }[], idStudent: string): any {
+    const markStudent: { id: string; mark: number } = marks.find(({ id }: { id: String }) => id === idStudent);
     return markStudent ? markStudent.mark : undefined;
   }
 
   private onAddDate(date: Date): void {
     this.isChangesMade = false;
     const thisDate: number = new Date(date).getTime();
-    const isThisDate: boolean = !!this.subject.marks.find(
-      (listMarks: IMarks) => listMarks.date === thisDate
-    );
+    const isThisDate: boolean = !!this.subject.marks.find((listMarks: IMarks) => listMarks.date === thisDate);
 
     if (!isThisDate) {
       const createNewDate: { date: number; students: undefined[] } = {
@@ -143,11 +129,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private onSave(): void {
     this.showToast("Success", "Changes saved!", true);
     const id: string = this.subject.id;
-    this.dataService
-      .putHttp(URL_DB_SUBJECTS, this.subject)
-      .subscribe(
-        (response: ISubject) => (this.subjectCopy.marks = response.marks)
-      );
+    this.dataService.putHttp(URL_DB_SUBJECTS, this.subject).subscribe((response: ISubject) => (this.subjectCopy.marks = response.marks));
     this.isChangesMade = true;
   }
 
@@ -160,16 +142,8 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   private modelChanged(newMark: number, date: number, studentId: string): void {
-    this.subject.marks = this.changeService.changeMark(
-      this.subject.marks,
-      date,
-      studentId,
-      newMark
-    );
-    this.isMarksCorrect = !!this.subject.marks.find(
-      ({ students }) =>
-        !!students.find(mark => mark.mark <= 0 || mark.mark > 10)
-    );
+    this.subject.marks = this.changeService.changeMark(this.subject.marks, date, studentId, newMark);
+    this.isMarksCorrect = !!this.subject.marks.find(({ students }) => !!students.find(mark => mark.mark <= 0 || mark.mark > 10));
     this.isChangesMade = false;
   }
 
@@ -179,10 +153,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
 
   public canDeactivate(): boolean | Observable<boolean> {
     if (!this.isChangesMade && !this.isMarksCorrect) {
-      return runModalDialog(
-        "You have saved any changes.",
-        "If you leaving the page all changes will be lost. Are you leaving this page?"
-      );
+      return runModalDialog("You have saved any changes.", "If you leaving the page all changes will be lost. Are you leaving this page?");
     } else {
       return true;
     }

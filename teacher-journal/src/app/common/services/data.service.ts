@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
-import { ISubject } from "../entities/subject";
-import { HttpClient, HttpHeaders, HttpEventType } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+
 import { HTTP_HEADERS } from "../constants/data-constants";
+import { ISubject } from "../entities/subject";
 
 @Injectable({
   providedIn: "root"
