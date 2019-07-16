@@ -1,7 +1,7 @@
-import { IStudentStore } from "./students-store";
-import { ISubjectStore } from "./subjects-store";
+import { IStudentState } from "./students-state";
+import { ISubjectState } from "./subjects-state";
 
 export interface IState {
-  students: IStudentStore;
-  subjects: ISubjectStore;
+  studentList: IStudentState;
+  subjectsList: ISubjectState;
 }

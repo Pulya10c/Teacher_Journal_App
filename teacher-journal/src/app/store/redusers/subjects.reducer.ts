@@ -1,65 +1,40 @@
-import { ActionReducer, createReducer, on, State, Action } from "@ngrx/store";
 
-import { ISubjectStore } from "src/app/common/entities/subjects-store";
-import { MarksToChangeSubject, LoadSubject, AddSubject } from "../actions/subjects.action";
+import { ActionReducer, createReducer, on, Action } from "@ngrx/store";
 
-const initialStudentsState: ISubjectStore = {
+import { ISubjectState } from "src/app/common/entities/subjects-state";
+import { marksToChangeSubject, loadSubjects, addSubject } from "../actions/subjects.action";
+
+const initialStudentsState: ISubjectState = {
   subjects: []
 };
 
-// export function subjectsReducer(state: ISubjectStore = initialStudentsState, action: SubjectsAction): ISubjectStore {
-//   switch (action.type) {
-//     case ActionTypesSubject.LOAD_SUBJECTS:
-//       return {
-//         subjects: [...action.payload]
-//       };
-//     case ActionTypesSubject.ADD_SUBJECT:
-//       return {
-//         subjects: [...action.payload]
-//       };
-//     case ActionTypesSubject.MARKS_TO_CHANGE_SUBJECT:
-//       return {
-//         subjects: [
-//           ...state.subjects
-//           .filter(
-//             subject => subject.nameSubject !== action.payload[0].nameSubject
-//           ),
-//           ...action.payload
-//         ]
-//       };
-//     default:
-//       return state;
-//   }
-// }
-
-const subjectsReducer: ActionReducer<any> = createReducer<ISubjectStore>(
+const subjectsReducer: ActionReducer<ISubjectState, Action> = createReducer<ISubjectState>(
   initialStudentsState,
-  on(LoadSubject, (state, { subjectList }) => {
+  on(loadSubjects, (state) => {
     return {
-      ...state,
-      subjects: [...subjectList]
+      ...state
     };
   }),
-  on(AddSubject, (state, { newSubject }) => {
+  on(addSubject, (state, { newSubject }) => {
     return {
       ...state,
       subjects: [...state.subjects, newSubject]
     };
   }),
-  on(MarksToChangeSubject, (state, { changeSubject }) => {
+  on(marksToChangeSubject, (state, { subject } ) => {
     return {
       ...state,
       subjects: [
         ...state.subjects
         .filter(
-          subject => subject.nameSubject !== changeSubject.nameSubject
+          item => item.nameSubject !== subject.nameSubject
         ),
-        ...changeSubject
+        subject
       ]
     };
   })
 );
 
-export function reducer(state: State<ISubjectStore> | undefined, action: Action): ActionReducer<ISubjectStore> {
+export function reducerSubject(state: ISubjectState, action: Action): ISubjectState {
   return subjectsReducer(state, action);
 }

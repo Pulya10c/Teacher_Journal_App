@@ -1,58 +1,22 @@
 import { ActionCreator, createAction, props } from "@ngrx/store";
 
 import { ISubject } from "src/app/common/entities/subject";
+import { TypedAction } from "@ngrx/store/src/models";
 
-// import { Action } from "@ngrx/store";
+export const loadSubjects: ActionCreator<string, any> = createAction("[Subjects] Load Subjects");
 
-// import { ISubject } from "../../common/entities/subject";
-
-// export enum ActionTypesSubject {
-//   LOAD_SUBJECTS = "[Subjects] Load Subjects",
-//   ADD_SUBJECT = "[Subjects] Add Subject",
-//   MARKS_TO_CHANGE_SUBJECT = "[Subjects] Marks To Change Subject",
-// }
-
-// export class LoadSubjects implements Action {
-//   public readonly type: string = ActionTypesSubject.LOAD_SUBJECTS;
-//   public payload: ISubject[];
-//   constructor(payload: ISubject[]) {
-//     this.payload = payload;
-//   }
-// }
-
-// export class AddSubject implements Action {
-//   public readonly type: string = ActionTypesSubject.ADD_SUBJECT;
-//   public payload: ISubject[];
-//   constructor(payload: ISubject[]) {
-//     this.payload = payload;
-//   }
-// }
-
-// export class MarksToChangeSubject implements Action {
-//   public readonly type: string = ActionTypesSubject.MARKS_TO_CHANGE_SUBJECT;
-//   public payload: ISubject[];
-//   constructor(payload: ISubject[]) {
-//     this.payload = payload;
-//   }
-// }
-
-// export type SubjectsAction =
-//   | LoadSubjects
-//   | AddSubject
-//   | MarksToChangeSubject;
-
-// tslint:disable-next-line: variable-name
-export const LoadSubject: ActionCreator<string, any> = createAction(
-  "[Subjects] Load Subjects",
-  props<{ subjectsList: ISubject[] }>()
-);
-// tslint:disable-next-line: variable-name
-export const AddSubject: ActionCreator<string, any> = createAction(
+export const addSubject: ActionCreator<
+  string,
+  (props: { newSubject: ISubject }) => { newSubject: ISubject } & TypedAction<string>
+> = createAction(
   "[Subjects] Add Subject",
   props<{ newSubject: ISubject }>()
 );
-// tslint:disable-next-line: variable-name
-export const MarksToChangeSubject: ActionCreator<string, any> = createAction(
+
+export const marksToChangeSubject: ActionCreator<
+  string,
+  (props: { subject: ISubject }) => { subject: ISubject } & TypedAction<string>
+> = createAction(
   "[Subjects] Marks To Change Subject",
-  props<{ changeSubject: ISubject }>()
+  props<{ subject: ISubject }>()
 );

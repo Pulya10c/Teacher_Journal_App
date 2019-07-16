@@ -4,6 +4,8 @@ import { NgModule } from "@angular/core";
 import { StoreModule } from "@ngrx/store";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { EffectsModule } from "@ngrx/effects";
+import { AppEffects } from "./app.effects";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./root/app.component";
@@ -57,14 +59,15 @@ import { reducer } from "../app/store/redusers/combine.reducer";
     OrderModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducer)
+    StoreModule.forRoot(reducer),
+    EffectsModule.forRoot([AppEffects])
   ],
 
   providers: [
     SubjectPageGuard,
     ExitSubjectPageGuard,
     LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
