@@ -7,6 +7,9 @@ import { ChangeService } from "../../../common/services/change.service";
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
 import { ISubject } from "../../../common/entities/subject";
 import { SharedModule } from "../../../shared/shared.module";
+import { select, Store, ScannedActionsSubject } from "@ngrx/store";
+import { selectSubjects } from "src/app/store/selectors/combine.selectors";
+import { IState } from "src/app/common/entities/state";
 
 @Component({
   selector: "app-subjects",
@@ -26,11 +29,13 @@ export class SubjectsListComponent implements OnInit {
   private isVisibleSubjectList: boolean = true;
   private subject: ISubject;
   private notificationService: NotificationService;
+  private store: Store<IState>;
 
-  constructor(dataService: DataService, changeService: ChangeService, notificationService: NotificationService) {
+  constructor(dataService: DataService, changeService: ChangeService, notificationService: NotificationService, store: Store<IState>) {
     this.dataService = dataService;
     this.notificationService = notificationService;
     this.changeService = changeService;
+    this.store = store;
   }
 
   private onViewSubjectList(event: Event): void {
@@ -47,13 +52,14 @@ export class SubjectsListComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.dataService
-    .getHttp<ISubject>(URL_DB, DB_SUBJECTS)
-    .subscribe(
-      data => {
+    this.store.pipe(select(selectSubjects)).subscribe(data => {
+      if (data.length !== 0) {
         this.subjects = data;
+        this.subjects.sort(
+          (prev, next) => prev.nameSubject > next.nameSubject ? 1 : -1
+        );
       }
-    );
+    });
   }
 
   public ngOnInit(): void {

@@ -98,6 +98,7 @@
         type="text"
         autocomplete="off"
         [(ngModel)]="subject.teacher"
+        (ngModelChange)="modelChanged()"
       />
     </div>
     <div class="subject-page__form-info-buttons">

@@ -9,6 +9,7 @@ import { ISubject } from "../entities/subject";
 @Injectable({
   providedIn: "root"
 })
+
 export class DataService {
   private http: HttpClient;
   private httpOptions: any = {
@@ -20,27 +21,29 @@ export class DataService {
   }
 
   public getHttp<T>(URL: string, name: string): Observable<T[]> {
-    return this.http.get<T[]>(URL + `/${name}`).pipe(
-      map((response: T[]) => {
-        return response;
-      }),
-      catchError((err: Observable<any>) => {
-        console.log("data loading error", err);
-        return of([]);
-      })
+    return this.http
+    .get<T[]>(URL + `/${name}`)
+    .pipe(
+      catchError(
+        (err: Observable<any>) => {
+          console.log("data loading error", err);
+          return of([]);
+        }
+      )
     );
   }
 
   public postHttp<T>(URL: string, addItem: T): Observable<T> {
     return this.http
       .post<T>(URL, addItem, {
-        headers: new HttpHeaders(HTTP_HEADERS),
-        reportProgress: true,
+        headers: new HttpHeaders(HTTP_HEADERS)
       })
       .pipe(
-        map((response: any) => {
-          return response;
-        })
+        map(
+          (response: T) => {
+            return response;
+          }
+        )
       );
   }
 
@@ -48,9 +51,11 @@ export class DataService {
     return this.http
       .put<ISubject>(URL + `/${subject.id}`, subject, this.httpOptions)
       .pipe(
-        map((response: any) => {
-          return response;
-        })
+        map(
+          (response: any) => {
+            return response;
+          }
+        )
       );
   }
 }

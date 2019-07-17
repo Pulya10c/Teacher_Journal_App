@@ -1,15 +1,17 @@
-import { Component, OnInit, NgModule, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormsModule } from "@angular/forms";
+import { Component, OnInit, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
-import { URL_DB_SUBJECTS, URL_DB, DB_SUBJECTS } from "src/app/common/constants/data-constants";
+import { Store, select } from "@ngrx/store";
 
+import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
+import { selectSubjects } from "src/app/store/selectors/combine.selectors";
+import { initAddSubject } from "src/app/store/actions/subjects.action";
+import { ChangeService } from "src/app/common/services/change.service";
 import { SharedModule } from "../../../shared/shared.module";
 import { ISubject } from "../../../common/entities/subject";
-import { DataService } from "src/app/common/services/data.service";
-import { ChangeService } from "src/app/common/services/change.service";
-import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
+import { IState } from "src/app/common/entities/state";
 
 @Component({
   selector: "app-subject-form",
@@ -23,9 +25,9 @@ import { NotificationService, NotificationModel } from "../../../common/services
 
 export class SubjectFormComponent implements OnInit {
   private subjectForm: FormGroup;
+  private store: Store<IState>;
   private subjectsFormBuilder: FormBuilder;
   private router: Router;
-  private dataService: DataService;
   private changeService: ChangeService;
   private notificationService: NotificationService;
   private subjects: ISubject[];
@@ -33,13 +35,13 @@ export class SubjectFormComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     router: Router,
-    dataService: DataService,
+    store: Store<IState>,
     changeService: ChangeService,
     notificationService: NotificationService
   ) {
     this.subjectsFormBuilder = fb;
     this.router = router;
-    this.dataService = dataService;
+    this.store = store;
     this.changeService = changeService;
     this.notificationService = notificationService;
   }
@@ -62,13 +64,11 @@ export class SubjectFormComponent implements OnInit {
       description: [""]
     });
 
-    this.dataService
-    .getHttp<ISubject>(URL_DB, DB_SUBJECTS)
-    .subscribe(
-      data => {
+    this.store.pipe(select(selectSubjects)).subscribe(data => {
+      if (data.length) {
         this.subjects = data;
       }
-    );
+    });
   }
 
   private showToast(header: string, description: string, success: boolean): void {
@@ -93,7 +93,6 @@ export class SubjectFormComponent implements OnInit {
 
       return;
     }
-
     const { subject, isAdd }: { subject: ISubject; isAdd: boolean } = this.changeService
     .addNewSubject(
       this.subjects,
@@ -101,14 +100,11 @@ export class SubjectFormComponent implements OnInit {
     );
 
     if (isAdd) {
-      this.dataService
-      .postHttp<ISubject>(URL_DB_SUBJECTS, subject)
-      .subscribe(
-        response => {
-          this.showToast("Success", `Date ${response.nameSubject} successfully added!`, true);
-          this.router.navigate(["subject"]);
-        }
+      this.store.dispatch(
+        initAddSubject({ newSubject: subject })
       );
+      this.showToast("Success", `Date ${subject.nameSubject} successfully added!`, true);
+      this.router.navigate(["subject"]);
     } else {
       this.showToast("Warning", `Subject ${subject.nameSubject} already exists!`, false);
       this.router.navigate(["subject"]);

@@ -12,6 +12,9 @@ import { SharedModule } from "../../../shared/shared.module";
 import { DataService } from "../../../common/services/data.service";
 import { StorageService } from "../../../common/services/storage.service";
 import { IStudent } from "../../../common/entities/student";
+import { select, Store } from "@ngrx/store";
+import { IState } from "src/app/common/entities/state";
+import { selectStudents } from "src/app/store/selectors/combine.selectors";
 
 @Component({
   selector: "app-student-table",
@@ -19,11 +22,9 @@ import { IStudent } from "../../../common/entities/student";
   styleUrls: ["./student-table.component.scss"],
   providers: [StorageService]
 })
-
 @NgModule({
   imports: [SharedModule, BrowserModule, FormsModule]
 })
-
 export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
   private dataService: DataService;
@@ -37,15 +38,16 @@ export class StudentTableComponent implements OnInit {
   private searchInfo: Subject<string> = new Subject<string>();
   private searchInputText: string;
   private nextIndex: number = this.sortedStudents.length;
+  private store: Store<IState>;
 
-  constructor(dataService: DataService, orderPipe: OrderPipe, storageService: StorageService) {
+  constructor(dataService: DataService, orderPipe: OrderPipe, storageService: StorageService, store: Store<IState>) {
     this.dataService = dataService;
     this.orderPipe = orderPipe;
     this.storageService = storageService;
+    this.store = store;
   }
 
   private initForm(): void {
-
     if (!this.storageService.getValueStorage()) {
       this.storageService.setSaveStorage(this.order, this.isReverse);
     } else {
@@ -53,13 +55,16 @@ export class StudentTableComponent implements OnInit {
       this.isReverse = this.storageService.getValueStorage().revers;
     }
 
-    this.dataService
-    .getHttp<IStudent>(URL_DB, DB_STUDENTS)
-    .subscribe(
+    this.store
+    .pipe(
+      select(selectStudents)
+    ).subscribe(
       data => {
-        this.students = data;
-        this.sortedStudents = this.orderPipe.transform(this.students, this.order);
-        this.nextIndex = this.sortedStudents.length;
+        if (data.length !== 0) {
+          this.students = data;
+          this.sortedStudents = this.orderPipe.transform(this.students, this.order);
+          this.nextIndex = this.sortedStudents.length;
+        }
       }
     );
 
@@ -68,9 +73,9 @@ export class StudentTableComponent implements OnInit {
       debounceTime(800),
       distinctUntilChanged()
     )
-    .subscribe(
-      (eventNewText: string) => { this.searchStudent = eventNewText; }
-    );
+    .subscribe((eventNewText: string) => {
+      this.searchStudent = eventNewText;
+    });
   }
 
   private onSearch(event: string): void {
@@ -78,7 +83,6 @@ export class StudentTableComponent implements OnInit {
   }
 
   private setOrder(newValueOrder: string): void {
-
     if (this.order === newValueOrder) {
       this.isReverse = !this.isReverse;
     }

@@ -2,7 +2,14 @@
 import { ActionReducer, createReducer, on, Action } from "@ngrx/store";
 
 import { ISubjectState } from "src/app/common/entities/subjects-state";
-import { marksToChangeSubject, loadSubjects, addSubject } from "../actions/subjects.action";
+import {
+  marksToChangeSubject,
+  loadSubjects,
+  addSubject,
+  initMarksToChangeSubject,
+  initAddSubject,
+  updateSubjects
+} from "../actions/subjects.action";
 
 const initialStudentsState: ISubjectState = {
   subjects: []
@@ -10,18 +17,46 @@ const initialStudentsState: ISubjectState = {
 
 const subjectsReducer: ActionReducer<ISubjectState, Action> = createReducer<ISubjectState>(
   initialStudentsState,
-  on(loadSubjects, (state) => {
+  on(
+    updateSubjects,
+    (state) => {
     return {
       ...state
     };
   }),
-  on(addSubject, (state, { newSubject }) => {
+  on(
+    loadSubjects,
+    (state, { subject }) => {
+    return {
+      ...state,
+      subjects: [...subject]
+    };
+  }),
+  on(
+    initAddSubject,
+    (state, { newSubject }) => {
+    return {
+      ...state
+    };
+  }),
+  on(
+    addSubject,
+    (state, { newSubject }) => {
     return {
       ...state,
       subjects: [...state.subjects, newSubject]
     };
   }),
-  on(marksToChangeSubject, (state, { subject } ) => {
+  on(
+    initMarksToChangeSubject,
+    (state, { subject }) => {
+    return {
+      ...state
+    };
+  }),
+  on(
+    marksToChangeSubject,
+    (state, { subject } ) => {
     return {
       ...state,
       subjects: [

@@ -1,47 +1,53 @@
-// import { Injectable } from "@angular/core";
-// import { Actions, Effect, ofType } from "@ngrx/effects";
-// import { AddStudent, LoadStudents } from "../actions/students.action";
-// import { map, catchError, mergeMap } from "rxjs/operators";
-// import { DataService } from "src/app/common/services/data.service";
-// import { of, Observable } from "rxjs";
-// import { IStudent } from "src/app/common/entities/student";
-// import { URL_DB, DB_STUDENTS } from "src/app/common/constants/data-constants";
-// import { IStudentState } from "src/app/common/entities/students-state";
+import { Injectable } from "@angular/core";
+import { Actions, ofType, createEffect } from "@ngrx/effects";
+import { addStudent, loadStudents, updateStudents, initAddStudent } from "../actions/students.action";
+import { map, catchError, mergeMap } from "rxjs/operators";
+import { DataService } from "src/app/common/services/data.service";
+import { Observable } from "rxjs";
+import { IStudent } from "src/app/common/entities/student";
+import { URL_DB, DB_STUDENTS, URL_DB_STUDENTS } from "src/app/common/constants/data-constants";
+import { TypedAction } from "@ngrx/store/src/models";
 
-// @Injectable()
-// export class StudentsEffects {
-//   private actions$: Actions;
-//   private dataService: DataService;
+@Injectable()
+export class StudentsEffects {
+  private actions$: Actions;
+  private dataService: DataService;
 
-//   @Effect()
-//   public loadStudents$: Observable<IStudentStore> = this.actions$.pipe(
-//     ofType(LoadStudents),
-//     mergeMap(() =>
-//       this.dataService.getHttp<IStudent>(URL_DB, DB_STUDENTS).pipe(
-//         map(students => new LoadStudents(students)),
-//         catchError(error => {
-//           console.log("ERROR", error);
-//           return of({ student: [] });
-//         })
-//       )
-//     )
-//   );
+  public loadStudents$: Observable<{ student: IStudent[]; } & TypedAction<string>>;
+  public addStudents$: Observable<{ newStudent: IStudent; } & TypedAction<string>>;
 
-//   // @Effect()
-//   // public addStudent$: Observable<any> = this.actions$.pipe(
-//   //   ofType(addStudent),
-//   //   map(action => action),
-//   //   mergeMap(student => {
+  constructor(actions$: Actions, dataService: DataService) {
+    this.actions$ = actions$;
+    this.dataService = dataService;
 
-//   //     return this.dataService.addNewStudent(student).pipe(
-//   //       map(s => new AddStudentSuccess(s)),
-//   //       catchError(error => of(new AddStudentFail(error)))
-//   //     );
-//   //   })
-//   // );
+    this.loadStudents$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(updateStudents),
+        mergeMap(
+          () => this.dataService
+          .getHttp<IStudent>(URL_DB, DB_STUDENTS)
+          .pipe(
+            map(students => loadStudents({ student: students })),
+          )
+        )
+      )
+    );
 
-//   constructor(actions$: Actions, dataService: DataService) {
-//     this.actions$ = actions$;
-//     this.dataService = dataService;
-//   }
-// }
+    this.addStudents$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(initAddStudent),
+        map(
+          (action: { newStudent: IStudent; } & TypedAction<string>) => action.newStudent
+        ),
+        mergeMap(
+          (student) =>
+          this.dataService
+          .postHttp<IStudent>(URL_DB_STUDENTS, student)
+          .pipe(
+            map(response => addStudent({ newStudent: response })),
+          )
+        )
+      )
+    );
+  }
+}

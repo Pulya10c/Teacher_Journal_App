@@ -1,45 +1,47 @@
-import { Component, OnInit, NgModule } from "@angular/core";
-import { Router } from "@angular/router";
-import { BrowserModule } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormsModule } from "@angular/forms";
+import { Component, OnInit, NgModule } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { BrowserModule } from "@angular/platform-browser";
+import { Store } from "@ngrx/store";
 
-import { SharedModule } from "../../../shared/shared.module";
-import { DataService } from "../../../common/services/data.service";
-import { IStudent } from "../../../common/entities/student";
-import { URL_DB_STUDENTS } from "../../../common/constants/data-constants";
-import { ChangeService } from "src/app/common/services/change.service";
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
+import { initAddStudent } from "src/app/store/actions/students.action";
+import { ChangeService } from "src/app/common/services/change.service";
+import { SharedModule } from "../../../shared/shared.module";
+import { IStudent } from "../../../common/entities/student";
+import { IState } from "src/app/common/entities/state";
 
 @Component({
   selector: "app-student-form",
   templateUrl: "./student-form.component.html",
   styleUrls: ["./student-form.component.scss"]
 })
+
 @NgModule({
   imports: [SharedModule, BrowserModule, FormsModule]
 })
+
 export class StudentFormComponent implements OnInit {
   private studentsForm: FormGroup;
   private studentFormBuilder: FormBuilder;
   private router: Router;
-  private dataService: DataService;
   private changeService: ChangeService;
   private index: number = 0;
   private notificationService: NotificationService;
   private activateRouter: ActivatedRoute;
+  private store: Store<IState>;
 
   constructor(
     fb: FormBuilder,
     router: Router,
-    dataService: DataService,
+    store: Store<IState>,
     changeService: ChangeService,
     activateRouter: ActivatedRoute,
     notificationService: NotificationService
   ) {
     this.studentFormBuilder = fb;
     this.router = router;
-    this.dataService = dataService;
+    this.store = store;
     this.changeService = changeService;
     this.activateRouter = activateRouter;
     this.notificationService = notificationService;
@@ -47,12 +49,14 @@ export class StudentFormComponent implements OnInit {
 
   private initForm(): void {
     this.studentsForm = this.studentFormBuilder.group({
-      name: ["", [
+      name: ["",
+      [
         Validators.required,
         Validators.pattern(/^[A-zА-я -]*$/),
         Validators.minLength(2)]
       ],
-      lastName: ["", [
+      lastName: ["",
+      [
         Validators.required,
         Validators.pattern(/^[A-zА-я -]*$/),
         Validators.minLength(2)]
@@ -67,7 +71,9 @@ export class StudentFormComponent implements OnInit {
   }
 
   private showToast(header: string, description: string, success: boolean): void {
-    this.notificationService.showToast(new NotificationModel(header, description, success));
+    this.notificationService.showToast(
+      new NotificationModel(header, description, success)
+    );
   }
 
   private isControlInvalid(controlName: string): boolean {
@@ -88,17 +94,11 @@ export class StudentFormComponent implements OnInit {
 
       return;
     }
-
     const student: IStudent = this.changeService.addNewStudent(this.index, this.studentsForm.value);
-
-    this.dataService
-    .postHttp<IStudent>(URL_DB_STUDENTS, student)
-    .subscribe(
-      response => {
-        this.showToast("Success", "Date  successfully added!", true);
-        this.router.navigate(["student"]);
-      }
+    this.store.dispatch(
+      initAddStudent({ newStudent: student })
     );
+    this.router.navigate(["student"]);
   }
 
   private onCancel(): void {

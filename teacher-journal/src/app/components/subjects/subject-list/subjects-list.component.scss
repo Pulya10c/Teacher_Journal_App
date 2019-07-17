@@ -2,10 +2,17 @@
 
 .subjects {
   font-size: 1.5rem;
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
 
   .subjects__list {
     margin: 0 9%;
     max-width: 750px;
+
+    .subjects__list-text {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-top: 0;
+    }
 
     .subjects__list-buttons {
       margin-top: 3rem;

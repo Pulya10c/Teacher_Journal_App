@@ -1,6 +1,6 @@
 import { createReducer, on, ActionReducer, Action } from "@ngrx/store";
 
-import { loadStudents, addStudent } from "../actions/students.action";
+import { loadStudents, addStudent, updateStudents, initAddStudent } from "../actions/students.action";
 import { IStudentState } from "src/app/common/entities/students-state";
 
 const initialStudentsState: IStudentState = {
@@ -9,11 +9,33 @@ const initialStudentsState: IStudentState = {
 
 const studentReducer: ActionReducer<IStudentState, Action> = createReducer<IStudentState>(
   initialStudentsState,
-  on(loadStudents, state => {
+  on(
+    updateStudents,
+    (state) => {
     return { ...state };
   }),
-  on(addStudent, (state, { newStudent }) => {
-    return { ...state, students: [...state.students, newStudent] };
+  on(
+    loadStudents,
+    (state, { student }) => {
+    return {
+      ...state,
+      students: [...student]
+    };
+  }),
+  on(
+    initAddStudent,
+    (state, { newStudent }) => {
+    return {
+      ...state
+    };
+  }),
+  on(
+    addStudent,
+    (state, { newStudent }) => {
+    return {
+      ...state,
+      students: [...state.students, newStudent]
+    };
   })
 );
 

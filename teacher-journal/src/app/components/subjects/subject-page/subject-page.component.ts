@@ -2,22 +2,27 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+
+import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 
-import { DB_STUDENTS, URL_DB_SUBJECTS, URL_DB, DB_SUBJECTS } from "../../../common/constants/data-constants";
 import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
+import { URL_DB_SUBJECTS } from "../../../common/constants/data-constants";
 
 import runModalDialog from "src/app/common/helpers/modal-form-guard";
-import sortDate from "../../../common/helpers/sort-date";
 import getAverageMark from "../../../common/helpers/average-mark";
+import sortDate from "../../../common/helpers/sort-date";
 
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
-import { DataService } from "../../../common/services/data.service";
-import { ISubject, IMarks } from "../../../common/entities/subject";
-import { IStudent } from "../../../common/entities/student";
-import { SharedModule } from "../../../shared/shared.module";
-import { ChangeService } from "../../../common/services/change.service";
+import { selectSubjects, selectStudents } from "src/app/store/selectors/combine.selectors";
 import { IComponentCanDeactivate } from "src/app/common/entities/component-can-deactivate";
+import { marksToChangeSubject, initMarksToChangeSubject } from "src/app/store/actions/subjects.action";
+import { ISubject, IMarks } from "../../../common/entities/subject";
+import { ChangeService } from "../../../common/services/change.service";
+import { SharedModule } from "../../../shared/shared.module";
+import { DataService } from "../../../common/services/data.service";
+import { IStudent } from "../../../common/entities/student";
+import { IState } from "src/app/common/entities/state";
 
 @Component({
   selector: "app-subject-page",
@@ -28,6 +33,7 @@ import { IComponentCanDeactivate } from "src/app/common/entities/component-can-d
   imports: [SharedModule, BrowserModule, FormsModule]
 })
 export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
+  private store: Store<IState>;
   private dataService: DataService;
   private students: IStudent[] = [];
   private subjectCopy: ISubject;
@@ -50,36 +56,44 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     marks: []
   };
 
-  constructor(dataService: DataService, changeService: ChangeService, notificationService: NotificationService, router: Router) {
+  constructor(
+    store: Store<IState>,
+    dataService: DataService,
+    changeService: ChangeService,
+    notificationService: NotificationService,
+    router: Router
+  ) {
+    this.store = store;
     this.dataService = dataService;
     this.changeService = changeService;
     this.notificationService = notificationService;
     this.router = router;
   }
+
   private initForm(): void {
     this.subjectName = this.router.url.split("/").pop();
 
-    this.dataService
-    .getHttp<IStudent>(URL_DB, DB_STUDENTS)
-    .subscribe(
+    this.store.pipe(
+      select(selectStudents)
+    ).subscribe(
       data => {
-        this.students = data;
+        if (data.length !== 0) {
+          this.students = data;
+        }
       }
     );
 
-    this.dataService
-    .getHttp<ISubject>(URL_DB, DB_SUBJECTS)
-    .subscribe(
-      data => {
+    this.store.pipe(
+      select(selectSubjects)
+    )
+    .subscribe(data => {
+      if (!!data.length) {
         this.subjects = data;
-        this.subject = this.subjects
-        .find(
-          subject => subject.nameSubject === this.subjectName
-          );
+        this.subject = this.subjects.find(subject => subject.nameSubject === this.subjectName);
         this.subject.marks.sort(sortDate);
         this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
       }
-    );
+    });
 
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
   }
@@ -92,8 +106,11 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     return getAverageMark(this.subject, idStudent);
   }
 
-  private findStudentMark(marks: { id: string; mark: number }[], idStudent: string): any {
-    const markStudent: { id: string; mark: number } = marks.find(({ id }: { id: String }) => id === idStudent);
+  private findStudentMark(marks: { id: string; mark: number }[], idStudent: string): number | undefined {
+    const markStudent: { id: string; mark: number } = marks.find(
+      ({ id }: { id: String }) => id === idStudent
+    );
+
     return markStudent ? markStudent.mark : undefined;
   }
 
@@ -127,9 +144,19 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   private onSave(): void {
-    this.showToast("Success", "Changes saved!", true);
-    const id: string = this.subject.id;
-    this.dataService.putHttp(URL_DB_SUBJECTS, this.subject).subscribe((response: ISubject) => (this.subjectCopy.marks = response.marks));
+    this.store.dispatch(
+      initMarksToChangeSubject({ subject: this.subject })
+    );
+    // this.dataService
+    // .putHttp(URL_DB_SUBJECTS, this.subject)
+    // .subscribe(
+    //   (response: ISubject) => {
+    //     this.showToast("Success", `Changes in ${response.nameSubject} saved!`, true);
+    //     return this.store.dispatch(
+    //     marksToChangeSubject({ subject: response })
+    //     );
+    //   }
+    // );
     this.isChangesMade = true;
   }
 
@@ -142,9 +169,13 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   private modelChanged(newMark: number, date: number, studentId: string): void {
-    this.subject.marks = this.changeService.changeMark(this.subject.marks, date, studentId, newMark);
-    this.isMarksCorrect = !!this.subject.marks.find(({ students }) => !!students.find(mark => mark.mark <= 0 || mark.mark > 10));
+    if (!!studentId) {
+      this.subject.marks = this.changeService.changeMark(this.subject.marks, date, studentId, newMark);
+      this.isMarksCorrect = !!this.subject.marks.find(({ students }) => !!students.find(mark => mark.mark <= 0 || mark.mark > 10));
+    }
+    this.isMarksCorrect = false;
     this.isChangesMade = false;
+
   }
 
   public ngOnInit(): void {

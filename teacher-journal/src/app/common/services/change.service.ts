@@ -2,16 +2,16 @@ import { Injectable } from "@angular/core";
 
 import * as createId from "uuid/v1";
 
-import { IDateMarksList } from "../entities/date-marks-list";
-import changeStudentMark from "../helpers/change-student-mark";
 import { IStudent } from "../entities/student";
 import { ISubject } from "../entities/subject";
+import { IDateMarksList } from "../entities/date-marks-list";
+import changeStudentMark from "../helpers/change-student-mark";
 
 @Injectable({
   providedIn: "root"
 })
-export class ChangeService {
 
+export class ChangeService {
   public changeMark(
     marksList: IDateMarksList[],
     date: number,
@@ -19,11 +19,13 @@ export class ChangeService {
     newMark: number,
   ): IDateMarksList[] {
 
-    marksList.forEach(marks => {
+    marksList
+    .forEach(marks => {
       if (marks.date === date) {
         changeStudentMark(marks.students, studentId, newMark);
       }
     });
+
     return [...marksList];
   }
 
@@ -39,6 +41,7 @@ export class ChangeService {
       address,
       about
     };
+
     return student;
   }
 
@@ -65,7 +68,10 @@ export class ChangeService {
         marks: []
       };
 
-      return { subject, isAdd: true };
+      return {
+        subject,
+        isAdd: true
+      };
     } else {
       subject = {
         id: "",
@@ -77,7 +83,10 @@ export class ChangeService {
         marks: []
       };
 
-      return { subject, isAdd: false };
+      return {
+        subject,
+        isAdd: false
+      };
     }
   }
 }
