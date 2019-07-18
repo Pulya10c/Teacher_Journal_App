@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { Subject, of, from } from "rxjs";
-import { LoaderService } from "src/app/common/services/loader.service";
+import { Component } from "@angular/core";
+import { Subject } from "rxjs";
+import { LoaderService } from "../../common/services/loader.service";
 
 @Component({
   selector: "app-loader",

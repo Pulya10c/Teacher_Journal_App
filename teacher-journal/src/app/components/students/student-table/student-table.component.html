@@ -5,7 +5,7 @@
         matInput
         type="text"
         autocomplete="off"
-        placeholder="Write to search"
+        [placeholder]="'SEARCH' | translate"
         [(ngModel)]="searchInputText"
         (ngModelChange)="onSearch($event)"
       />
@@ -22,7 +22,7 @@
             >
               <div class="students__list-table-cell-container">
                 <div>
-                  {{ columnName | uppercase }}
+                  {{ columnName | translate | uppercase }}
                 </div>
                 <div class="students__list-table-cell-revers">
                   <span [hidden]="isReverse">▼</span>

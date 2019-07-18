@@ -1,7 +1,13 @@
 <section class="wrapper">
   <header class="header">
     <div class="header__logo"></div>
-    <h1 class="header__name">{{ title }}</h1>
+    <h1 class="header__name">{{ "TITLE" | translate }}</h1>
+    <label class="header__language">
+      {{ "LANGVIGES" | translate }}
+      <select class="header__language-select" #langSelect (change)="translate.use(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+      </select>
+    </label>
   </header>
 
   <nav class="navigation">
@@ -9,25 +15,25 @@
       class="navigation__item"
       routerLink="/student"
       routerLinkActive="navigation__item-active"
-      >Students</a
+      >{{ "STUDENT" | translate }}</a
     >
     <a
       class="navigation__item"
       routerLink="/subject"
       routerLinkActive="navigation__item-active"
-      >Subjects</a
+      >{{ "SUBJECT" | translate }}</a
     >
     <a
       class="navigation__item"
       routerLink="/statistics"
       routerLinkActive="navigation__item-active"
-      >Statistics</a
+      >{{ "STATISTICS" | translate }}</a
     >
     <a
       class="navigation__item"
       routerLink="/export"
       routerLinkActive="navigation__item-active"
-      >Export</a
+      >{{ "EXPORT" | translate }}</a
     >
   </nav>
 </section>

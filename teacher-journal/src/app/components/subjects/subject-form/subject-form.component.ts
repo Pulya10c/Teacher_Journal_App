@@ -103,10 +103,10 @@ export class SubjectFormComponent implements OnInit {
       this.store.dispatch(
         initAddSubject({ newSubject: subject })
       );
-      this.showToast("Success", `Date ${subject.nameSubject} successfully added!`, true);
+      this.showToast("Success", "NEW_SABJECT_ADD", true);
       this.router.navigate(["subject"]);
     } else {
-      this.showToast("Warning", `Subject ${subject.nameSubject} already exists!`, false);
+      this.showToast("Warning", "NEW_SABJECT_ADD_ERROR", false);
       this.router.navigate(["subject"]);
     }
   }

@@ -4,7 +4,7 @@
     
   >
     <h2 class="subjects__list-text">
-      List of subjects:
+      {{"SUBJECTS_LIST" | translate}}:
     </h2>
     <div class="subjects__list-buttons">
       <button
@@ -15,14 +15,13 @@
         routerLink="{{ subject.nameSubject }}"
         
       >
-        {{ subject.nameSubject }}
+        {{ subject.nameSubject |  translate }}
       </button>
     </div>
     <button
       routerLink="form"
       class="subjects__list-add-new-item"
       mat-stroked-button="warn"
-      
     >
       &#10010;
     </button>

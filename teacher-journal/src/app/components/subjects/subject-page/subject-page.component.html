@@ -1,8 +1,7 @@
 <section class="subject-page">
   <h2 class="subjects__list-text marks">
-    {{ subjectName }}
+    {{ subjectName | translate }}
   </h2>
-  <!-- <notification></notification> -->
   <section class="subject-page__date">
     <mat-form-field>
       <input
@@ -41,7 +40,7 @@
             class="subject-page__form-table-cell header"
             *ngFor="let columnName of headerNameStudents"
           >
-            {{ columnName | uppercase }}
+            {{ columnName | translate | uppercase }}
           </th>
           <th
             class="subject-page__form-table-cell header date"
@@ -89,7 +88,7 @@
   <section class="subject-page__form-info">
     <div class="subject-page__form-info-theacher">
       <label for="theacher" class="subject-page__form-info-theacher-label"
-        >Teacher:</label
+        >{{"TEACHER" | translate}}:</label
       >
 
       <input
@@ -108,9 +107,9 @@
         scaleButton
         type="button"
         (click)="onSave()"
-        [(disabled)]="isChangesMade || isMarksCorrect"
+        [(disabled)]="!isChangesMade || !isMarksCorrect"
       >
-        Save
+      {{"SAVE" | translate}}
       </button>
       <button
         class="subject-page__form-info-buttons item"
@@ -119,7 +118,7 @@
         type="button"
         (click)="onCancel()"
       >
-        Back
+        {{"BACK" | translate}}
       </button>
     </div>
   </section>

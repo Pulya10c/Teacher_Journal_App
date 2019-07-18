@@ -1,3 +1,3 @@
-const HEDER_NAME_SUBJECT_PAGE: string[] = ["Name", "Last Name", "Average Mark"];
+const HEDER_NAME_SUBJECT_PAGE: string[] = ["NAME", "LAST_NAME", "AVERAGE_MARK"];
 
 export { HEDER_NAME_SUBJECT_PAGE };

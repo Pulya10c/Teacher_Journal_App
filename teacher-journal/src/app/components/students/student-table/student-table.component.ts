@@ -1,15 +1,15 @@
 import { Component, OnInit, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { OrderPipe } from "ngx-order-pipe";
-import { Subject } from "rxjs";
+
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { Subject } from "rxjs";
+
+import { OrderPipe } from "ngx-order-pipe";
 
 import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
-import { URL_DB, DB_STUDENTS } from "../../../common/constants/data-constants";
 
 import { SharedModule } from "../../../shared/shared.module";
-import { DataService } from "../../../common/services/data.service";
 import { StorageService } from "../../../common/services/storage.service";
 import { IStudent } from "../../../common/entities/student";
 import { select, Store } from "@ngrx/store";
@@ -27,7 +27,6 @@ import { selectStudents } from "src/app/store/selectors/combine.selectors";
 })
 export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
-  private dataService: DataService;
   private storageService: StorageService;
   private columnStudentsName: string[] = HEDER_NAME_STUDENT_TABL;
   private sortedStudents: IStudent[] = [];
@@ -40,8 +39,7 @@ export class StudentTableComponent implements OnInit {
   private nextIndex: number = this.sortedStudents.length;
   private store: Store<IState>;
 
-  constructor(dataService: DataService, orderPipe: OrderPipe, storageService: StorageService, store: Store<IState>) {
-    this.dataService = dataService;
+  constructor(orderPipe: OrderPipe, storageService: StorageService, store: Store<IState>) {
     this.orderPipe = orderPipe;
     this.storageService = storageService;
     this.store = store;
@@ -60,7 +58,7 @@ export class StudentTableComponent implements OnInit {
       select(selectStudents)
     ).subscribe(
       data => {
-        if (data.length !== 0) {
+        if (data.length) {
           this.students = data;
           this.sortedStudents = this.orderPipe.transform(this.students, this.order);
           this.nextIndex = this.sortedStudents.length;

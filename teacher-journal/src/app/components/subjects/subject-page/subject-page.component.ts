@@ -7,7 +7,6 @@ import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
-import { URL_DB_SUBJECTS } from "../../../common/constants/data-constants";
 
 import runModalDialog from "src/app/common/helpers/modal-form-guard";
 import getAverageMark from "../../../common/helpers/average-mark";
@@ -16,8 +15,8 @@ import sortDate from "../../../common/helpers/sort-date";
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
 import { selectSubjects, selectStudents } from "src/app/store/selectors/combine.selectors";
 import { IComponentCanDeactivate } from "src/app/common/entities/component-can-deactivate";
-import { marksToChangeSubject, initMarksToChangeSubject } from "src/app/store/actions/subjects.action";
-import { ISubject, IMarks } from "../../../common/entities/subject";
+import { initMarksToChangeSubject } from "src/app/store/actions/subjects.action";
+import { ISubject, IMarks, IMark } from "../../../common/entities/subject";
 import { ChangeService } from "../../../common/services/change.service";
 import { SharedModule } from "../../../shared/shared.module";
 import { DataService } from "../../../common/services/data.service";
@@ -34,14 +33,13 @@ import { IState } from "src/app/common/entities/state";
 })
 export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private store: Store<IState>;
-  private dataService: DataService;
   private students: IStudent[] = [];
   private subjectCopy: ISubject;
   private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
   private changeService: ChangeService;
   private notificationService: NotificationService;
   private dateClick: number;
-  private isChangesMade: boolean = true;
+  private isChangesMade: boolean = false;
   private isMarksCorrect: boolean = true;
   private router: Router;
   private subjectName: string;
@@ -58,13 +56,11 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
 
   constructor(
     store: Store<IState>,
-    dataService: DataService,
     changeService: ChangeService,
     notificationService: NotificationService,
     router: Router
   ) {
     this.store = store;
-    this.dataService = dataService;
     this.changeService = changeService;
     this.notificationService = notificationService;
     this.router = router;
@@ -87,7 +83,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
       select(selectSubjects)
     )
     .subscribe(data => {
-      if (!!data.length) {
+      if (data.length) {
         this.subjects = data;
         this.subject = this.subjects.find(subject => subject.nameSubject === this.subjectName);
         this.subject.marks.sort(sortDate);
@@ -107,19 +103,19 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   private findStudentMark(marks: { id: string; mark: number }[], idStudent: string): number | undefined {
-    const markStudent: { id: string; mark: number } = marks.find(
-      ({ id }: { id: String }) => id === idStudent
+    const markStudent: IMark = marks.find(
+      ({ id }: IMark) => id === idStudent
     );
 
     return markStudent ? markStudent.mark : undefined;
   }
 
   private onAddDate(date: Date): void {
-    this.isChangesMade = false;
     const thisDate: number = new Date(date).getTime();
-    const isThisDate: boolean = !!this.subject.marks.find((listMarks: IMarks) => listMarks.date === thisDate);
+    const isThisDate: boolean = this.subject.marks.some((listMarks: IMarks) => listMarks.date === thisDate);
 
     if (!isThisDate) {
+      this.isChangesMade = true;
       const createNewDate: { date: number; students: undefined[] } = {
         date: thisDate,
         students: []
@@ -133,7 +129,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   private onChangeDate(changeData: Date): void {
-    this.isChangesMade = false;
+    this.isChangesMade = true;
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
     const dateCheck: number = changeData.getTime();
     this.subject.marks.forEach(dateMarksList => {
@@ -147,17 +143,9 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     this.store.dispatch(
       initMarksToChangeSubject({ subject: this.subject })
     );
-    // this.dataService
-    // .putHttp(URL_DB_SUBJECTS, this.subject)
-    // .subscribe(
-    //   (response: ISubject) => {
-    //     this.showToast("Success", `Changes in ${response.nameSubject} saved!`, true);
-    //     return this.store.dispatch(
-    //     marksToChangeSubject({ subject: response })
-    //     );
-    //   }
-    // );
-    this.isChangesMade = true;
+    this.showToast("Success", "You've saved the change marks", true);
+    this.isChangesMade = false;
+    this.isMarksCorrect = true;
   }
 
   private onCancel(): void {
@@ -169,13 +157,15 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   private modelChanged(newMark: number, date: number, studentId: string): void {
-    if (!!studentId) {
+    if (studentId) {
       this.subject.marks = this.changeService.changeMark(this.subject.marks, date, studentId, newMark);
-      this.isMarksCorrect = !!this.subject.marks.find(({ students }) => !!students.find(mark => mark.mark <= 0 || mark.mark > 10));
+      this.isMarksCorrect = !this.subject.marks.some(
+        ({ students }: IMarks) => students.some(
+          (mark: IMark) => mark.mark <= 0 || mark.mark > 10
+        )
+      );
     }
-    this.isMarksCorrect = false;
-    this.isChangesMade = false;
-
+    this.isChangesMade = true;
   }
 
   public ngOnInit(): void {
@@ -183,7 +173,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   public canDeactivate(): boolean | Observable<boolean> {
-    if (!this.isChangesMade && !this.isMarksCorrect) {
+    if (this.isChangesMade && this.isMarksCorrect) {
       return runModalDialog("You have saved any changes.", "If you leaving the page all changes will be lost. Are you leaving this page?");
     } else {
       return true;

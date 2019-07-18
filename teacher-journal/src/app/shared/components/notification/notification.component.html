@@ -16,11 +16,11 @@
     <div class="notification__message">
       <div class="notification__message-heading">
         <div class="notification__message-heading-text">
-          <h3>{{ notification.header }}</h3>
+          <h3>{{ notification.header | translate }}!</h3>
         </div>
       </div>
       <div class="notification__message-content">
-        <p>{{ notification.description }}</p>
+        <p>{{ notification.description | translate }}</p>
       </div>
     </div>
     <div class="notification__close" (click)="closeNotification(notification)">

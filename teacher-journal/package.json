@@ -25,6 +25,8 @@
     "@angular/router": "~8.0.1",
     "@ngrx/effects": "^8.1.0",
     "@ngrx/store": "^8.1.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "ngx-order-pipe": "^2.0.2",
     "rxjs": "~6.4.0",
     "sweetalert": "^2.1.2",

@@ -1,10 +1,12 @@
 <section class="wrapper">
-  <h2 class="subjects__list-text">Add new subject:</h2>
+  <h2 class="subjects__list-text">
+    {{"SUBJECTS_ADD" | translate}}:
+  </h2>
   <form class="subject__form" [formGroup]="subjectForm" (submit)="onSubmit()">
     <table class="subject__form-table" cellspacing="0">
       <tr>
         <td [class.class__invalid]="isControlInvalid('nameSubject')">
-          * Name:
+          * {{"NAME" | translate}}:
         </td>
         <td>
           <mat-form-field class="subject__form-table-cell">
@@ -13,9 +15,7 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('nameSubject')
-                  ? 'Enter subject name'
-                  : 'Mathematics'
+                (isControlInvalid('nameSubject') ? 'NEW_SABJECT_NAME' : 'Mathematics') | translate
               "
               id="nameSubject"
               formControlName="nameSubject"
@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <td [class.class__invalid]="isControlInvalid('teacher')">
-          * Teacher:
+          * {{ "TEACHER" | translate}}:
         </td>
         <td>
           <mat-form-field class="subject__form-table-cell">
@@ -34,9 +34,7 @@
               type="text"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('teacher')
-                  ? 'Enter theacher name'
-                  : 'M. Ivanovna'
+                (isControlInvalid('teacher') ? 'NEW_TEACHER_NAME' : 'TEACHER_NAME') | translate
               "
               id="teacher"
               formControlName="teacher"
@@ -46,7 +44,9 @@
       </tr>
 
       <tr>
-        <td>Cabiner:</td>
+        <td>
+          {{ "ROOM" | translate}}:
+        </td>
         <td>
           <mat-form-field class="subject__form-table-cell">
             <input
@@ -54,7 +54,7 @@
               type="number"
               autocomplete="off"
               [placeholder]="
-                isControlInvalid('cabiner') ? 'Enter number' : '106'
+                (isControlInvalid('cabiner') ? 'Enter number' : '106') | translate
               "
               id="cabiner"
               formControlName="cabiner"
@@ -63,14 +63,16 @@
         </td>
       </tr>
       <tr>
-        <td>Description:</td>
+        <td>
+          {{"DESCRIPTION" | translate}}:
+        </td>
         <td>
           <mat-form-field class="subject__form-table-cell">
             <textarea
               matInput
               type="text"
               autocomplete="off"
-              placeholder="Blow your mind..."
+              [placeholder]="'INFO_SUBJECT' | translate"
               id="description"
               formControlName="description"
             ></textarea>
@@ -85,7 +87,7 @@
         mat-stroked-button
         type="submit"
       >
-        Add
+      {{"ADD" | translate}}
       </button>
       <button
         class="subject__form-buttons-item"
@@ -93,7 +95,7 @@
         type="button"
         (click)="onCancel()"
       >
-        Back
+      {{"BACK" | translate}}
       </button>
     </div>
   </form>

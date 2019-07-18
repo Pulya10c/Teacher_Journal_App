@@ -1,16 +1,18 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import { OrderModule } from "ngx-order-pipe";
+
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 
-import { OrderModule } from "ngx-order-pipe";
-
 import { MarksCorrectionDirective } from "./common/directives/marks-correction.directive";
-import { LoaderComponent } from "./shared/components/loader/loader.component";
+import { LoaderComponent } from "./components/loader/loader.component";
 import { SharedModule } from "./shared/shared.module";
 import { NotificationComponent } from "./shared/components/notification/notification.component";
 import { StudentTableComponent } from "./components/students/student-table/student-table.component";
@@ -33,6 +35,10 @@ import { AppComponent } from "./root/app.component";
 import { StudentsEffects } from "./store/effects/students.effect";
 import { SubjectsEffects } from "./store/effects/subjects.effect";
 import { reducer } from "../app/store/redusers/combine.reducer";
+
+export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -62,15 +68,29 @@ import { reducer } from "../app/store/redusers/combine.reducer";
     OrderModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([StudentsEffects, SubjectsEffects])
+    EffectsModule.forRoot([
+      StudentsEffects,
+      SubjectsEffects
+    ])
   ],
 
   providers: [
     SubjectPageGuard,
     ExitSubjectPageGuard,
     LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

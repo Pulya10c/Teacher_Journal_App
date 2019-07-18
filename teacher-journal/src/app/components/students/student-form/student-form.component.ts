@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators, FormsModule } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormsModule, AbstractControl } from "@angular/forms";
 import { Component, OnInit, NgModule } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
@@ -83,7 +83,9 @@ export class StudentFormComponent implements OnInit {
   }
 
   private onSubmit(): void {
-    const controls: any = this.studentsForm.controls;
+    const controls: {
+      [key: string]: AbstractControl;
+    } = this.studentsForm.controls;
 
     if (this.studentsForm.invalid) {
       Object
@@ -98,6 +100,7 @@ export class StudentFormComponent implements OnInit {
     this.store.dispatch(
       initAddStudent({ newStudent: student })
     );
+    this.showToast("Success", "NEW_STUDENT_ADD", true);
     this.router.navigate(["student"]);
   }
 
