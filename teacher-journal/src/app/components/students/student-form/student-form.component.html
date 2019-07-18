@@ -1,0 +1,94 @@
+<section class="wrapper">
+  <h2 class="students__form-text">Add new student:</h2>
+  <form class="student__form" [formGroup]="studentsForm" (submit)="onSubmit()">
+    <table class="student__form-table" cellspacing="0">
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('name')">
+          * First name:
+        </td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                isControlInvalid('name') ? 'Enter first name' : 'Jack'
+              "
+              id="name"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('lastName')">
+          * Last name:
+        </td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                isControlInvalid('lastName') ? 'Enter last name' : 'Black'
+              "
+              id="lastName"
+              formControlName="lastName"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Address:</td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              placeholder="pr. Zhukova 2"
+              id="address"
+              formControlName="address"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <textarea
+              matInput
+              type="text"
+              autocomplete="off"
+              placeholder="Good guy, work hard"
+              id="about"
+              formControlName="about"
+            ></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <div class="student__form-buttons">
+      <button
+        class="student__form-buttons-item"
+        mat-stroked-button
+        type="submit"
+      >
+        Add
+      </button>
+      <button
+        class="student__form-buttons-item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
+        Back
+      </button>
+    </div>
+  </form>
+</section>

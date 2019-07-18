@@ -1,0 +1,59 @@
+@import "./variables.scss";
+
+html {
+  background-color: #808080;
+}
+
+html body {
+
+  .cdk-overlay-container {
+    top: 30%;
+    left: 47%;
+    .cdk-overlay-connected-position-bounding-box {
+      top: 32%;
+      left: 60%;
+      .cdk-overlay-pane.mat-datepicker-popup {
+        top: 0;
+      }
+    }
+  }
+  
+  max-height: fit-content;
+  font-size: 1.5rem;
+  margin: 1% auto;
+  max-width: 1000px;
+  background-color: $color;
+  color: $text-color;
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+}
+
+.class__invalid {
+  color: red;
+}
+
+button.scale {
+  transform: scale(1.01);
+}
+
+.swal-overlay {
+  background-color: rgba(65, 65, 65, 0.65);
+}
+
+.swal-modal {
+  background-color: rgba(25, 26, 25, 0.95);
+  border: 3px solid $active-color;
+}
+
+.swal-title {
+  font-size: 2rem;
+  color: wheat;
+}
+
+.swal-text {
+ font-size: 1.4rem;
+  color: wheat;
+}
+
+.visible {
+  visibility: visible;
+}

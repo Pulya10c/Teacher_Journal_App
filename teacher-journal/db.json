@@ -1,0 +1,746 @@
+{
+  "students": [
+    {
+      "id": "5d08bea47e85e353cadda16c",
+      "index": 0,
+      "name": "Best",
+      "lastName": "Gross",
+      "address": "Baker, Orange Street, d.9166",
+      "about": "Officia excepteur excepteur nulla sunt aliquip duis minim ex."
+    },
+    {
+      "id": "5d08bea43f5f27fbe9f5dff9",
+      "index": 1,
+      "name": "Lester",
+      "lastName": "Franks",
+      "address": "Inkerman, Beayer Place, d.5402",
+      "about": "Ullamco labore occaecat nostrud magna ipsum aliqua nostrud est enim eiusmod reprehenderit adipisicing."
+    },
+    {
+      "id": "5d08bea4f975b3057ef940df",
+      "index": 2,
+      "name": "Delacruz",
+      "lastName": "Jenkins",
+      "address": "Ogema, Dodworth Street, d.4806",
+      "about": "Cupidatat nulla eiusmod ullamco quis nulla ut tempor nisi."
+    },
+    {
+      "id": "5d08bea4a276efdd10e3776c",
+      "index": 3,
+      "name": "Grimes",
+      "lastName": "Eaton",
+      "address": "Helen, Gerritsen Avenue, d.8745",
+      "about": "Do qui dolore pariatur tempor commodo aute non minim non adipisicing est qui adipisicing."
+    },
+    {
+      "id": "5d08bea44c4eaff0331de0ba",
+      "index": 4,
+      "name": "Shelby",
+      "lastName": "Richardson",
+      "address": "Fairacres, Sumner Place, d.3022",
+      "about": "Duis voluptate est duis aute dolore est cillum aliquip deserunt Lorem sint nulla aute aliquip."
+    },
+    {
+      "id": "5d08bea47d78c8449f01c08c",
+      "index": 5,
+      "name": "Lauri",
+      "lastName": "Ochoa",
+      "address": "Wollochet, Madison Street, d.3654",
+      "about": "Non reprehenderit ut aliqua pariatur aliqua aliqua consequat dolore fugiat anim tempor."
+    },
+    {
+      "id": "096413c0-a150-11e9-8109-8317046010ac",
+      "index": 6,
+      "name": "Oleg",
+      "lastName": "Mishin",
+      "address": "ek/Rocosovskogo 2a",
+      "about": "so so"
+    },
+    {
+      "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+      "index": 7,
+      "name": "Misha",
+      "lastName": "Komanis",
+      "address": "ul. Svetlaya 17",
+      "about": "hard student"
+    },
+    {
+      "id": "1c552ae0-a214-11e9-bdcb-47152525a2b6",
+      "index": 8,
+      "name": "Alexsandr",
+      "lastName": "Pushkin",
+      "address": "pr. Mira 34",
+      "about": "writer"
+    },
+    {
+      "id": "df49d460-a499-11e9-b91b-3bbbae8333b6",
+      "index": 9,
+      "name": "Sasha",
+      "lastName": "Samilo",
+      "address": "ul. Filimonova 5",
+      "about": "he is late all time"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "5d08d837790ddb4d92553bda",
+      "index": 0,
+      "nameSubject": "Physics",
+      "teacher": "Alicia Gilbert",
+      "cabinet": 26,
+      "description": "Ut magna ex ipsum commodo quis fugiat in et reprehenderit adipisicing.",
+      "marks": [
+        {
+          "date": 1550091600000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 3
+            },
+            {
+              "id": "096413c0-a150-11e9-8109-8317046010ac",
+              "mark": 10
+            },
+            {
+              "id": "1c552ae0-a214-11e9-bdcb-47152525a2b6",
+              "mark": 5
+            }
+          ]
+        },
+        {
+          "date": 1551301200000,
+          "students": [
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 9
+            },
+            {
+              "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+              "mark": 5
+            },
+            {
+              "id": "1c552ae0-a214-11e9-bdcb-47152525a2b6",
+              "mark": 8
+            }
+          ]
+        },
+        {
+          "date": 1555189200000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 7
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 1
+            },
+            {
+              "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+              "mark": 9
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 10
+            }
+          ]
+        },
+        {
+          "date": 1557694800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 7
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 1
+            },
+            {
+              "id": "1c552ae0-a214-11e9-bdcb-47152525a2b6",
+              "mark": 4
+            }
+          ]
+        },
+        {
+          "date": 1560286800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 5
+            },
+            {
+              "id": "1c552ae0-a214-11e9-bdcb-47152525a2b6",
+              "mark": 3
+            }
+          ]
+        },
+        {
+          "date": 1561928400000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 10
+            },
+            {
+              "id": "096413c0-a150-11e9-8109-8317046010ac",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 10
+            },
+            {
+              "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+              "mark": 5
+            }
+          ]
+        },
+        {
+          "date": 1562014800000,
+          "students": [
+            {
+              "id": "096413c0-a150-11e9-8109-8317046010ac",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d08d837f33d83a109a31128",
+      "index": 1,
+      "nameSubject": "Chemistry",
+      "teacher": "mr. Richardson",
+      "cabinet": 25,
+      "description": "Id ut aute minim consequat cupidatat sit adipisicing cupidatat enim consectetur voluptate dolor commodo anim.",
+      "marks": [
+        {
+          "date": 1550091600000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 2
+            }
+          ]
+        },
+        {
+          "date": 1551301200000,
+          "students": [
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 10
+            }
+          ]
+        },
+        {
+          "date": 1552856400000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 5
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 7
+            }
+          ]
+        },
+        {
+          "date": 1555189200000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 4
+            }
+          ]
+        },
+        {
+          "date": 1557694800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 2
+            }
+          ]
+        },
+        {
+          "date": 1560286800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 2
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d08d837d6d3502487c148bd",
+      "index": 2,
+      "nameSubject": "Biology",
+      "teacher": "Todd Maxwell",
+      "cabinet": 15,
+      "description": "Magna adipisicing minim minim aliquip culpa aute dolore consectetur.",
+      "marks": [
+        {
+          "date": 1550091600000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 3
+            },
+            {
+              "id": "65e321b0-a88d-11e9-983b-4d460773d006",
+              "mark": 10
+            },
+            {
+              "id": "0d6cd750-a88e-11e9-b671-d35982302cfa",
+              "mark": 10
+            },
+            {
+              "id": "51d760d0-a88f-11e9-8707-8f3b03ea058f",
+              "mark": 10
+            }
+          ]
+        },
+        {
+          "date": 1551301200000,
+          "students": [
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 10
+            },
+            {
+              "id": "51d760d0-a88f-11e9-8707-8f3b03ea058f",
+              "mark": 10
+            }
+          ]
+        },
+        {
+          "date": 1552856400000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 5
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 3
+            },
+            {
+              "id": "51d760d0-a88f-11e9-8707-8f3b03ea058f",
+              "mark": 10
+            }
+          ]
+        },
+        {
+          "date": 1555189200000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 3
+            }
+          ]
+        },
+        {
+          "date": 1557694800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 3
+            }
+          ]
+        },
+        {
+          "date": 1560286800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d08d837e31826de8722690f",
+      "index": 3,
+      "nameSubject": "Literature",
+      "teacher": "Selma Pope",
+      "cabinet": 20,
+      "description": "Cupidatat in mollit magna qui ea minim.",
+      "marks": [
+        {
+          "date": 1550091600000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 4
+            }
+          ]
+        },
+        {
+          "date": 1551301200000,
+          "students": [
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 10
+            }
+          ]
+        },
+        {
+          "date": 1552856400000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 4
+            }
+          ]
+        },
+        {
+          "date": 1555189200000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 4
+            }
+          ]
+        },
+        {
+          "date": 1557694800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 4
+            }
+          ]
+        },
+        {
+          "date": 1560286800000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ebc35d50-a0fd-11e9-9b08-4d1b314053d7",
+      "index": 4,
+      "nameSubject": "Mathematics",
+      "teacher": "Petrov Ivan",
+      "description": "very old teacher",
+      "marks": [
+        {
+          "date": 1549227600000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 5
+            },
+            {
+              "id": "df49d460-a499-11e9-b91b-3bbbae8333b6",
+              "mark": 2
+            }
+          ]
+        },
+        {
+          "date": 1561928400000,
+          "students": [
+            {
+              "id": "096413c0-a150-11e9-8109-8317046010ac",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 10
+            },
+            {
+              "id": "df49d460-a499-11e9-b91b-3bbbae8333b6",
+              "mark": 2
+            }
+          ]
+        },
+        {
+          "date": 1562187600000,
+          "students": [
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 6
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 1
+            },
+            {
+              "id": "df49d460-a499-11e9-b91b-3bbbae8333b6",
+              "mark": 2
+            }
+          ]
+        },
+        {
+          "date": 1562706000000,
+          "students": [
+            {
+              "id": "df49d460-a499-11e9-b91b-3bbbae8333b6",
+              "mark": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "df4d1be0-a17c-11e9-a117-45909a65b1ac",
+      "index": 5,
+      "nameSubject": "Geography",
+      "teacher": "Anna Tuchina",
+      "description": "young woman",
+      "marks": [
+        {
+          "date": 1562187600000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 10
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 7
+            },
+            {
+              "id": "f5fad6d0-a185-11e9-9e3f-617ba75c1b95",
+              "mark": 10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
