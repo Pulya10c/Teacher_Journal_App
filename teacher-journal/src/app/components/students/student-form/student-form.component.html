@@ -1,0 +1,78 @@
+<section class="wrapper">
+  <form class="student__form" [formGroup]="studentsForm" (submit)="onSubmit()">
+    <table class="student__form__table" cellspacing="0">
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('firstName')">
+          * First name:
+        </td>
+        <td>
+          <mat-form-field class="student__form__width">
+            <input
+              matInput
+              type="text"
+              autocomplete = "off"
+              [placeholder]="
+                isControlInvalid('firstName') ? 'Enter first name' : 'Jack'
+              "
+              id="firstName"
+              formControlName="firstName"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('lastName')">
+          * Last name:
+        </td>
+        <td>
+          <mat-form-field class="student__form__width">
+            <input
+              matInput
+              type="text"
+              autocomplete = "off"
+              [placeholder]= "isControlInvalid('firstName')?'Enter last name':'Black'"
+              id="lastName"
+              formControlName="lastName"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Address:</td>
+        <td>
+          <mat-form-field class="student__form__width">
+            <input
+              matInput
+              type="text"
+              autocomplete = "off"
+              placeholder="pr. Zhukova 2"
+              id="address"
+              formControlName="address"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td>
+          <mat-form-field class="student__form__width">
+            <textarea
+              matInput
+              type="text"
+              autocomplete = "off"
+              placeholder="Good guy, work hard"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <div class="student__form__button">
+      <button mat-stroked-button type="submit">Add</button>
+      <button mat-stroked-button type="button" (click) = "onCancel()">Back</button>
+    </div>
+  </form>
+</section>

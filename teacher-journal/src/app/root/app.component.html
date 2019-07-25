@@ -1,0 +1,19 @@
+
+<section class="wrapper">
+  <header class="header">
+    <div class="header__logo"></div>
+    <h1 class="header__name">{{ title }}</h1>
+  </header>
+
+  <nav class="navigation">
+    <a class="navigation__item" routerLink="/students" routerLinkActive="navigation__item-active">Students</a>
+    <a class="navigation__item" routerLink="/subject" routerLinkActive="navigation__item-active">Subject</a>
+    <a class="navigation__item">Statistics</a>
+    <a class="navigation__item">Export</a>
+  </nav>
+
+  <section class="container">
+    <router-outlet></router-outlet>
+  </section>
+
+</section>
