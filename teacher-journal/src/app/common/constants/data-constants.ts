@@ -3,6 +3,7 @@ const URL_DB_SUBJECTS: string = "http://localhost:3000/subjects";
 const URL_DB: string = " http://localhost:3000";
 const DB_STUDENTS: string = "students";
 const DB_SUBJECTS: string = "subjects";
+const PANEL_NAVIGATION: string = "http://localhost:4200/assets/panel-name.json";
 const HTTP_HEADERS: { [name: string]: string } = {
   "Content-Type": "application/json"
 };
@@ -13,5 +14,6 @@ export {
   HTTP_HEADERS,
   URL_DB,
   DB_STUDENTS,
-  DB_SUBJECTS
+  DB_SUBJECTS,
+  PANEL_NAVIGATION
 };

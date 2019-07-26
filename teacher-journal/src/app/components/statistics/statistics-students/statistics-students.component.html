@@ -1,0 +1,12 @@
+<section class="wrapper">
+  <section class="students__list">
+      <a elementSize
+        *ngFor="let student of students"
+        class="students__list-item"
+        [routerLink]="student.name + '_' + student.lastName"
+        [state]=" {id: student.id} "
+        routerLinkActive="students__list-item-active"
+        >{{ student.name + " " + student.lastName }}
+      </a>
+  </section>
+</section>

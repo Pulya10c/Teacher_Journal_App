@@ -20,6 +20,24 @@ export class DataService {
     this.http = http;
   }
 
+  public getNamePanel(url: string): Observable<string[]> {
+    return this.http
+    .get<{name: string[]}>(url)
+    .pipe(
+      map(
+        ( response: {name: string[]} ) => {
+          return response.name;
+        }
+      ),
+      catchError(
+        (err: Observable<any>) => {
+          console.log("data loading error", err);
+          return of([]);
+        }
+      )
+    );
+  }
+
   public getHttp<T>(URL: string, name: string): Observable<T[]> {
     return this.http
     .get<T[]>(URL + `/${name}`)

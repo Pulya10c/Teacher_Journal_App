@@ -1,0 +1,34 @@
+<section class="wrapper">
+  <section class="statistics">
+    <div class="statistics__info">
+      <section class="statistics-control">
+        <nav class="statistics-control__navigation">
+          <a 
+            elementSize
+            class="statistics-control__navigation-item" 
+            routerLink="students" 
+            routerLinkActive="statistics-control__navigation-item-active"
+            >{{
+            "STUDENTS" | translate
+            }}
+          </a>
+          <a
+            elementSize
+            class="statistics-control__navigation-item"
+            routerLink="subjects" 
+            routerLinkActive="statistics-control__navigation-item-active"
+            >{{
+              "SUBJECTS" | translate
+            }}
+          </a>
+        </nav>
+        <div class="statistics-control__list-students">
+          <router-outlet></router-outlet>
+        </div>
+      </section>
+      <section class="statistics-description">
+        <statistics-info></statistics-info>
+      </section>
+    </div>
+  </section>
+</section>

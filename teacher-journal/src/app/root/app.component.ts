@@ -3,8 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { IState } from "../common/entities/state";
-import { updateStudents } from "../store/actions/students.action";
-import { updateSubjects } from "../store/actions/subjects.action";
+import { updateStudents } from "../redux/actions/students.action";
+import { updateSubjects } from "../redux/actions/subjects.action";
 
 @Component({
   selector: "app-root",

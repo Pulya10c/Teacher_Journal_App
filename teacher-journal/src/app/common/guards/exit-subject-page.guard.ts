@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { CanDeactivate } from "@angular/router";
 import { Observable } from "rxjs";
-
-import { IComponentCanDeactivate } from "../../../../common/entities/component-can-deactivate";
+import { IComponentCanDeactivate } from "../entities/component-can-deactivate";
 
 @Injectable()
 export class ExitSubjectPageGuard implements CanDeactivate<IComponentCanDeactivate> {

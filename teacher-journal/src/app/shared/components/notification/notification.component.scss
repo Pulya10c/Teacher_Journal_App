@@ -4,24 +4,24 @@
   position: absolute;
 
   .success {
-    background: rgb(87, 86, 86);
+    background: $gray;
     border-bottom: 5px solid $active-color;
     .notification__icon {
-      background: rgba(0, 125, 0, 0.8);
+      background: $green;
       &:after {
-        border-color: transparent transparent  rgba(0, 125, 0, 0.8)
+        border-color: transparent transparent  $green
         transparent;
       }
     }
   }
 
   .warning {
-    background: rgb(87, 86, 86);
+    background: $gray;
     border-bottom: 5px solid $active-color;
     .notification__icon {
-      background: rgba(200, 0, 0, 0.8);
+      background: $red;
       &:after {
-        border-color: transparent transparent rgba(200, 0, 0, 0.8)
+        border-color: transparent transparent $red
         transparent;
       }
     }
@@ -39,17 +39,17 @@
     border-radius: 7px;
     animation: 3s ease-in-out forwards float-in;
     &:hover {
-      background: rgb(87, 86, 86);
+      background: $gray;
       .notification__close {
         color: $text-color;
         &:hover {
           transform: scale(1.1);
-          background: rgba(55, 55, 55, 0.9);
+          background: $gray-dark;
           .notification__close {
             color: $text-color;
             &:hover {
               transform: scale(1.1);
-              background: rgba(55, 55, 55, 0.9);
+              background: $gray-dark;
             }
           }
         }

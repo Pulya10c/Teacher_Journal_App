@@ -26,7 +26,7 @@
   }
 
   .subject__form {
-    border: 0.3rem solid grey;
+    border: 0.3rem solid $gray;
     border-radius: 1.5rem;
     margin-bottom: 4rem;
 
@@ -51,7 +51,7 @@
       font-size: 1.5rem;
       padding: 1%;
       margin: 0 2%;
-      background-color: gray;
+      background-color: $gray;
       color: $active-color;
     }
   }

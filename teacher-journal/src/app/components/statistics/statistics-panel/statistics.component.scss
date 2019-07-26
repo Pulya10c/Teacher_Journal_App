@@ -1,0 +1,87 @@
+@import "../../../../styles/variables.scss";
+
+.wrapper {
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  margin: 0 auto 3rem;
+
+  .statistics {
+    margin: 0;
+    border: 0.3rem solid $gray;
+    border-radius: 1.5rem;
+    .statistics__info {
+      display: flex;
+      justify-content: center;
+      .statistics-description {
+        flex: 1;
+        height: 36rem;
+      }
+      .statistics-control {
+        flex: 1;
+        border-right: 0.3rem solid $gray;
+        .statistics-control__navigation {
+          display: flex;
+          justify-content: center;
+          font-size: 1.5rem;
+          &-item {
+            font-size: 2rem;
+            text-align: center;
+            padding: 0.4rem 1.7rem 0.7rem;
+            text-decoration: none;
+            color: $text-color;
+            flex: 1;
+            border-bottom: 0.3rem solid $gray;
+            &:first-child {
+              border-right: 0.3rem solid $gray;
+              border-top-left-radius: 1.1rem;
+            }
+            &.active {
+              font-size: 2.01rem;
+              padding: 0.4rem 1.7rem 0.6rem;
+              background-color: rgb(24, 24, 24);
+            }
+            &-active {
+              color: $active-color;
+              text-decoration: none;
+              background-color: rgb(88, 88, 88);
+              &.active {
+                font-size: 2.01rem;
+                padding: 0.4rem 1.7rem 0.6rem;
+                background-color: rgb(75, 74, 74);
+              }
+            }
+          }
+        }
+
+        .statistics-control__list-students {
+          flex: 1;
+          height: 32rem;
+          overflow-y: scroll;
+          width: 99%;
+          &::-webkit-scrollbar {
+            width: 25px;
+            height: 25px;
+          }
+
+          & ::-webkit-scrollbar-button {
+            display: none;
+          }
+
+          &::-webkit-scrollbar-track {
+            width: 50px;
+            height: 50px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            height: 12px;
+            background-color: #474747;
+            border: 7px solid black;
+          }
+
+          &::-webkit-scrollbar-corner {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

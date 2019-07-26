@@ -12,29 +12,13 @@
 
   <nav class="navigation">
     <a
+      elementSize 
+      *ngFor="let name of navigationName"
       class="navigation__item"
-      routerLink="/student"
+      [routerLink]="'/' + name"
       routerLinkActive="navigation__item-active"
-      >{{ "STUDENT" | translate }}</a
-    >
-    <a
-      class="navigation__item"
-      routerLink="/subject"
-      routerLinkActive="navigation__item-active"
-      >{{ "SUBJECT" | translate }}</a
-    >
-    <a
-      class="navigation__item"
-      routerLink="/statistics"
-      routerLinkActive="navigation__item-active"
-      >{{ "STATISTICS" | translate }}</a
-    >
-    <a
-      class="navigation__item"
-      routerLink="/export"
-      routerLinkActive="navigation__item-active"
-      >{{ "EXPORT" | translate }}</a
-    >
+      >{{ name | uppercase | translate }}
+    </a>
   </nav>
 </section>
 

@@ -6,8 +6,8 @@ import { Router } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
-import { selectSubjects } from "src/app/store/selectors/combine.selectors";
-import { initAddSubject } from "src/app/store/actions/subjects.action";
+import { selectSubjects } from "src/app/redux/selectors/combine.selectors";
+import { initAddSubject } from "src/app/redux/actions/subjects.action";
 import { ChangeService } from "src/app/common/services/change.service";
 import { SharedModule } from "../../../shared/shared.module";
 import { ISubject } from "../../../common/entities/subject";
@@ -75,13 +75,13 @@ export class SubjectFormComponent implements OnInit {
     this.notificationService.showToast(new NotificationModel(header, description, success));
   }
 
-  private isControlInvalid(controlName: string): boolean {
+  public isControlInvalid(controlName: string): boolean {
     const control: any = this.subjectForm.controls[controlName];
     const result: boolean = control.invalid && control.touched;
     return result;
   }
 
-  private onSubmit(): void {
+  public onSubmit(): void {
     const controls: any = this.subjectForm.controls;
 
     if (this.subjectForm.invalid) {
@@ -104,15 +104,15 @@ export class SubjectFormComponent implements OnInit {
         initAddSubject({ newSubject: subject })
       );
       this.showToast("Success", "NEW_SABJECT_ADD", true);
-      this.router.navigate(["subject"]);
+      this.router.navigate(["subjects"]);
     } else {
       this.showToast("Warning", "NEW_SABJECT_ADD_ERROR", false);
-      this.router.navigate(["subject"]);
+      this.router.navigate(["subjects"]);
     }
   }
 
-  private onCancel(): void {
-    this.router.navigate(["subject"]);
+  public onCancel(): void {
+    this.router.navigate(["subjects"]);
   }
 
   public ngOnInit(): void {

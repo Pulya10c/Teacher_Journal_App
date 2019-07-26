@@ -5,7 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Store } from "@ngrx/store";
 
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
-import { initAddStudent } from "src/app/store/actions/students.action";
+import { initAddStudent } from "src/app/redux/actions/students.action";
 import { ChangeService } from "src/app/common/services/change.service";
 import { SharedModule } from "../../../shared/shared.module";
 import { IStudent } from "../../../common/entities/student";
@@ -76,13 +76,13 @@ export class StudentFormComponent implements OnInit {
     );
   }
 
-  private isControlInvalid(controlName: string): boolean {
+  public isControlInvalid(controlName: string): boolean {
     const control: any = this.studentsForm.controls[controlName];
     const result: boolean = control.invalid && control.touched;
     return result;
   }
 
-  private onSubmit(): void {
+  public onSubmit(): void {
     const controls: {
       [key: string]: AbstractControl;
     } = this.studentsForm.controls;
@@ -101,11 +101,11 @@ export class StudentFormComponent implements OnInit {
       initAddStudent({ newStudent: student })
     );
     this.showToast("Success", "NEW_STUDENT_ADD", true);
-    this.router.navigate(["student"]);
+    this.router.navigate(["students"]);
   }
 
-  private onCancel(): void {
-    this.router.navigate(["student"]);
+  public onCancel(): void {
+    this.router.navigate(["students"]);
   }
 
   public ngOnInit(): void {

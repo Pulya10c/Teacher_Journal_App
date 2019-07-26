@@ -2,7 +2,7 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 
 import { OrderPipe } from "ngx-order-pipe";
@@ -14,7 +14,7 @@ import { StorageService } from "../../../common/services/storage.service";
 import { IStudent } from "../../../common/entities/student";
 import { select, Store } from "@ngrx/store";
 import { IState } from "src/app/common/entities/state";
-import { selectStudents } from "src/app/store/selectors/combine.selectors";
+import { selectStudents } from "src/app/redux/selectors/combine.selectors";
 
 @Component({
   selector: "app-student-table",
@@ -22,22 +22,25 @@ import { selectStudents } from "src/app/store/selectors/combine.selectors";
   styleUrls: ["./student-table.component.scss"],
   providers: [StorageService]
 })
+
 @NgModule({
   imports: [SharedModule, BrowserModule, FormsModule]
 })
+
 export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
-  private storageService: StorageService;
-  private columnStudentsName: string[] = HEDER_NAME_STUDENT_TABL;
   private sortedStudents: IStudent[] = [];
+  private storageService: StorageService;
   private order: string = "index";
   private isReverse: boolean = false;
   private orderPipe: OrderPipe;
-  private searchStudent: string = "";
   private searchInfo: Subject<string> = new Subject<string>();
-  private searchInputText: string;
-  private nextIndex: number = this.sortedStudents.length;
+  private componentDestroyed: Subject<any> = new Subject();
   private store: Store<IState>;
+  public searchStudent: string = "";
+  public searchInputText: string;
+  public nextIndex: number = this.sortedStudents.length;
+  public columnStudentsName: string[] = HEDER_NAME_STUDENT_TABL;
 
   constructor(orderPipe: OrderPipe, storageService: StorageService, store: Store<IState>) {
     this.orderPipe = orderPipe;
@@ -55,8 +58,10 @@ export class StudentTableComponent implements OnInit {
 
     this.store
     .pipe(
-      select(selectStudents)
-    ).subscribe(
+      select(selectStudents),
+      takeUntil(this.componentDestroyed)
+    )
+    .subscribe(
       data => {
         if (data.length) {
           this.students = data;
@@ -69,18 +74,19 @@ export class StudentTableComponent implements OnInit {
     this.searchInfo
     .pipe(
       debounceTime(800),
-      distinctUntilChanged()
+      distinctUntilChanged(),
+      takeUntil(this.componentDestroyed)
     )
     .subscribe((eventNewText: string) => {
       this.searchStudent = eventNewText;
     });
   }
 
-  private onSearch(event: string): void {
+  public onSearch(event: string): void {
     this.searchInfo.next(event);
   }
 
-  private setOrder(newValueOrder: string): void {
+  public setOrder(newValueOrder: string): void {
     if (this.order === newValueOrder) {
       this.isReverse = !this.isReverse;
     }
@@ -90,5 +96,10 @@ export class StudentTableComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initForm();
+  }
+
+  public ngOnDestroy (): void {
+    this.componentDestroyed.next();
+    this.componentDestroyed.complete();
   }
 }

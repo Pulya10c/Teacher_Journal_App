@@ -4,7 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 import { HEDER_NAME_SUBJECT_PAGE } from "../../../common/constants/subject-constants";
 
@@ -13,13 +14,12 @@ import getAverageMark from "../../../common/helpers/average-mark";
 import sortDate from "../../../common/helpers/sort-date";
 
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
-import { selectSubjects, selectStudents } from "src/app/store/selectors/combine.selectors";
+import { selectSubjects, selectStudents } from "src/app/redux/selectors/combine.selectors";
 import { IComponentCanDeactivate } from "src/app/common/entities/component-can-deactivate";
-import { initMarksToChangeSubject } from "src/app/store/actions/subjects.action";
+import { initMarksToChangeSubject } from "src/app/redux/actions/subjects.action";
 import { ISubject, IMarks, IMark } from "../../../common/entities/subject";
 import { ChangeService } from "../../../common/services/change.service";
 import { SharedModule } from "../../../shared/shared.module";
-import { DataService } from "../../../common/services/data.service";
 import { IStudent } from "../../../common/entities/student";
 import { IState } from "src/app/common/entities/state";
 
@@ -33,9 +33,6 @@ import { IState } from "src/app/common/entities/state";
 })
 export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private store: Store<IState>;
-  private students: IStudent[] = [];
-  private subjectCopy: ISubject;
-  private headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
   private changeService: ChangeService;
   private notificationService: NotificationService;
   private dateClick: number;
@@ -44,6 +41,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private router: Router;
   private subjectName: string;
   private subjects: ISubject[] = [];
+  private componentDestroyed: Subject<any> = new Subject();
   private subject: ISubject = {
     id: "",
     index: 0,
@@ -53,6 +51,9 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     description: "",
     marks: []
   };
+  public students: IStudent[] = [];
+  public subjectCopy: ISubject;
+  public headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;
 
   constructor(
     store: Store<IState>,
@@ -68,9 +69,10 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
 
   private initForm(): void {
     this.subjectName = this.router.url.split("/").pop();
-
+    console.log(this.subjectName);
     this.store.pipe(
-      select(selectStudents)
+      select(selectStudents),
+      takeUntil(this.componentDestroyed)
     ).subscribe(
       data => {
         if (data.length !== 0) {
@@ -80,7 +82,8 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     );
 
     this.store.pipe(
-      select(selectSubjects)
+      select(selectSubjects),
+      takeUntil(this.componentDestroyed)
     )
     .subscribe(data => {
       if (data.length) {
@@ -98,11 +101,11 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     this.notificationService.showToast(new NotificationModel(header, description, success));
   }
 
-  private calculationAverageMark(idStudent: string): number {
+  public calculationAverageMark(idStudent: string): number {
     return getAverageMark(this.subject, idStudent);
   }
 
-  private findStudentMark(marks: { id: string; mark: number }[], idStudent: string): number | undefined {
+  public findStudentMark(marks: { id: string; mark: number }[], idStudent: string): number | undefined {
     const markStudent: IMark = marks.find(
       ({ id }: IMark) => id === idStudent
     );
@@ -110,7 +113,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     return markStudent ? markStudent.mark : undefined;
   }
 
-  private onAddDate(date: Date): void {
+  public onAddDate(date: Date): void {
     const thisDate: number = new Date(date).getTime();
     const isThisDate: boolean = this.subject.marks.some((listMarks: IMarks) => listMarks.date === thisDate);
 
@@ -128,7 +131,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     }
   }
 
-  private onChangeDate(changeData: Date): void {
+  public onChangeDate(changeData: Date): void {
     this.isChangesMade = true;
     this.subjectCopy = JSON.parse(JSON.stringify(this.subject));
     const dateCheck: number = changeData.getTime();
@@ -139,7 +142,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     });
   }
 
-  private onSave(): void {
+  public onSave(): void {
     this.store.dispatch(
       initMarksToChangeSubject({ subject: this.subject })
     );
@@ -148,15 +151,15 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     this.isMarksCorrect = true;
   }
 
-  private onCancel(): void {
-    this.router.navigate(["subject"]);
+  public onCancel(): void {
+    this.router.navigate(["subjects"]);
   }
 
-  private onClickInput(date: Date): void {
+  public onClickInput(date: Date): void {
     this.dateClick = +date;
   }
 
-  private modelChanged(newMark: number, date: number, studentId: string): void {
+  public modelChanged(newMark: number, date: number, studentId: string): void {
     if (studentId) {
       this.subject.marks = this.changeService.changeMark(this.subject.marks, date, studentId, newMark);
       this.isMarksCorrect = !this.subject.marks.some(
@@ -178,5 +181,10 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     } else {
       return true;
     }
+  }
+
+  public ngOnDestroy (): void {
+    this.componentDestroyed.next();
+    this.componentDestroyed.complete();
   }
 }

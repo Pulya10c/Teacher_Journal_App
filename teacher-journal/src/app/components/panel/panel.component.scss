@@ -9,17 +9,17 @@
     .header__name {
       font-size: 2.3rem;
       font-weight: 500;
-      margin: 0px 0px 35px 0px;
+      margin: 0 0 2rem 0;
       flex: 61%;
     }
     .header__logo {
-      width: 60px;
-      height: 80px;
+      width: 5rem;
+      height: 5.3rem;
       flex: 9%;
-      margin: 30px 25px 0 105px;
-      background-color: $active-color;
-      background: linear-gradient(-35deg, transparent 20px, $active-color 0) right,
-        linear-gradient(35deg, transparent 20px, $active-color 0) left;
+      margin: 1.5rem 1.3rem 0 6.5rem;
+      background-color: darkorange;
+      background: linear-gradient(-35deg, transparent 1.25rem, darkorange 0) right,
+        linear-gradient(35deg, transparent 1.25rem, darkorange 0) left;
       background-size: 50% 100%;
       background-repeat: no-repeat;
     }
@@ -33,11 +33,11 @@
       align-items: center;
       font-size: 1.2rem;
       &-select {
-        background-color: grey;
+        background-color: $gray;
         color: $active-color;
         width: 2.9rem;
         height: 1.5rem;
-        border-radius: 5px;
+        border-radius: 0.25rem;
         font-size: 1rem;
         font-weight: 600;
         margin-left: 10px;
@@ -50,20 +50,31 @@
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
+  height: 9.3rem;
 }
 
 .navigation__item {
   font-size: 2rem;
   text-align: center;
-  background-color: grey;
+  background-color: $gray;
   margin: 3rem 0.5rem;
   padding: 0.4rem 1.7rem 0.7rem;
   border-radius: 10px;
   text-decoration: none;
   color: $text-color;
+  &.active {
+    background-color: $button-active;
+    margin-top: 3.1rem;
+    margin-bottom: 2.9rem;
+  }
 }
 
 .navigation__item-active {
   color: $active-color;
   text-decoration: none;
+  .active {
+    background-color: $button-active;
+    margin-top: 3.1rem;
+    margin-bottom: 2.9rem;
+  }
 }

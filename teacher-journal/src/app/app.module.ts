@@ -5,11 +5,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
-import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { OrderModule } from "ngx-order-pipe";
 
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+
+import { ChartsModule } from "ng2-charts";
 
 import { MarksCorrectionDirective } from "./common/directives/marks-correction.directive";
 import { LoaderComponent } from "./components/loader/loader.component";
@@ -20,9 +22,8 @@ import { SubjectsListComponent } from "./components/subjects/subject-list/subjec
 import { SubjectFormComponent } from "./components/subjects/subject-form/subject-form.component";
 import { SubjectPageComponent } from "./components/subjects/subject-page/subject-page.component";
 import { StudentFormComponent } from "./components/students/student-form/student-form.component";
-import { StatisticsComponent } from "./components/statistics/statistics.component";
-import { ExitSubjectPageGuard } from "./components/subjects/subject-page/guards/exit-subject-page.guard";
-import { SubjectPageGuard } from "./components/subjects/subject-page/guards/subject-page.guard";
+import { StatisticsComponent } from "./components/statistics/statistics-panel/statistics.component";
+
 import { ExportComponent } from "./components/export/export.component";
 import { PanelComponent } from "./components/panel/panel.component";
 import { ScaleButtonDirective } from "./common/directives/scale-button.directive";
@@ -32,9 +33,16 @@ import { LoaderService } from "./common/services/loader.service";
 import { SearchPipe } from "./common/pipe/search.pipe";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./root/app.component";
-import { StudentsEffects } from "./store/effects/students.effect";
-import { SubjectsEffects } from "./store/effects/subjects.effect";
-import { reducer } from "../app/store/redusers/combine.reducer";
+import { StatisticsInfoComponent } from "./components/statistics/statistics-info/statistics-info.component";
+import { StatisticsSubjectsComponent } from "./components/statistics/statistics-subjects/statistics-subjects.component";
+import { StatisticsStudentsComponent } from "./components/statistics/statistics-students/statistics-students.component";
+import { reducer } from "./redux/redusers/combine.reducer";
+import { StudentsEffects } from "./redux/effects/students.effect";
+import { SubjectsEffects } from "./redux/effects/subjects.effect";
+import { SubjectPageGuard } from "./common/guards/subject-page.guard";
+import { ExitSubjectPageGuard } from "./common/guards/exit-subject-page.guard";
+import { ChartComponent } from "./components/statistics/chart/chart.component";
+import { ElementSizeDirective } from "./common/directives/element-size.directive";
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -56,10 +64,16 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     VisibilityDirective,
     ScaleButtonDirective,
     MarksCorrectionDirective,
-    LoaderComponent
+    LoaderComponent,
+    StatisticsInfoComponent,
+    StatisticsSubjectsComponent,
+    StatisticsStudentsComponent,
+    ChartComponent,
+    ElementSizeDirective
   ],
 
   imports: [
+    ChartsModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -76,10 +90,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       }
     }),
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([
-      StudentsEffects,
-      SubjectsEffects
-    ])
+    EffectsModule.forRoot([StudentsEffects, SubjectsEffects])
   ],
 
   providers: [
