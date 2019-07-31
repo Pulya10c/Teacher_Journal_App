@@ -9,10 +9,10 @@ import { LoaderService } from "../../common/services/loader.service";
 })
 export class LoaderComponent {
   private loaderService: LoaderService;
-  private isLoading: Subject<boolean>;
+  public isLoading$: Subject<boolean>;
 
   constructor(loaderService: LoaderService) {
     this.loaderService = loaderService;
-    this.isLoading = this.loaderService.isLoading;
+    this.isLoading$ = this.loaderService.isLoading;
   }
 }

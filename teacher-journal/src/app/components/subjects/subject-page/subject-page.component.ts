@@ -41,7 +41,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private router: Router;
   private subjectName: string;
   private subjects: ISubject[] = [];
-  private componentDestroyed: Subject<any> = new Subject();
+  private componentDestroyed$: Subject<any> = new Subject();
   private subject: ISubject = {
     id: "",
     index: 0,
@@ -72,7 +72,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     console.log(this.subjectName);
     this.store.pipe(
       select(selectStudents),
-      takeUntil(this.componentDestroyed)
+      takeUntil(this.componentDestroyed$)
     ).subscribe(
       data => {
         if (data.length !== 0) {
@@ -83,7 +83,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
 
     this.store.pipe(
       select(selectSubjects),
-      takeUntil(this.componentDestroyed)
+      takeUntil(this.componentDestroyed$)
     )
     .subscribe(data => {
       if (data.length) {
@@ -184,7 +184,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   }
 
   public ngOnDestroy (): void {
-    this.componentDestroyed.next();
-    this.componentDestroyed.complete();
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 }

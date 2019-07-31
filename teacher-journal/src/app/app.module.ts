@@ -13,7 +13,6 @@ import { StoreModule } from "@ngrx/store";
 
 import { ChartsModule } from "ng2-charts";
 
-import { MarksCorrectionDirective } from "./common/directives/marks-correction.directive";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { SharedModule } from "./shared/shared.module";
 import { NotificationComponent } from "./shared/components/notification/notification.component";
@@ -43,6 +42,7 @@ import { SubjectPageGuard } from "./common/guards/subject-page.guard";
 import { ExitSubjectPageGuard } from "./common/guards/exit-subject-page.guard";
 import { ChartComponent } from "./components/statistics/chart/chart.component";
 import { ElementSizeDirective } from "./common/directives/element-size.directive";
+import { TreeviewModule } from "ngx-treeview";
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -63,7 +63,6 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     SearchPipe,
     VisibilityDirective,
     ScaleButtonDirective,
-    MarksCorrectionDirective,
     LoaderComponent,
     StatisticsInfoComponent,
     StatisticsSubjectsComponent,
@@ -90,7 +89,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       }
     }),
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([StudentsEffects, SubjectsEffects])
+    EffectsModule.forRoot([StudentsEffects, SubjectsEffects]),
+    TreeviewModule.forRoot()
   ],
 
   providers: [

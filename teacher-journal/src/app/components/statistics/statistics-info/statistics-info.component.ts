@@ -19,7 +19,7 @@ export class StatisticsInfoComponent implements OnInit {
   private router: Router;
   private store: Store<IState>;
   private subjects: ISubject[];
-  private componentDestroyed: Subject<any> = new Subject();
+  private componentDestroyed$: Subject<any> = new Subject();
   public studentDataForDraw: { nameSubject: string; marksList: number[] }[] = [];
   public student: { id: string; name: string; lastName: string } = { id: "", name: "", lastName: "" };
   public findMarksService: FindMarksService;
@@ -38,7 +38,7 @@ export class StatisticsInfoComponent implements OnInit {
     this.store
       .pipe(
         select(selectSubjects),
-        takeUntil(this.componentDestroyed)
+        takeUntil(this.componentDestroyed$)
       )
       .subscribe(data => {
         if (data.length) {
@@ -52,7 +52,9 @@ export class StatisticsInfoComponent implements OnInit {
         }
       });
 
-    this.router.events.pipe(takeUntil(this.componentDestroyed)).subscribe(event => {
+    this.router.events.pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe(event => {
       this.isVisible = false;
       if (event instanceof NavigationEnd && event.url.match(/statistics\/students\//gi)) {
         this.isVisible = true;
@@ -95,7 +97,7 @@ export class StatisticsInfoComponent implements OnInit {
   }
 
   public ngOnDestroy(): void {
-    this.componentDestroyed.next();
-    this.componentDestroyed.complete();
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 }

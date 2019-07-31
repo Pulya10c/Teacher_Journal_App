@@ -30,6 +30,7 @@
     "chart.js": "^2.8.0",
     "ng2-charts": "^2.3.0",
     "ngx-order-pipe": "^2.0.2",
+    "ngx-treeview": "^6.0.2",
     "rxjs": "~6.4.0",
     "sweetalert": "^2.1.2",
     "tslib": "^1.9.0",

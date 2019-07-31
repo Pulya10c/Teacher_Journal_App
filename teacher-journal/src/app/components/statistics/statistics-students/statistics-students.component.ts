@@ -14,7 +14,7 @@ import { Subject } from "rxjs";
 })
 export class StatisticsStudentsComponent implements OnInit {
   private store: Store<IState>;
-  private componentDestroyed: Subject<any> = new Subject();
+  private componentDestroyed$: Subject<any> = new Subject();
   public students: IStudent[] = [];
   public findMarksService: FindMarksService;
 
@@ -27,7 +27,7 @@ export class StatisticsStudentsComponent implements OnInit {
     this.store
       .pipe(
         select(selectStudents),
-        takeUntil(this.componentDestroyed)
+        takeUntil(this.componentDestroyed$)
       )
       .subscribe(data => {
         if (data.length) {
@@ -41,7 +41,7 @@ export class StatisticsStudentsComponent implements OnInit {
   }
 
   public ngOnDestroy (): void {
-    this.componentDestroyed.next();
-    this.componentDestroyed.complete();
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 }

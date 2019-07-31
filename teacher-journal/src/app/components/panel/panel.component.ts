@@ -10,7 +10,7 @@ import { DataService } from "src/app/common/services/data.service";
   styleUrls: ["./panel.component.scss"]
 })
 export class PanelComponent {
-  private title: String = "Teacher journal";
+  public title: String = "Teacher journal";
   public translate: TranslateService;
   public navigationName: string[] = [];
   public dataService: DataService;
