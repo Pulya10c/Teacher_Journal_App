@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy} from "@angular/core";
 
 import { ChartOptions, ChartType } from "chart.js";
 import { Label, SingleDataSet } from "ng2-charts";
@@ -11,6 +11,7 @@ import { Label, SingleDataSet } from "ng2-charts";
 })
 export class ChartComponent {
   @Input() public marksListView: { nameSubject: string; marksList: number[] }[];
+  public isNoData: boolean = true;
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -68,6 +69,7 @@ export class ChartComponent {
       },
       { name: [], marks: [] }
     );
+    this.isNoData = name.length && marks.length ? true : false;
     this.pieChartLabels = name;
     this.pieChartData = marks;
   }

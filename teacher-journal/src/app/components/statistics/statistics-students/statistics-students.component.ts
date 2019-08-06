@@ -12,6 +12,7 @@ import { Subject } from "rxjs";
   templateUrl: "./statistics-students.component.html",
   styleUrls: ["./statistics-students.component.scss"]
 })
+
 export class StatisticsStudentsComponent implements OnInit {
   private store: Store<IState>;
   private componentDestroyed$: Subject<any> = new Subject();
@@ -38,6 +39,10 @@ export class StatisticsStudentsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initStudentList();
+  }
+
+  public onCheckDropdown(a: Event): void {
+    console.log(a);
   }
 
   public ngOnDestroy (): void {

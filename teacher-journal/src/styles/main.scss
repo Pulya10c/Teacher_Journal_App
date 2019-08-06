@@ -112,14 +112,14 @@ button.btn-outline-secondary {
   text-transform: uppercase;
   overflow: hidden;
   letter-spacing: 2px;
-  transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: $active-color;
 
   &:hover {
     background: rgba(255, 255, 255, 0);
   }
   &:active {
-    margin: 8px 20px 4px 20px;
+    margin: 7px 20px 5px 20px !important;
+    box-shadow: 0 0 10px $gray, 
   }
 }
 

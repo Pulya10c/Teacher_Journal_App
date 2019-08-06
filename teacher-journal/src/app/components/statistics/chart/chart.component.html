@@ -1,4 +1,5 @@
 <div 
+  *ngIf = "isNoData else screenNoData" 
   class="student-chart" 
   style="display: block;"
 >
@@ -15,3 +16,6 @@
     >
   </canvas>
 </div>
+<ng-template #screenNoData>
+    <h2 class="student-no-chart">{{"DISPLAY" | translate}}</h2>
+</ng-template>
