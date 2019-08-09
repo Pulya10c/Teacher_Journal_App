@@ -119,8 +119,24 @@ button.btn-outline-secondary {
   }
   &:active {
     margin: 7px 20px 5px 20px !important;
-    box-shadow: 0 0 10px $gray, 
+    box-shadow: 0 0 10px $gray;
   }
+}
+
+.pull-right {
+  &.form-check-label {
+    position: absolute;
+    top: 6.7rem;
+    left: 24.8rem;
+  }
+}
+
+input.form-control {
+  width: 24.5rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  color: $gray;
+  background-color: $color;
 }
 
 .treeview-container {

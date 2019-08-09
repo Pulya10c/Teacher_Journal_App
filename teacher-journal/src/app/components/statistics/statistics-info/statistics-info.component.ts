@@ -48,12 +48,6 @@ export class StatisticsInfoComponent implements OnInit {
       .subscribe(data => {
         if (data.length) {
           this.subjects = data;
-          this.dataDropdown = data.map(item => {
-            return {
-              subject: item.nameSubject,
-              datesCheckedSource: item.marks.map(el => el.date)
-            };
-          });
         }
       });
 

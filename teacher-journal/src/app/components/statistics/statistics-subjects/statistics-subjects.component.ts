@@ -6,7 +6,7 @@ import { takeUntil } from "rxjs/operators";
 import { select, Store } from "@ngrx/store";
 import { IState } from "src/app/common/entities/state";
 import { ISubject } from "src/app/common/entities/subject";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
 import { TreeviewModule } from "ngx-treeview";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
@@ -24,14 +24,14 @@ export class StatisticsSubjectsComponent {
   private subjects: ISubject[];
   private store: Store<IState>;
   private componentDestroyed$: Subject<any> = new Subject();
-
+  private dateListOld: string[] = [];
   public values: string[];
   public config: TreeviewConfig = TreeviewConfig.create({
     hasAllCheckBox: true,
-    hasFilter: false,
-    hasCollapseExpand: false,
+    hasFilter: true,
+    hasCollapseExpand: true,
     decoupleChildFromParent: false,
-    maxHeight: 390
+    maxHeight: 390,
   });
 
   public buttonClass: string = "btn-outline-secondary";
@@ -41,6 +41,10 @@ export class StatisticsSubjectsComponent {
   constructor(store: Store<IState>, dropdownService: DropdownService) {
     this.dropdownService = dropdownService;
     this.store = store;
+    this.dateListOld = this.dropdownService.getDataList().reduce((acc, item) => {
+      acc = [...acc, ...item.datesCheckedSource.map(el => (el ? `${item.subject}--${el}` : item.subject))];
+      return acc;
+    }, []);
   }
 
   public onSelectedChange(event: string[]): void {
@@ -54,20 +58,27 @@ export class StatisticsSubjectsComponent {
         takeUntil(this.componentDestroyed$)
       )
       .subscribe(data => {
-        if (data.length && !this.items.length) {
+        if (data.length) {
           this.subjects = data;
-          this.items = this.subjects.map(item => {
-            return new TreeviewItem({
-              text: item.nameSubject,
-              value: item.nameSubject,
-              children: item.marks.map(el => {
+          this.items = this.subjects
+            .filter(item => item.marks.length)
+            .map(item => {
+              if (item.marks.length === 0) {
+                return;
+              } else {
                 return new TreeviewItem({
-                  text: new Date(el.date).getDate() + "/" + new Date(el.date).getMonth() + "/" + new Date(el.date).getFullYear(),
-                  value: `${item.nameSubject}-&&&-${el.date.toString()}`
+                  text: item.nameSubject,
+                  value: item.nameSubject,
+                  children: item.marks.map(el => {
+                    return new TreeviewItem({
+                      text: new Date(el.date).getDate() + "/" + new Date(el.date).getMonth() + "/" + new Date(el.date).getFullYear(),
+                      value: `${item.nameSubject}-&&&-${el.date.toString()}`,
+                      checked: this.dateListOld.includes(`${item.nameSubject}--${el.date.toString()}`) ? true : false
+                    });
+                  })
                 });
-              })
+              }
             });
-          });
         }
       });
   }
