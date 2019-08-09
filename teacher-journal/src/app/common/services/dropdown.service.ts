@@ -5,6 +5,7 @@ import { Subject } from "rxjs";
   providedIn: "root"
 })
 export class DropdownService {
+  protected dataList: {subject: string; datesCheckedSource: number[]}[] = [];
   protected sourceCheckList: Subject<{subject: string; datesCheckedSource: number[]}[]> =
   new Subject<{subject: string; datesCheckedSource: number[]}[]>();
 
@@ -25,10 +26,14 @@ export class DropdownService {
       }
       return acc;
     },[]);
-
+    this.dataList = dataList;
     this.sourceCheckList.next(dataList);
   }
   public getSourceCheckList(): Subject<{subject: string; datesCheckedSource: number[]}[]> {
     return this.sourceCheckList;
+  }
+
+  public getDataList(): {subject: string; datesCheckedSource: number[]}[] {
+    return this.dataList;
   }
 }
