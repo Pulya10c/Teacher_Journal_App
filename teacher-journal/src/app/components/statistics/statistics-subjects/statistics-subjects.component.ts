@@ -1,7 +1,7 @@
 import { Component, NgModule } from "@angular/core";
 import { TreeviewItem } from "ngx-treeview/src/treeview-item";
 import { TreeviewConfig } from "ngx-treeview/src/treeview-config";
-import { selectSubjects } from "src/app/redux/selectors/combine.selectors";
+import { selectSubjects, selectDropdown } from "src/app/redux/selectors/combine.selectors";
 import { takeUntil } from "rxjs/operators";
 import { select, Store } from "@ngrx/store";
 import { IState } from "src/app/common/entities/state";
@@ -11,6 +11,7 @@ import { TreeviewModule } from "ngx-treeview";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DropdownService } from "src/app/common/services/dropdown.service";
+import { setDropdownListDate } from 'src/app/redux/actions/dropdown.action';
 
 @Component({
   selector: "statistics-subjects",
@@ -31,7 +32,7 @@ export class StatisticsSubjectsComponent {
     hasFilter: true,
     hasCollapseExpand: true,
     decoupleChildFromParent: false,
-    maxHeight: 390,
+    maxHeight: 390
   });
 
   public buttonClass: string = "btn-outline-secondary";
@@ -41,10 +42,14 @@ export class StatisticsSubjectsComponent {
   constructor(store: Store<IState>, dropdownService: DropdownService) {
     this.dropdownService = dropdownService;
     this.store = store;
-    this.dateListOld = this.dropdownService.getDataList().reduce((acc, item) => {
-      acc = [...acc, ...item.datesCheckedSource.map(el => (el ? `${item.subject}--${el}` : item.subject))];
-      return acc;
-    }, []);
+    this.store
+      .pipe(
+        select(selectDropdown),
+        takeUntil(this.componentDestroyed$)
+      )
+      .subscribe(data => {
+        this.dateListOld = this.dropdownService.getDataList(data);
+      });
   }
 
   public onSelectedChange(event: string[]): void {
@@ -84,7 +89,10 @@ export class StatisticsSubjectsComponent {
   }
 
   public ngOnDestroy(): void {
-    this.dropdownService.setSourceCheckList(this.values);
+    this.store.dispatch(setDropdownListDate({
+      dropdownList: this.dropdownService.setSourceCheckList(this.values)
+    }));
+    console.log(this.dropdownService.setSourceCheckList(this.values));
     this.componentDestroyed$.next();
     this.componentDestroyed$.complete();
   }

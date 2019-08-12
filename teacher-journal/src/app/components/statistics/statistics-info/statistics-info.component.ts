@@ -2,14 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd, Navigation } from "@angular/router";
 
 import { Store, select } from "@ngrx/store";
-import { takeUntil, distinctUntilChanged } from "rxjs/operators";
-import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 import { FindMarksService } from "src/app/common/services/find-marks.service";
 import { IState } from "src/app/common/entities/state";
-import { selectSubjects } from "src/app/redux/selectors/combine.selectors";
+import { selectSubjects, selectDropdown } from "src/app/redux/selectors/combine.selectors";
 import { ISubject } from "src/app/common/entities/subject";
 import { DropdownService } from "src/app/common/services/dropdown.service";
+import { IDropdown } from "src/app/common/entities/dropdown";
 
 @Component({
   selector: "statistics-info",
@@ -20,23 +21,19 @@ export class StatisticsInfoComponent implements OnInit {
   private router: Router;
   private store: Store<IState>;
   private subjects: ISubject[];
-  private checketList$: Observable<{subject: string; datesCheckedSource: number[]}[]>;
   private componentDestroyed$: Subject<any> = new Subject();
   public studentDataForDraw: { subject: string; marksList: number[] }[] = [];
   public student: { id: string; name: string; lastName: string } = { id: "", name: "", lastName: "" };
   public findMarksService: FindMarksService;
-  public dataDropdown: {subject: string; datesCheckedSource: number[]}[] = [];
+  public dataDropdown: IDropdown[] = [];
   public averageRating: number;
   public isVisible: boolean = false;
   public rating: string[] = ["0%", "0%", "0%", "0%", "0%"];
-  public dropdownService: DropdownService;
 
   constructor(router: Router, findMarksService: FindMarksService, store: Store<IState>, dropdownService: DropdownService) {
     this.findMarksService = findMarksService;
     this.router = router;
     this.store = store;
-    this.dropdownService = dropdownService;
-    this.checketList$ = this.dropdownService.getSourceCheckList();
   }
 
   private initInfo(): void {
@@ -51,13 +48,13 @@ export class StatisticsInfoComponent implements OnInit {
         }
       });
 
-    this.checketList$
+    this.store
       .pipe(
-        distinctUntilChanged(),
+        select(selectDropdown),
         takeUntil(this.componentDestroyed$)
       )
-      .subscribe((event: {subject: string; datesCheckedSource: number[]}[]) => {
-        this.dataDropdown = event;
+      .subscribe(data => {
+          this.dataDropdown = data;
       });
 
     this.router.events.pipe(takeUntil(this.componentDestroyed$)).subscribe(event => {

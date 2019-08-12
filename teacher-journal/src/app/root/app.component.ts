@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { IState } from "../common/entities/state";
 import { updateStudents } from "../redux/actions/students.action";
 import { updateSubjects } from "../redux/actions/subjects.action";
+import { setDropdownListDate } from "../redux/actions/dropdown.action";
 
 @Component({
   selector: "app-root",
@@ -21,5 +22,6 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.store.dispatch(updateStudents());
     this.store.dispatch(updateSubjects());
+    this.store.dispatch(setDropdownListDate({ dropdownList: [] }));
   }
 }
