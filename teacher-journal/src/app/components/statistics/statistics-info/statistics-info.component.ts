@@ -5,18 +5,19 @@ import { Store, select } from "@ngrx/store";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 
-import { FindMarksService } from "src/app/common/services/find-marks.service";
-import { IState } from "src/app/common/entities/state";
 import { selectSubjects, selectDropdown } from "src/app/redux/selectors/combine.selectors";
-import { ISubject } from "src/app/common/entities/subject";
+import { FindMarksService } from "src/app/common/services/find-marks.service";
 import { DropdownService } from "src/app/common/services/dropdown.service";
 import { IDropdown } from "src/app/common/entities/dropdown";
+import { ISubject } from "src/app/common/entities/subject";
+import { IState } from "src/app/common/entities/state";
 
 @Component({
   selector: "statistics-info",
   templateUrl: "./statistics-info.component.html",
   styleUrls: ["./statistics-info.component.scss"]
 })
+
 export class StatisticsInfoComponent implements OnInit {
   private router: Router;
   private store: Store<IState>;

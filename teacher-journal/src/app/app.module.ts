@@ -68,7 +68,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     StatisticsSubjectsComponent,
     StatisticsStudentsComponent,
     ChartComponent,
-    ElementSizeDirective
+    ElementSizeDirective,
   ],
 
   imports: [
@@ -77,7 +77,6 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
     OrderModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -90,7 +89,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     }),
     StoreModule.forRoot(reducer),
     EffectsModule.forRoot([StudentsEffects, SubjectsEffects]),
-    TreeviewModule.forRoot()
+    TreeviewModule.forRoot(),
+    SharedModule,
   ],
 
   providers: [

@@ -1,6 +1,5 @@
-import { FormGroup, FormBuilder, Validators, FormsModule } from "@angular/forms";
-import { Component, OnInit, NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Store, select } from "@ngrx/store";
@@ -9,7 +8,6 @@ import { NotificationService, NotificationModel } from "../../../common/services
 import { selectSubjects } from "src/app/redux/selectors/combine.selectors";
 import { initAddSubject } from "src/app/redux/actions/subjects.action";
 import { ChangeService } from "src/app/common/services/change.service";
-import { SharedModule } from "../../../shared/shared.module";
 import { ISubject } from "../../../common/entities/subject";
 import { IState } from "src/app/common/entities/state";
 
@@ -17,10 +15,6 @@ import { IState } from "src/app/common/entities/state";
   selector: "app-subject-form",
   templateUrl: "./subject-form.component.html",
   styleUrls: ["./subject-form.component.scss"]
-})
-
-@NgModule({
-  imports: [SharedModule, BrowserModule, FormsModule]
 })
 
 export class SubjectFormComponent implements OnInit {

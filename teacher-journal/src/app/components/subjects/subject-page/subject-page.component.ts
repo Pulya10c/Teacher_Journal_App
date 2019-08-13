@@ -1,6 +1,4 @@
-import { Component, OnInit, NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Store, select } from "@ngrx/store";
@@ -19,7 +17,6 @@ import { IComponentCanDeactivate } from "src/app/common/entities/component-can-d
 import { initMarksToChangeSubject } from "src/app/redux/actions/subjects.action";
 import { ISubject, IMarks, IMark } from "../../../common/entities/subject";
 import { ChangeService } from "../../../common/services/change.service";
-import { SharedModule } from "../../../shared/shared.module";
 import { IStudent } from "../../../common/entities/student";
 import { IState } from "src/app/common/entities/state";
 
@@ -28,9 +25,7 @@ import { IState } from "src/app/common/entities/state";
   templateUrl: "./subject-page.component.html",
   styleUrls: ["./subject-page.component.scss"]
 })
-@NgModule({
-  imports: [SharedModule, BrowserModule, FormsModule]
-})
+
 export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private store: Store<IState>;
   private changeService: ChangeService;
@@ -69,7 +64,6 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
 
   private initForm(): void {
     this.subjectName = this.router.url.split("/").pop();
-    console.log(this.subjectName);
     this.store.pipe(
       select(selectStudents),
       takeUntil(this.componentDestroyed$)
@@ -125,9 +119,9 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
       };
       this.subject.marks.push(createNewDate);
       this.subject.marks.sort(sortDate);
-      this.showToast("Success", `Date ${date} successfully added!`, true);
+      this.showToast("Success", `Date ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} successfully added!`, true);
     } else {
-      this.showToast("Warning", `Date ${date} already exists!`, false);
+      this.showToast("Warning", `Date ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} already exists!`, false);
     }
   }
 

@@ -1,11 +1,14 @@
 import { Component, OnInit } from "@angular/core";
+
 import { select, Store } from "@ngrx/store";
+
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
+
+import { FindMarksService } from "src/app/common/services/find-marks.service";
 import { selectStudents } from "src/app/redux/selectors/combine.selectors";
 import { IStudent } from "src/app/common/entities/student";
 import { IState } from "src/app/common/entities/state";
-import { FindMarksService } from "src/app/common/services/find-marks.service";
-import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
 
 @Component({
   selector: "statistics-students",
@@ -39,10 +42,6 @@ export class StatisticsStudentsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initStudentList();
-  }
-
-  public onCheckDropdown(a: Event): void {
-    console.log(a);
   }
 
   public ngOnDestroy (): void {

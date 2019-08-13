@@ -1,13 +1,11 @@
-import { FormGroup, FormBuilder, Validators, FormsModule, AbstractControl } from "@angular/forms";
-import { Component, OnInit, NgModule } from "@angular/core";
+import { FormGroup, FormBuilder, Validators, AbstractControl } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { BrowserModule } from "@angular/platform-browser";
 import { Store } from "@ngrx/store";
 
 import { NotificationService, NotificationModel } from "../../../common/services/notification.service";
 import { initAddStudent } from "src/app/redux/actions/students.action";
 import { ChangeService } from "src/app/common/services/change.service";
-import { SharedModule } from "../../../shared/shared.module";
 import { IStudent } from "../../../common/entities/student";
 import { IState } from "src/app/common/entities/state";
 
@@ -15,10 +13,6 @@ import { IState } from "src/app/common/entities/state";
   selector: "app-student-form",
   templateUrl: "./student-form.component.html",
   styleUrls: ["./student-form.component.scss"]
-})
-
-@NgModule({
-  imports: [SharedModule, BrowserModule, FormsModule]
 })
 
 export class StudentFormComponent implements OnInit {

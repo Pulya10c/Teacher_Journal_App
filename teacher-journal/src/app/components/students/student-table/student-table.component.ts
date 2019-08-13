@@ -1,6 +1,4 @@
-import { Component, OnInit, NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
 
 import { select, Store } from "@ngrx/store";
 
@@ -11,21 +9,16 @@ import { OrderPipe } from "ngx-order-pipe";
 
 import { HEDER_NAME_STUDENT_TABL } from "../../../common/constants/student-constant";
 
-import { SharedModule } from "../../../shared/shared.module";
 import { StorageService } from "../../../common/services/storage.service";
+import { selectStudents } from "src/app/redux/selectors/combine.selectors";
 import { IStudent } from "../../../common/entities/student";
 import { IState } from "src/app/common/entities/state";
-import { selectStudents } from "src/app/redux/selectors/combine.selectors";
 
 @Component({
   selector: "app-student-table",
   templateUrl: "./student-table.component.html",
   styleUrls: ["./student-table.component.scss"],
   providers: [StorageService]
-})
-
-@NgModule({
-  imports: [SharedModule, BrowserModule, FormsModule]
 })
 
 export class StudentTableComponent implements OnInit {
@@ -58,29 +51,27 @@ export class StudentTableComponent implements OnInit {
     }
 
     this.store
-    .pipe(
-      select(selectStudents),
-      takeUntil(this.componentDestroyed$)
-    )
-    .subscribe(
-      data => {
+      .pipe(
+        select(selectStudents),
+        takeUntil(this.componentDestroyed$)
+      )
+      .subscribe(data => {
         if (data.length) {
           this.students = data;
           this.sortedStudents = this.orderPipe.transform(this.students, this.order);
           this.nextIndex = this.sortedStudents.length;
         }
-      }
-    );
+      });
 
     this.searchInfo$
-    .pipe(
-      debounceTime(800),
-      distinctUntilChanged(),
-      takeUntil(this.componentDestroyed$)
-    )
-    .subscribe((eventNewText: string) => {
-      this.searchStudent = eventNewText;
-    });
+      .pipe(
+        debounceTime(800),
+        distinctUntilChanged(),
+        takeUntil(this.componentDestroyed$)
+      )
+      .subscribe((eventNewText: string) => {
+        this.searchStudent = eventNewText;
+      });
   }
 
   public onSearch(event: string): void {
@@ -99,7 +90,7 @@ export class StudentTableComponent implements OnInit {
     this.initForm();
   }
 
-  public ngOnDestroy (): void {
+  public ngOnDestroy(): void {
     this.componentDestroyed$.next();
     this.componentDestroyed$.complete();
   }

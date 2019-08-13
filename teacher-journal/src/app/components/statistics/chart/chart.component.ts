@@ -9,6 +9,7 @@ import { Label, SingleDataSet } from "ng2-charts";
   templateUrl: "./chart.component.html",
   styleUrls: ["./chart.component.scss"]
 })
+
 export class ChartComponent {
   @Input() public marksListView: { nameSubject: string; marksList: number[] }[];
   public isNoData: boolean = true;

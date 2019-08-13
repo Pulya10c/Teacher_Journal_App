@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 html {
-  background-color: #808080;
+  background-color: $main;
 }
 
 html body {
@@ -17,7 +17,7 @@ html body {
     }
   }
 
-  max-height: 97vh;
+  max-height: fit-content;
   font-size: 1.5rem;
   margin: 1% auto;
   max-width: 1000px;
@@ -27,7 +27,7 @@ html body {
 }
 
 .class__invalid {
-  color: red;
+  color: $red;
 }
 
 button.scale {
@@ -45,12 +45,12 @@ button.scale {
 
 .swal-title {
   font-size: 2rem;
-  color: wheat;
+  color: $wheat;
 }
 
 .swal-text {
   font-size: 1.4rem;
-  color: wheat;
+  color: $wheat;
 }
 
 .visible {
@@ -87,8 +87,8 @@ button.scale {
 
   &::-webkit-scrollbar-thumb {
     height: 12px;
-    background-color: #474747;
-    border: 7px solid black;
+    background-color: rgb(71, 71, 71);
+    border: 7px solid $color;
   }
 
   &::-webkit-scrollbar-corner {
@@ -117,6 +117,7 @@ button.btn-outline-secondary {
   &:hover {
     background: rgba(255, 255, 255, 0);
   }
+  
   &:active {
     margin: 7px 20px 5px 20px !important;
     box-shadow: 0 0 10px $gray;

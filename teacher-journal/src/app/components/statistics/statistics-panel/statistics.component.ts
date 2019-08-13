@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: "./statistics.component.html",
   styleUrls: ["./statistics.component.scss"]
 })
+
 export class StatisticsComponent implements OnInit {
 
   public ngOnInit(): void {}

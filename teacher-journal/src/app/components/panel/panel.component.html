@@ -1,7 +1,12 @@
+<template #messageWelcome>
+</template>
 <section class="wrapper">
   <header class="header">
-    <div class="header__logo"></div>
-    <h1 class="header__name">{{ "TITLE" | translate }}</h1>
+    <div
+      class="header__logo"
+      (click) = "createComponent(headerName.innerText)"
+      ></div>
+    <h1 #headerName class="header__name">{{ "TITLE" | translate }}</h1>
     <label class="header__language">
       {{ "LANGVIGES" | translate }}
       <select class="header__language-select" #langSelect (change)="translate.use(langSelect.value)">
@@ -21,5 +26,4 @@
     </a>
   </nav>
 </section>
-
 <notification></notification>

@@ -1,10 +1,9 @@
-import { Component, OnInit, NgModule } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { select, Store } from "@ngrx/store";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 
-import { SharedModule } from "../../../shared/shared.module";
 import { selectSubjects } from "src/app/redux/selectors/combine.selectors";
 import { ISubject } from "../../../common/entities/subject";
 import { IState } from "src/app/common/entities/state";
@@ -13,10 +12,6 @@ import { IState } from "src/app/common/entities/state";
   selector: "app-subjects",
   templateUrl: "./subjects-list.component.html",
   styleUrls: ["./subjects-list.component.scss"]
-})
-
-@NgModule({
-  imports: [SharedModule]
 })
 
 export class SubjectsListComponent implements OnInit {

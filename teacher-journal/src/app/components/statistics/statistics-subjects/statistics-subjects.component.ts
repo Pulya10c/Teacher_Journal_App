@@ -1,26 +1,25 @@
-import { Component, NgModule } from "@angular/core";
-import { TreeviewItem } from "ngx-treeview/src/treeview-item";
-import { TreeviewConfig } from "ngx-treeview/src/treeview-config";
-import { selectSubjects, selectDropdown } from "src/app/redux/selectors/combine.selectors";
-import { takeUntil } from "rxjs/operators";
+import { Component } from "@angular/core";
+
 import { select, Store } from "@ngrx/store";
-import { IState } from "src/app/common/entities/state";
-import { ISubject } from "src/app/common/entities/subject";
-import { Subject, Observable } from "rxjs";
-import { TreeviewModule } from "ngx-treeview";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
+
+import { TreeviewConfig } from "ngx-treeview/src/treeview-config";
+import { TreeviewItem } from "ngx-treeview/src/treeview-item";
+
+import { selectSubjects, selectDropdown } from "src/app/redux/selectors/combine.selectors";
+import { setDropdownListDate } from "src/app/redux/actions/dropdown.action";
 import { DropdownService } from "src/app/common/services/dropdown.service";
-import { setDropdownListDate } from 'src/app/redux/actions/dropdown.action';
+import { ISubject } from "src/app/common/entities/subject";
+import { IState } from "src/app/common/entities/state";
 
 @Component({
   selector: "statistics-subjects",
   templateUrl: "./statistics-subjects.component.html",
   styleUrls: ["./statistics-subjects.component.scss"]
 })
-@NgModule({
-  imports: [TreeviewModule, BrowserModule, FormsModule]
-})
+
 export class StatisticsSubjectsComponent {
   private subjects: ISubject[];
   private store: Store<IState>;
@@ -89,10 +88,11 @@ export class StatisticsSubjectsComponent {
   }
 
   public ngOnDestroy(): void {
-    this.store.dispatch(setDropdownListDate({
-      dropdownList: this.dropdownService.setSourceCheckList(this.values)
-    }));
-    console.log(this.dropdownService.setSourceCheckList(this.values));
+    this.store.dispatch(
+      setDropdownListDate({
+        dropdownList: this.dropdownService.setSourceCheckList(this.values)
+      })
+    );
     this.componentDestroyed$.next();
     this.componentDestroyed$.complete();
   }
