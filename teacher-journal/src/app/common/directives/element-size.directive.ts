@@ -12,11 +12,11 @@ export class ElementSizeDirective {
     this.renderer = renderer;
   }
 
-  @HostListener("mouseenter") private onMouseEnter(): void {
+  @HostListener("mouseenter") public onMouseEnter(): void {
     this.renderer.addClass(this.element.nativeElement, "active");
   }
 
-  @HostListener("mouseleave") private onMouseLeave(): void {
+  @HostListener("mouseleave") public onMouseLeave(): void {
     this.renderer.removeClass(this.element.nativeElement, "active");
   }
 

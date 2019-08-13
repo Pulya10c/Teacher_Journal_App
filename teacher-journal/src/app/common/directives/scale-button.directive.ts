@@ -12,11 +12,11 @@ export class ScaleButtonDirective {
     this.renderer = renderer;
   }
 
-  @HostListener("mouseenter") private onMouseEnter(): void {
+  @HostListener("mouseenter") public onMouseEnter(): void {
     this.renderer.addClass(this.buttonSubject.nativeElement, "scale");
   }
 
-  @HostListener("mouseleave") private onMouseLeave(): void {
+  @HostListener("mouseleave") public onMouseLeave(): void {
     this.renderer.removeClass(this.buttonSubject.nativeElement, "scale");
   }
 }

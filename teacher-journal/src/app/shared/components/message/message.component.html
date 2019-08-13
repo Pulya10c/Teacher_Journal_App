@@ -1,18 +1,14 @@
 <div class="container">
-  <h1> {{message}}</h1>
-
-  <input id="modal" type="checkbox" />
-  <label class="modal-button" for="modal">
-    <span>About as!</span>
-  </label>
-  <label class="modal-background" for="modal"></label>
+  <label class="modal-background"></label>
 
   <div class="modal-content">
-    <label class="modal-close" for="modal">&#10005;</label>
-    <h2>{{message}}</h2>
-    <p>
-     {{ABOUT_AS}}
+    <a (click)="close()" class="modal-close">&#10005; </a>
+    <h2 class="modal-content-header">{{ message }}</h2>
+    <p class="modal-content-text">
+      {{ text }}
     </p>
-    <label class="modal-content-button" for="modal">OK</label>
+    <button (click)="close()" class="modal-content-button">
+      OK
+    </button>
   </div>
 </div>

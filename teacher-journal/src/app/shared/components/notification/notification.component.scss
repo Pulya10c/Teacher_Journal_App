@@ -4,7 +4,7 @@
   position: absolute;
 
   .success {
-    background: $gray;
+    background: $grey;
     border-bottom: 5px solid $active-color;
     .notification__icon {
       background: $green;
@@ -16,7 +16,7 @@
   }
 
   .warning {
-    background: $gray;
+    background: $grey;
     border-bottom: 5px solid $active-color;
     .notification__icon {
       background: $red;
@@ -39,17 +39,17 @@
     border-radius: 7px;
     animation: 3s ease-in-out forwards float-in;
     &:hover {
-      background: $gray;
+      background: $grey;
       .notification__close {
         color: $text-color;
         &:hover {
           transform: scale(1.1);
-          background: $gray-dark;
+          background: $grey-dark;
           .notification__close {
             color: $text-color;
             &:hover {
               transform: scale(1.1);
-              background: $gray-dark;
+              background: $grey-dark;
             }
           }
         }

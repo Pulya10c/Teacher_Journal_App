@@ -6,7 +6,7 @@
 
   .statistics {
     margin: 0;
-    border: 0.3rem solid $gray;
+    border: 0.3rem solid $grey;
     border-radius: 1.5rem;
     .statistics__info {
       display: flex;
@@ -17,7 +17,7 @@
       }
       .statistics-control {
         flex: 1;
-        border-right: 0.3rem solid $gray;
+        border-right: 0.3rem solid $grey;
         .statistics-control__navigation {
           display: flex;
           justify-content: center;
@@ -29,9 +29,9 @@
             text-decoration: none;
             color: $text-color;
             flex: 1;
-            border-bottom: 0.3rem solid $gray;
+            border-bottom: 0.3rem solid $grey;
             &:first-child {
-              border-right: 0.3rem solid $gray;
+              border-right: 0.3rem solid $grey;
               border-top-left-radius: 1.1rem;
             }
             &.active {

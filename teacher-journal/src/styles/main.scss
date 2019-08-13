@@ -69,7 +69,7 @@ button.scale {
 .dropdown-menu.show {
   display: block;
   margin-left: 0.5rem;
-  color: $gray;
+  color: $grey;
   overflow: scroll;
   &::-webkit-scrollbar {
     width: 25px;
@@ -120,7 +120,7 @@ button.btn-outline-secondary {
   
   &:active {
     margin: 7px 20px 5px 20px !important;
-    box-shadow: 0 0 10px $gray;
+    box-shadow: 0 0 10px $grey;
   }
 }
 
@@ -136,7 +136,7 @@ input.form-control {
   width: 24.5rem;
   height: 2rem;
   font-size: 1.5rem;
-  color: $gray;
+  color: $grey;
   background-color: $color;
 }
 

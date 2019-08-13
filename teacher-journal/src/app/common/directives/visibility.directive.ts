@@ -20,7 +20,7 @@ export class VisibilityDirective {
     this.renderer = renderer;
   }
 
-  @HostListener("keyup") private onKeyUp(): void {
+  @HostListener("keyup") public onKeyUp(): void {
     if (this.valueMark < 0 || this.valueMark > 10 || this.valueMark === 0) {
       this.renderer.setStyle(this.element.nativeElement, "color", "red");
     }

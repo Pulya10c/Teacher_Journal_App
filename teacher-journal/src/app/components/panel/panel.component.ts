@@ -25,6 +25,8 @@ export class PanelComponent {
   public translate: TranslateService;
   public navigationName: string[] = [];
   public dataService: DataService;
+  public componentRef: ComponentRef<MessageComponent>;
+  public modalCloseComponent: Function;
 
   constructor(translate: TranslateService, dataService: DataService, resolver: ComponentFactoryResolver) {
     this.resolver = resolver;
@@ -32,17 +34,21 @@ export class PanelComponent {
     this.translate = translate;
     this.translate.addLangs(["en", "ru"]);
     this.translate.setDefaultLang("en");
-
+    this.modalCloseComponent = this.closeComponent.bind(this);
     this.dataService.getNamePanel(PANEL_NAVIGATION).subscribe((data: string[]) => (this.navigationName = data));
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|ru/) ? browserLang : "en");
   }
 
   public createComponent(message: string): void {
-    console.dir(message);
     this.entry.clear();
     const factory: ComponentFactory<MessageComponent> = this.resolver.resolveComponentFactory(MessageComponent);
-    const componentRef: ComponentRef<MessageComponent> = this.entry.createComponent(factory);
-    componentRef.instance.message = message;
+    this.componentRef = this.entry.createComponent(factory);
+    this.componentRef.instance.message = message;
+    this.componentRef.instance.modalClose = this.modalCloseComponent;
+  }
+
+  public closeComponent(): void {
+    this.componentRef.destroy();
   }
 }

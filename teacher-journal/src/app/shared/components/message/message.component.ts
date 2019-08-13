@@ -7,6 +7,11 @@ import { ABOUT_AS } from "../../../common/constants/about-as";
   styleUrls: ["./message.component.scss"]
 })
 export class MessageComponent {
+  @Input() public modalClose: Function;
   @Input() public message: string;
-  // constructor() {}
+  public text: string = ABOUT_AS;
+
+  public close(): void {
+    this.modalClose();
+  }
 }
