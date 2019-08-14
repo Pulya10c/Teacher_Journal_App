@@ -4,6 +4,7 @@
   max-width: 1000px;
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: $text-color;
+
     border-color: $text-color;
   }
 
@@ -12,8 +13,9 @@
   }
 
   ::ng-deep .mat-input-element {
-    caret-color: $text-color;
     display: flex;
+
+    caret-color: $text-color;
   }
 
   ::ng-deep .mat-form-field-infix {
@@ -28,8 +30,8 @@
 
   .students__list {
     .students__list-table-container {
-      overflow: scroll;
       max-height: 24rem;
+      overflow: scroll;
       &::-webkit-scrollbar {
         width: 25px;
         height: 25px;
@@ -46,6 +48,7 @@
 
       &::-webkit-scrollbar-thumb {
         height: 12px;
+
         background-color: $grey;
         border: 7px solid $color;
       }
@@ -56,23 +59,30 @@
 
       .students__list-table {
         min-width: 100%;
-        font-size: 1rem;
-        background-color: $text-color;
+
         table-layout: fixed;
+        font-size: 1rem;
+
+        background-color: $text-color;
 
         .students__list-table-cell {
-          text-align: center;
-          border: solid 2px;
-          background-color: $color;
           padding: 7px;
+
+          text-align: center;
+
+          background-color: $color;
+          border: solid 2px;
           &.header {
             position: sticky;
             top: 0;
             z-index: 5;
-            font-weight: 400;
-            background-color: $table-header;
+
             padding: 20px;
+
+            font-weight: 400;
             font-size: 1rem;
+
+            background-color: $table-header;
             cursor: pointer;
             &.active {
               span {
@@ -86,8 +96,8 @@
           display: flex;
           justify-content: center;
           .students__list-table-cell-revers {
-            margin-left: 7px;
             margin-top: -3px;
+            margin-left: 7px;
           }
         }
         span {
@@ -98,13 +108,15 @@
   }
 
   .students__list-add-new-item {
-    color: $color;
-    background-color: $text-color;
     width: 6rem;
     height: 6rem;
     margin: 2.7rem 46%;
-    text-align: center;
+
     font-size: 5rem;
+    text-align: center;
+    color: $color;
+
+    background-color: $text-color;
     border-radius: 50%;
   }
 }

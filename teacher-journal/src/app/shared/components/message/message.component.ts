@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { ABOUT_AS } from "../../../common/constants/about-as";
 
 @Component({
   selector: "app-message",
@@ -9,7 +8,7 @@ import { ABOUT_AS } from "../../../common/constants/about-as";
 export class MessageComponent {
   @Input() public modalClose: Function;
   @Input() public message: string;
-  public text: string = ABOUT_AS;
+  @Input() public textMessage: string;
 
   public close(): void {
     this.modalClose();

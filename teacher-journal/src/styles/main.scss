@@ -5,6 +5,16 @@ html {
 }
 
 html body {
+  max-width: 62.5rem;
+  max-height: fit-content;
+  margin: 1% auto;
+
+  font-size: 1.5rem;
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  color: $text-color;
+
+  background-color: $color;
+
   .cdk-overlay-container {
     top: 30%;
     left: 47%;
@@ -16,14 +26,6 @@ html body {
       }
     }
   }
-
-  max-height: fit-content;
-  font-size: 1.5rem;
-  margin: 1% auto;
-  max-width: 1000px;
-  background-color: $color;
-  color: $text-color;
-  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
 }
 
 .class__invalid {
@@ -40,7 +42,7 @@ button.scale {
 
 .swal-modal {
   background-color: rgba(25, 26, 25, 0.95);
-  border: 3px solid $active-color;
+  border: 0 solid $active-color;
 }
 
 .swal-title {
@@ -58,8 +60,9 @@ button.scale {
 }
 
 .dropdown {
-  width: 27.5rem;
   position: absolute;
+
+  width: 27.5rem;
 }
 
 .dropdown-menu {
@@ -69,8 +72,9 @@ button.scale {
 .dropdown-menu.show {
   display: block;
   margin-left: 0.5rem;
-  color: $grey;
   overflow: scroll;
+
+  color: $grey;
   &::-webkit-scrollbar {
     width: 25px;
     height: 25px;
@@ -87,6 +91,7 @@ button.scale {
 
   &::-webkit-scrollbar-thumb {
     height: 12px;
+
     background-color: rgb(71, 71, 71);
     border: 7px solid $color;
   }
@@ -97,29 +102,33 @@ button.scale {
 }
 
 button.btn-outline-secondary {
-  width: 91% !important;
-  text-align: center !important;
-  text-decoration: none;
-  outline: none;
-  color: white;
-  display: inline-block;
   position: relative;
+
+  display: inline-block;
+  width: 91% !important;
+  margin: 6px 0 6px 20px !important;
   padding: 15px 30px;
+  overflow: hidden;
+
+  text-align: center !important;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 2px;
+
+  background-color: $active-color;
   border: 1px solid;
   border-image: linear-gradient(180deg, $active-color, $active-color, $active-color, $active-color);
   border-image-slice: 1;
-  margin: 6px 0 6px 20px !important;
-  text-transform: uppercase;
-  overflow: hidden;
-  letter-spacing: 2px;
-  background-color: $active-color;
+  outline: none;
 
   &:hover {
     background: rgba(255, 255, 255, 0);
   }
-  
+
   &:active {
     margin: 7px 20px 5px 20px !important;
+
     box-shadow: 0 0 10px $grey;
   }
 }
@@ -135,8 +144,10 @@ button.btn-outline-secondary {
 input.form-control {
   width: 24.5rem;
   height: 2rem;
+
   font-size: 1.5rem;
   color: $grey;
+
   background-color: $color;
 }
 
@@ -158,6 +169,7 @@ input.form-control {
 
   &::-webkit-scrollbar-thumb {
     height: 12px;
+
     background-color: #474747;
     border: 7px solid black;
   }

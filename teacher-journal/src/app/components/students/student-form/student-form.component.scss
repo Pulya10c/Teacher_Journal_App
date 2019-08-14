@@ -1,11 +1,13 @@
 @import "../../../../styles/variables.scss";
 
 .wrapper {
-  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
   margin: 0 auto 3rem;
+
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
 
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: $text-color;
+
     border-color: $text-color;
   }
 
@@ -18,20 +20,22 @@
   }
 
   .students__form-text {
-    font-weight: 400;
     margin-top: 0;
     margin-left: 10%;
+
+    font-weight: 400;
     font-size: 2rem;
   }
 
   .student__form {
     margin: 0 10%;
+
     border: 0.3rem solid $grey;
     border-radius: 1.5rem;
 
     .student__form-table {
-      margin: 1.25rem auto;
       width: 80%;
+      margin: 1.25rem auto;
       .student__form-table-cell {
         width: 90%;
       }
@@ -42,16 +46,18 @@
   }
 
   .student__form-buttons {
-    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
+    margin-bottom: 3rem;
     .student__form-buttons-item {
       width: 20%;
-      font-size: 1.5rem;
-      padding: 1%;
       margin: 0 2%;
-      background-color: $grey;
+      padding: 1%;
+
+      font-size: 1.5rem;
       color: $active-color;
+
+      background-color: $grey;
     }
   }
 }

@@ -77,16 +77,8 @@ export class StudentFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    const controls: {
-      [key: string]: AbstractControl;
-    } = this.studentsForm.controls;
-
     if (this.studentsForm.invalid) {
-      Object
-      .keys(controls)
-      .forEach(
-        controlName => controls[controlName].markAsTouched()
-      );
+      this.studentsForm.markAllAsTouched();
 
       return;
     }

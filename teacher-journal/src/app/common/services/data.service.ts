@@ -38,6 +38,24 @@ export class DataService {
     );
   }
 
+  public getAboutAs(url: string, language: string): Observable<string> {
+    return this.http
+    .get<{en: string; ru: string}>(url)
+    .pipe(
+      map(
+        ( response: {en: string; ru: string} ) => {
+          return response[language];
+        }
+      ),
+      catchError(
+        (err: Observable<any>) => {
+          console.log("data loading error", err);
+          return of([]);
+        }
+      )
+    );
+  }
+
   public getHttp<T>(URL: string, name: string): Observable<T[]> {
     return this.http
     .get<T[]>(URL + `/${name}`)

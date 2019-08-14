@@ -3,44 +3,49 @@
 .wrapper {
   .header {
     display: flex;
-    align-items: flex-end;
-    font-size: 1.5rem;
     justify-content: space-between;
+    align-items: flex-end;
+
+    font-size: 1.5rem;
     .header__name {
-      font-size: 2.3rem;
-      font-weight: 500;
-      margin: 0 0 2rem 0;
       flex: 61%;
+      margin: 0 0 2rem 0;
+
+      font-weight: 500;
+      font-size: 2.3rem;
     }
     .header__logo {
+      flex: 9%;
       width: 5rem;
       height: 5.3rem;
-      flex: 9%;
       margin: 1.5rem 1.3rem 0 6.5rem;
-      background-color: $active-color;
+
       background: linear-gradient(-35deg, transparent 1.25rem, $active-color 0) right,
-        linear-gradient(35deg, transparent 1.25rem, $active-color 0) left;
-      background-size: 50% 100%;
+      linear-gradient(35deg, transparent 1.25rem, $active-color 0) left;
       background-repeat: no-repeat;
+      background-size: 50% 100%;
     }
     .header__language {
-      margin-bottom: 2.6rem;
-      text-align: right;
-      flex: 31%;
-      margin-right: 8.3rem;
       display: flex;
+      flex: 31%;
       justify-content: flex-end;
       align-items: center;
+      margin-right: 8.3rem;
+      margin-bottom: 2.6rem;
+
       font-size: 1.2rem;
+      text-align: right;
       &-select {
-        background-color: $grey;
-        color: $active-color;
         width: 2.9rem;
         height: 1.5rem;
-        border-radius: 0.25rem;
-        font-size: 1rem;
-        font-weight: 600;
         margin-left: 10px;
+
+        font-weight: 600;
+        font-size: 1rem;
+        color: $active-color;
+
+        background-color: $grey;
+        border-radius: 0.25rem;
       }
     }
   }
@@ -49,23 +54,27 @@
 .navigation {
   display: flex;
   justify-content: center;
-  font-size: 1.5rem;
   height: 9.3rem;
+
+  font-size: 1.5rem;
 }
 
 .navigation__item {
-  font-size: 2rem;
-  text-align: center;
-  background-color: $grey;
   margin: 3rem 0.5rem;
   padding: 0.4rem 1.7rem 0.7rem;
-  border-radius: 10px;
-  text-decoration: none;
+
+  font-size: 2rem;
+  text-align: center;
   color: $text-color;
+  text-decoration: none;
+
+  background-color: $grey;
+  border-radius: 10px;
   &.active {
-    background-color: $button-active;
     margin-top: 3.1rem;
     margin-bottom: 2.9rem;
+
+    background-color: $button-active;
   }
 }
 
@@ -73,8 +82,9 @@
   color: $active-color;
   text-decoration: none;
   .active {
-    background-color: $button-active;
     margin-top: 3.1rem;
     margin-bottom: 2.9rem;
+
+    background-color: $button-active;
   }
 }

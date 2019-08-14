@@ -31,74 +31,86 @@
     position: fixed;
     top: 1rem;
     z-index: 10;
+
+    display: block;
     width: 450px;
     height: 120px;
-    margin: 10px 0px;
-    transition: 0.15s ease all;
-    display: block;
+    margin: 10px 0;
+
     border-radius: 7px;
+
+    transition: 0.15s ease all;
     animation: 3s ease-in-out forwards float-in;
     &:hover {
       background: $grey;
       .notification__close {
         color: $text-color;
         &:hover {
-          transform: scale(1.1);
           background: $grey-dark;
+          transform: scale(1.1);
           .notification__close {
             color: $text-color;
             &:hover {
-              transform: scale(1.1);
               background: $grey-dark;
+              transform: scale(1.1);
             }
           }
         }
       }
     }
     .notification__icon {
+      position: relative;
+
+      display: block;
+      float: left;
       width: 120px;
       height: 120px;
-      position: relative;
-      float: left;
-      display: block;
       &:after {
         content: " ";
+        position: absolute;
+        top: calc(50% - 5px);
+        right: -15px;
+
         width: 0;
         height: 0;
-        border-style: solid;
+
+        line-height: 0;
+
         border-width: 0 10px 10px 10px;
-        position: absolute;
-        right: -15px;
-        top: calc(50% - 5px);
+        border-style: solid;
         transform: rotate(90deg);
-        line-height: 0px;
       }
       .icon {
-        font-size: 75px;
         width: 100px;
         height: 100px;
         margin: 10px;
-        text-align: center;
+
+        font-size: 75px;
         line-height: 100px;
+        text-align: center;
       }
     }
     .notification__message {
-      color: $text-color;
-      width: 290px;
-      float: right;
-      padding: 10px 20px;
-      height: calc(100% - 20px);
       position: relative;
+
       display: block;
+      float: right;
+      width: 290px;
+      height: calc(100% - 20px);
+      padding: 10px 20px;
+
+      color: $text-color;
       .notification__message-heading {
         .notification__message-heading-text {
           display: inline-block;
-          color: $text-color;
-          line-height: 1em;
+
           font-size: 20px;
+          line-height: 1em;
+          color: $text-color;
           h3 {
-            font-size: 2rem;
             margin: 2px;
+
+            font-size: 2rem;
           }
         }
       }
@@ -106,21 +118,24 @@
   }
   .notification__close {
     position: absolute;
+    top: 0;
+    right: 0;
+
     padding: 5px;
-    right: 0px;
-    top: 0px;
+
     cursor: pointer;
+
     transition: 0.25s linear all;
   }
   @keyframes float-in {
     0% {
-      opacity: 0;
       transform: translateX(1200px);
+      opacity: 0;
     }
     30%,
     85% {
-      opacity: 1;
       transform: translateX(500px);
+      opacity: 1;
     }
     100% {
       transform: translateX(1200px);

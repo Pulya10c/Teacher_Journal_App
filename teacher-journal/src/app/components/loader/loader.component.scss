@@ -1,27 +1,30 @@
 @import "../../../styles/variables.scss";
 
 html body {
-  margin: 0;
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 
 .loader {
   position: absolute;
-  display: flex;
-  width: 1000px;
-  height: 100%;
-  justify-content: center;
-  background-color: $loader-background;
   z-index: 9;
+
+  display: flex;
+  justify-content: center;
+  width: 55rem;
+  height: 100%;
+
+  background-color: $loader-background;
 }
 
 .app-loading {
   position: relative;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100%;
 }
 
@@ -30,26 +33,30 @@ html body {
     position: absolute;
   }
   .spinner {
-    height: 200px;
-    width: 200px;
-    animation: rotate 2s linear infinite;
-    transform-origin: center center;
     position: static;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
+
+    width: 200px;
+    height: 200px;
     margin: auto;
+
+    transform-origin: center center;
+
+    animation: rotate 2s linear infinite;
   }
 }
 .app-loading {
   .spinner {
     .path {
+      animation: dash 1.5s ease-in-out infinite;
+
+      stroke: #dddddd;
       stroke-dasharray: 1, 200;
       stroke-dashoffset: 0;
-      animation: dash 1.5s ease-in-out infinite;
       stroke-linecap: round;
-      stroke: #ddd;
     }
   }
 }

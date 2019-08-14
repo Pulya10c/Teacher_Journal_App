@@ -76,14 +76,8 @@ export class SubjectFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    const controls: any = this.subjectForm.controls;
-
     if (this.subjectForm.invalid) {
-      Object
-      .keys(controls)
-      .forEach(
-        controlName => controls[controlName].markAsTouched()
-      );
+      this.subjectForm.markAllAsTouched();
 
       return;
     }

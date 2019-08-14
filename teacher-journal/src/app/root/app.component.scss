@@ -1,13 +1,14 @@
 @import "../../styles/variables.scss";
 
 .wrapper {
-  margin: auto;
   max-width: 1000px;
+  margin: auto;
+
   background-color: $color;
 }
 
 .container {
-  margin: 0 auto;
   max-width: 900px;
   height: 100%;
+  margin: 0 auto;
 }

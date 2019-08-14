@@ -26,26 +26,31 @@
   ::ng-deep .mat-input-element :last-child {
     margin-left: 15%;
     padding: 5%;
-    border: 3px solide;
+
     font-size: 3rem;
+
+    border: 3px solide;
   }
 
   .subject-page__date-button-add-new-date {
-    background-color: $active-color;
-    font-size: 1.9rem;
-    margin: 0 0 1% 55%;
     width: 2.1rem;
     height: 2.1rem;
+    margin: 0 0 1% 55%;
+
+    font-size: 1.9rem;
+
+    background-color: $active-color;
     ::ng-deep span {
       padding: 0;
     }
   }
   .subjects__list-text {
-    font-size: 2rem;
-    font-weight: 400;
     margin-top: 0;
-    margin-left: 9%;
     margin-bottom: 0;
+    margin-left: 9%;
+
+    font-weight: 400;
+    font-size: 2rem;
   }
 
   .subject-page__date {
@@ -57,8 +62,8 @@
   }
 
   .subject-page__form-table-container {
-    overflow: scroll;
     max-height: 22rem;
+    overflow: scroll;
     &::-webkit-scrollbar {
       width: 25px;
       height: 25px;
@@ -75,6 +80,7 @@
 
     &::-webkit-scrollbar-thumb {
       height: 12px;
+
       background-color: #474747;
       border: 7px solid black;
     }
@@ -83,24 +89,30 @@
       display: none;
     }
     .subject-page__form-table {
-      background-color: $text-color;
       width: 100%;
+
+      background-color: $text-color;
       span {
         visibility: hidden;
       }
       .subject-page__form-table-cell {
-        text-align: center;
-        border: solid 2px;
-        background-color: $color;
         padding: 7px;
+
+        text-align: center;
+
+        background-color: $color;
+        border: solid 2px;
         &.header {
           position: sticky;
           top: 0;
           z-index: 5;
-          background-color: #1c3549;
+
           padding: 10px;
-          font-size: 1rem;
+
           font-weight: 200;
+          font-size: 1rem;
+
+          background-color: #1c3549;
           &.date {
             cursor: pointer;
           }
@@ -119,42 +131,47 @@
   .fix {
     position: sticky;
     z-index: 1;
+
     width: 10%;
   }
 
   .subject-page__form-info {
-    margin: 3rem 0;
     height: 100%;
+    margin: 3rem 0;
     .subject-page__form-info-theacher {
-      margin: 0 0 8% 9%;
       display: flex;
       align-items: center;
+      margin: 0 0 8% 9%;
       .subject-page__form-info-theacher-label {
         font-size: 2rem;
         vertical-align: middle;
       }
       .subject-page__form-info-theacher-name {
-        margin-left: 5%;
         width: 50%;
+        margin-left: 5%;
         padding: 1%;
-        border: 5px solid grey;
+
         font-size: 2rem;
         color: $text-color;
+
         background-color: $color;
+        border: 5px solid grey;
       }
     }
 
     .subject-page__form-info-buttons {
-      margin-bottom: 5rem;
       display: flex;
       justify-content: center;
+      margin-bottom: 5rem;
       .item {
         width: 20%;
-        font-size: 1.5rem;
-        padding: 1%;
         margin: 0 2%;
-        background-color: gray;
+        padding: 1%;
+
+        font-size: 1.5rem;
         color: $active-color;
+
+        background-color: gray;
       }
     }
   }

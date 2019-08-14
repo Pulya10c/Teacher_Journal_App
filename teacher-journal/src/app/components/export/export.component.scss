@@ -1,27 +1,28 @@
 @import "../../../styles/variables.scss";
 
 .wrapper {
-  margin-top: 9rem;
-  height: 100%;
   display: flex;
   justify-content: space-evenly;
+  height: 100%;
+  margin-top: 9rem;
 
   .export-pdf-img {
+    border-radius: 1rem;
     &:hover {
       margin-top: 0.2rem;
     }
     &:active {
-      box-shadow: 0 0 10px $grey;
+      box-shadow: 0 0 0.8rem $grey;
     }
   }
 
   .export-excel-img {
+    border-radius: 1rem;
     &:hover {
       margin-top: 0.2rem;
-      size: 105%;
     }
     &:active {
-      box-shadow: 0 0 10px $grey;
+      box-shadow: 0 0 0.8rem $grey;
     }
   }
 }

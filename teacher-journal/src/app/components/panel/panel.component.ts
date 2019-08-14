@@ -1,14 +1,8 @@
-import { Component,
-  ViewContainerRef,
-  ViewChild,
-  ComponentFactory,
-  ComponentRef,
-  ComponentFactoryResolver
-} from "@angular/core";
+import { Component, ViewContainerRef, ViewChild, ComponentFactory, ComponentRef, ComponentFactoryResolver } from "@angular/core";
 
 import { TranslateService } from "@ngx-translate/core";
 
-import { PANEL_NAVIGATION } from "src/app/common/constants/data-constants";
+import { PANEL_NAVIGATION, ABOUT_AS } from "src/app/common/constants/data-constants";
 import { DataService } from "src/app/common/services/data.service";
 import { MessageComponent } from "src/app/shared/components/message/message.component";
 
@@ -17,7 +11,6 @@ import { MessageComponent } from "src/app/shared/components/message/message.comp
   templateUrl: "./panel.component.html",
   styleUrls: ["./panel.component.scss"]
 })
-
 export class PanelComponent {
   @ViewChild("messageWelcome", { read: ViewContainerRef, static: true }) private entry: ViewContainerRef;
   private resolver: ComponentFactoryResolver;
@@ -42,10 +35,13 @@ export class PanelComponent {
 
   public createComponent(message: string): void {
     this.entry.clear();
-    const factory: ComponentFactory<MessageComponent> = this.resolver.resolveComponentFactory(MessageComponent);
-    this.componentRef = this.entry.createComponent(factory);
-    this.componentRef.instance.message = message;
-    this.componentRef.instance.modalClose = this.modalCloseComponent;
+    this.dataService.getAboutAs(ABOUT_AS, this.translate.store.currentLang).subscribe((data: string) => {
+      const factory: ComponentFactory<MessageComponent> = this.resolver.resolveComponentFactory(MessageComponent);
+      this.componentRef = this.entry.createComponent(factory);
+      this.componentRef.instance.message = message;
+      this.componentRef.instance.modalClose = this.modalCloseComponent;
+      this.componentRef.instance.textMessage = data;
+    });
   }
 
   public closeComponent(): void {
