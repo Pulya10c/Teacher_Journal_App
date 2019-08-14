@@ -3,20 +3,20 @@
 .wrapper {
   margin: 0 auto 3rem;
 
-  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  font-family: $fond;
 
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-    color: $text-color;
+    color: $white;
 
-    border-color: $text-color;
+    border-color: $white;
   }
 
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
-    background-color: $text-color;
+    background-color: $white;
   }
 
   ::ng-deep .mat-input-element {
-    caret-color: $text-color;
+    caret-color: $white;
   }
 
   .students__form-text {

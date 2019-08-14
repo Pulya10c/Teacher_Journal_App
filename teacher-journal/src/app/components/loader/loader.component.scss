@@ -39,8 +39,8 @@ html body {
     bottom: 0;
     left: 0;
 
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     margin: auto;
 
     transform-origin: center center;
@@ -74,10 +74,10 @@ html body {
   }
   50% {
     stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
+    stroke-dashoffset: -2.1875rem;
   }
   100% {
     stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
+    stroke-dashoffset: -7.75rem
   }
 }

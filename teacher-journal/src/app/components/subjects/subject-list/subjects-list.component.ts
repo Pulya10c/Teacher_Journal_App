@@ -15,9 +15,9 @@ import { IState } from "src/app/common/entities/state";
 })
 
 export class SubjectsListComponent implements OnInit {
-  private subjects: ISubject[] = [];
   private store: Store<IState>;
   private componentDestroyed: Subject<any> = new Subject();
+  public subjects: ISubject[] = [];
 
   constructor(store: Store<IState>) {
     this.store = store;

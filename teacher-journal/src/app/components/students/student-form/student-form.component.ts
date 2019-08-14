@@ -16,7 +16,6 @@ import { IState } from "src/app/common/entities/state";
 })
 
 export class StudentFormComponent implements OnInit {
-  private studentsForm: FormGroup;
   private studentFormBuilder: FormBuilder;
   private router: Router;
   private changeService: ChangeService;
@@ -24,6 +23,7 @@ export class StudentFormComponent implements OnInit {
   private notificationService: NotificationService;
   private activateRouter: ActivatedRoute;
   private store: Store<IState>;
+  public studentsForm: FormGroup;
 
   constructor(
     fb: FormBuilder,

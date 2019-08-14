@@ -16,7 +16,8 @@
   }
 
   ::ng-deep .mat-input-element {
-    caret-color: $text-color;
+    caret-color: $white;
+    text-align: center;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -29,7 +30,7 @@
 
     font-size: 3rem;
 
-    border: 3px solide;
+    border: 0.1875rem solide;
   }
 
   .subject-page__date-button-add-new-date {
@@ -65,8 +66,8 @@
     max-height: 22rem;
     overflow: scroll;
     &::-webkit-scrollbar {
-      width: 25px;
-      height: 25px;
+      width: 1.5625rem;
+      height: 1.5625rem;
     }
 
     & ::-webkit-scrollbar-button {
@@ -74,15 +75,15 @@
     }
 
     &::-webkit-scrollbar-track {
-      width: 50px;
-      height: 50px;
+      width: 3.125‬rem;
+      height: 3.125‬rem;
     }
 
     &::-webkit-scrollbar-thumb {
-      height: 12px;
+      height: 0.75rem;
 
-      background-color: #474747;
-      border: 7px solid black;
+      background-color: $scrollbar-thumb;
+      border: 7px solid $black;
     }
 
     &::-webkit-scrollbar-corner {
@@ -91,28 +92,28 @@
     .subject-page__form-table {
       width: 100%;
 
-      background-color: $text-color;
+      background-color: $white;
       span {
         visibility: hidden;
       }
       .subject-page__form-table-cell {
-        padding: 7px;
+        padding: 0.4375‬rem;
 
         text-align: center;
 
-        background-color: $color;
-        border: solid 2px;
+        background-color: $black;
+        border: solid 0.125rem;
         &.header {
           position: sticky;
           top: 0;
           z-index: 5;
 
-          padding: 10px;
+          padding: 0.625rem;
 
           font-weight: 200;
           font-size: 1rem;
 
-          background-color: #1c3549;
+          background-color: $table-header;
           &.date {
             cursor: pointer;
           }
@@ -137,7 +138,7 @@
 
   .subject-page__form-info {
     height: 100%;
-    margin: 3rem 0;
+    margin: 3rem 0 0;
     .subject-page__form-info-theacher {
       display: flex;
       align-items: center;
@@ -152,10 +153,10 @@
         padding: 1%;
 
         font-size: 2rem;
-        color: $text-color;
+        color: $white;
 
-        background-color: $color;
-        border: 5px solid grey;
+        background-color: $black;
+        border: 0.3125rem solid $grey;
       }
     }
 
@@ -171,7 +172,7 @@
         font-size: 1.5rem;
         color: $active-color;
 
-        background-color: gray;
+        background-color: $grey;
       }
     }
   }

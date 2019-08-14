@@ -31,13 +31,13 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
   private changeService: ChangeService;
   private notificationService: NotificationService;
   private dateClick: number;
-  private isChangesMade: boolean = false;
-  private isMarksCorrect: boolean = true;
   private router: Router;
-  private subjectName: string;
   private subjects: ISubject[] = [];
   private componentDestroyed$: Subject<any> = new Subject();
-  private subject: ISubject = {
+  public newDate: number;
+  public isChangesMade: boolean = false;
+  public isMarksCorrect: boolean = true;
+  public subject: ISubject = {
     id: "",
     index: 0,
     nameSubject: "",
@@ -46,6 +46,7 @@ export class SubjectPageComponent implements OnInit, IComponentCanDeactivate {
     description: "",
     marks: []
   };
+  public subjectName: string;
   public students: IStudent[] = [];
   public subjectCopy: ISubject;
   public headerNameStudents: string[] = HEDER_NAME_SUBJECT_PAGE;

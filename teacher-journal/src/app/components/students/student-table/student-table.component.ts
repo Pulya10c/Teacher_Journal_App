@@ -23,14 +23,14 @@ import { IState } from "src/app/common/entities/state";
 
 export class StudentTableComponent implements OnInit {
   private students: IStudent[] = [];
-  private sortedStudents: IStudent[] = [];
   private storageService: StorageService;
-  private order: string = "index";
-  private isReverse: boolean = false;
   private orderPipe: OrderPipe;
   private searchInfo$: Subject<string> = new Subject<string>();
   private componentDestroyed$: Subject<any> = new Subject();
   private store: Store<IState>;
+  public order: string = "index";
+  public isReverse: boolean = false;
+  public sortedStudents: IStudent[] = [];
   public searchStudent: string = "";
   public searchInputText: string;
   public nextIndex: number = this.sortedStudents.length;

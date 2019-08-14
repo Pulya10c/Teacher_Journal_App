@@ -1,16 +1,19 @@
-$text-color: rgb(255, 255, 255);
+$white: rgb(255, 255, 255);
 $active-color: rgb(255, 140, 0);;
-$color: rgb(0, 0, 0);;
-$main-color: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
 $grey: rgb(128, 128, 128);
 $grey-dark: rgba(55, 55, 55, 0.9);
 $loader-background: rgba(0, 0, 0, 0.65);
 $green: rgba(0, 125, 0, 0.8);
 $red: rgba(200, 0, 0, 0.8);
 $table-header: rgb(27, 52, 71);
-$button-active: rgb(104, 104, 104);
-$main: rgb(128, 128, 128);
+$button-active-bg: rgb(104, 104, 104);
+$background-html: rgb(128, 128, 128);
 $wheat: rgb(245, 222, 179);
-$color-1: rgb(22, 160, 133);
-$color-2: rgb(41, 128, 185);
 $light-black: rgb(51, 51, 51);
+$swal-overlay: rgba(65, 65, 65, 0.65);
+$swal-modal: rgba(25, 26, 25, 0.95);
+$scrollbar-thumb: rgb(71, 71, 71);
+$black-transparent: rgba(255, 255, 255, 0);
+
+$fond: Roboto, "Segoe UI", Tahoma, sans-serif;

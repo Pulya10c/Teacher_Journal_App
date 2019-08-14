@@ -18,13 +18,13 @@ import { IState } from "src/app/common/entities/state";
 })
 
 export class SubjectFormComponent implements OnInit {
-  private subjectForm: FormGroup;
   private store: Store<IState>;
   private subjectsFormBuilder: FormBuilder;
   private router: Router;
   private changeService: ChangeService;
   private notificationService: NotificationService;
   private subjects: ISubject[];
+  public subjectForm: FormGroup;
 
   constructor(
     fb: FormBuilder,

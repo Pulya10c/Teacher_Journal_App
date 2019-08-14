@@ -18,7 +18,7 @@
         matInput
         class="date"
         [matDatepicker]="pickerInput"
-        [(ngModel)]="newDate2"
+        [(ngModel)]="newDate"
         (ngModelChange)="onChangeDate($event)"
       />
       <mat-datepicker #pickerInput></mat-datepicker>
@@ -97,7 +97,7 @@
         type="text"
         autocomplete="off"
         [(ngModel)]="subject.teacher"
-        (ngModelChange)="modelChanged()"
+        (ngModelChange)="modelChanged(null, null, null)"
       />
     </div>
     <div class="subject-page__form-info-buttons">

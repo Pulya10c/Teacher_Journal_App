@@ -14,6 +14,7 @@
       font-weight: 500;
       font-size: 2.3rem;
     }
+
     .header__logo {
       flex: 9%;
       width: 5rem;
@@ -21,10 +22,15 @@
       margin: 1.5rem 1.3rem 0 6.5rem;
 
       background: linear-gradient(-35deg, transparent 1.25rem, $active-color 0) right,
-      linear-gradient(35deg, transparent 1.25rem, $active-color 0) left;
+        linear-gradient(35deg, transparent 1.25rem, $active-color 0) left;
       background-repeat: no-repeat;
       background-size: 50% 100%;
     }
+
+    div[contentEditable="true"]:empty:not(:focus):before {
+      content: attr(data-text);
+    }
+
     .header__language {
       display: flex;
       flex: 31%;
@@ -38,7 +44,7 @@
       &-select {
         width: 2.9rem;
         height: 1.5rem;
-        margin-left: 10px;
+        margin-left: 0.625rem;
 
         font-weight: 600;
         font-size: 1rem;
@@ -65,16 +71,16 @@
 
   font-size: 2rem;
   text-align: center;
-  color: $text-color;
+  color: $white;
   text-decoration: none;
 
   background-color: $grey;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   &.active {
     margin-top: 3.1rem;
     margin-bottom: 2.9rem;
 
-    background-color: $button-active;
+    background-color: $button-active-bg;
   }
 }
 
@@ -85,6 +91,6 @@
     margin-top: 3.1rem;
     margin-bottom: 2.9rem;
 
-    background-color: $button-active;
+    background-color: $button-active-bg;
   }
 }

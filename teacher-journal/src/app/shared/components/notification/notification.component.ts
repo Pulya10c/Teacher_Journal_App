@@ -8,8 +8,8 @@ import { NotificationService } from "../../../common/services/notification.servi
   styleUrls: ["./notification.component.scss"]
 })
 export class NotificationComponent {
-  private notifications: Set<NotificationModel> = new Set<NotificationModel>();
   private _notificationService: NotificationService;
+  public notifications: Set<NotificationModel> = new Set<NotificationModel>();
 
   constructor(_notificationService: NotificationService) {
     this._notificationService = _notificationService;

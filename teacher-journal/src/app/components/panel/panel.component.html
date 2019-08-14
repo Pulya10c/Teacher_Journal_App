@@ -3,9 +3,10 @@
 <section class="wrapper">
   <header class="header">
     <div
+      title= "Click to see about us"
       class="header__logo"
-      (click) = "createComponent(headerName.innerText)"
-      ></div>
+      (click) = "createComponent(headerName.innerText)">
+    </div>
     <h1 #headerName class="header__name">{{ "TITLE" | translate }}</h1>
     <label class="header__language">
       {{ "LANGVIGES" | translate }}

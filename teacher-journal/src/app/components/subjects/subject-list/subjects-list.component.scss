@@ -2,10 +2,10 @@
 
 .subjects {
   font-size: 1.5rem;
-  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  font-family: $fond;
 
   .subjects__list {
-    max-width: 750px;
+    max-width: 46.875‬rem;
     margin: 0 9%;
 
     .subjects__list-text {
@@ -35,13 +35,13 @@
 
     .subjects__list-add-new-item {
       height: 6rem;
-      margin: 0 45% 53px;
+      margin: 0 45% 3.5rem;
 
       font-size: 5rem;
       text-align: center;
-      color: $color;
+      color: $black;
 
-      background-color: $text-color;
+      background-color: $white;
       border-radius: 50%;
 
       transition: all 1s ease-out;
