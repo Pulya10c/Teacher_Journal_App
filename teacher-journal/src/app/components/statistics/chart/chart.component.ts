@@ -60,13 +60,11 @@ export class ChartComponent {
               (average, num, idx, arr) => {
                 return average + num / arr.length;
               },
-              // tslint:disable-next-line: align
               0
             )
             .toFixed(0)
         ];
         return acc;
-        // tslint:disable-next-line: align
       },
       { name: [], marks: [] }
     );

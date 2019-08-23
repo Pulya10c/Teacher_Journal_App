@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { pipe } from "rxjs";
+
 import { IStudent } from "../entities/student";
 
 @Pipe({
@@ -9,11 +9,11 @@ export class SearchPipe implements PipeTransform {
   public transform(students: IStudent[], searchStudent: string): IStudent[] {
     const empty: IStudent[] = [
       {
-        lastName: "",
-        name: "",
-        address: "",
-        about: "",
-        id: "",
+        lastName: undefined,
+        name: undefined,
+        address: undefined,
+        about: undefined,
+        id: undefined,
         index: -1
       }
     ];

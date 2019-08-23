@@ -1,6 +1,6 @@
 @import "../../../../styles/variables.scss";
 
-a {
+.modal-close {
   cursor: pointer;
 
   transition: all 250ms;
@@ -15,7 +15,6 @@ a {
   height: 100vh;
   margin: 0 auto;
   padding: 3.125‬rem;
-
   color: $light-black;
 
   .modal-content {
@@ -63,7 +62,7 @@ a {
     padding: 2.5rem;
 
     background-color: $white;
-    border-radius: 30.1875‬rem;
+    border-radius: 1rem;
     transform: scale(1);
     visibility: visible;
     cursor: auto;
@@ -91,7 +90,7 @@ a {
       }
     }
 
-    p {
+    .modal-content-text {
       position: relative;
 
       margin: 0 0 1.25rem 0;

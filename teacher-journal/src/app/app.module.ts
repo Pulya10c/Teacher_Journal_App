@@ -13,6 +13,8 @@ import { StoreModule } from "@ngrx/store";
 
 import { ChartsModule } from "ng2-charts";
 
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+
 import { LoaderComponent } from "./components/loader/loader.component";
 import { SharedModule } from "./shared/shared.module";
 import { NotificationComponent } from "./shared/components/notification/notification.component";
@@ -68,7 +70,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     StatisticsSubjectsComponent,
     StatisticsStudentsComponent,
     ChartComponent,
-    ElementSizeDirective,
+    ElementSizeDirective
   ],
 
   imports: [
@@ -88,9 +90,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       }
     }),
     StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
     EffectsModule.forRoot([StudentsEffects, SubjectsEffects]),
     TreeviewModule.forRoot(),
-    SharedModule,
+    SharedModule
   ],
 
   providers: [

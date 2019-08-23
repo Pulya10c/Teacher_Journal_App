@@ -1,15 +1,25 @@
 import { Injectable } from "@angular/core";
-import { CanActivate } from "@angular/router";
+import { CanActivate, Router } from "@angular/router";
 import { Observable } from "rxjs";
-
-import runModalDialog from "src/app/common/helpers/modal-form-guard";
 
 @Injectable()
 export class SubjectPageGuard implements CanActivate {
+  public router: Router;
+  public isLoggerIn: boolean | undefined;
+  constructor(router: Router) {
+    this.router = router;
+  }
+
   public canActivate(): Observable<boolean> | boolean {
-    return runModalDialog(
-      "Only for teachers!",
-      "Here may you are watching and correcting the marks of the students. Are you sure you want to watch?"
-    );
+    this.isLoggerIn = localStorage.getItem("Jurnal_App_access")
+    ? localStorage.getItem("Jurnal_App_access") === "true" ? true : false
+    : undefined;
+
+    if (this.isLoggerIn) {
+      return true;
+    } else {
+      this.router.navigate(["/"]);
+      return false;
+    }
   }
 }

@@ -938,7 +938,49 @@
       "nameSubject": "History",
       "teacher": "ms. Potapova",
       "description": "cool",
-      "marks": []
+      "marks": [
+        {
+          "date": 1566248400000,
+          "students": [
+            {
+              "id": "5d08bea47e85e353cadda16c",
+              "mark": 1
+            },
+            {
+              "id": "5d08bea43f5f27fbe9f5dff9",
+              "mark": 3
+            },
+            {
+              "id": "5d08bea4f975b3057ef940df",
+              "mark": 4
+            },
+            {
+              "id": "5d08bea4a276efdd10e3776c",
+              "mark": 5
+            },
+            {
+              "id": "5d08bea44c4eaff0331de0ba",
+              "mark": 8
+            },
+            {
+              "id": "5d08bea47d78c8449f01c08c",
+              "mark": 3
+            },
+            {
+              "id": "df49d460-a499-11e9-b91b-3bbbae8333b6",
+              "mark": 5
+            },
+            {
+              "id": "0ed2c810-aeb1-11e9-a09b-3dc3fc5d6b09",
+              "mark": 8
+            },
+            {
+              "id": "3d7d0a40-aeb1-11e9-83ed-3747c1ac6a27",
+              "mark": 8
+            }
+          ]
+        }
+      ]
     }
   ]
 }

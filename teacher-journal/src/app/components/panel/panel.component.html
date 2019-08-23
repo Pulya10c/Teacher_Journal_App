@@ -1,29 +1,28 @@
-<template #messageWelcome>
-</template>
+<template #messageWelcome> </template>
 <section class="wrapper">
   <header class="header">
-    <div
-      title= "Click to see about us"
-      class="header__logo"
-      (click) = "createComponent(headerName.innerText)">
-    </div>
-    <h1 #headerName class="header__name">{{ "TITLE" | translate }}</h1>
-    <label class="header__language">
-      {{ "LANGVIGES" | translate }}
+    <div title="Click to see about us" class="header__logo" (click)="createFactoryComponent(headerName.innerText)"></div>
+    <h1 #headerName class="header__name">{{ "title" | translate }}</h1>
+    <label class="header__language"
+      >{{ "langviges" | translate }}:
       <select class="header__language-select" #langSelect (change)="translate.use(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
       </select>
+    </label>
+    <label for = "checkbox" class="header__you-are-teacher">
+      {{ "checkTeacher" | translate }} 
+      <input id="checkbox" class = "header__you-are-teacher-input" type="checkbox" [(ngModel)]="isCheckbox" data-md-icheck (change)="toggleVisibility($event)" />
     </label>
   </header>
 
   <nav class="navigation">
     <a
-      elementSize 
+      elementSize
       *ngFor="let name of navigationName"
       class="navigation__item"
       [routerLink]="'/' + name"
       routerLinkActive="navigation__item-active"
-      >{{ name | uppercase | translate }}
+      >{{ name | translate }}
     </a>
   </nav>
 </section>

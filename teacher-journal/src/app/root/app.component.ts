@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    localStorage.removeItem("Jurnal_App_access");
     this.store.dispatch(updateStudents());
     this.store.dispatch(updateSubjects());
     this.store.dispatch(setDropdownListDate({ dropdownList: [] }));

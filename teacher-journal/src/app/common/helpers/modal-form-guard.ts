@@ -1,7 +1,7 @@
 import swal from "sweetalert";
 import { Observable, from } from "rxjs";
 
-export default function runModalDialog(title: string, text: string): Observable<boolean> | boolean {
+export default function runModalDialog(title: string, text: string): Observable<boolean> {
 
   const promis: Promise<boolean> = swal({
     title,

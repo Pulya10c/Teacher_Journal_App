@@ -2,12 +2,12 @@
   <label class="modal-background"></label>
 
   <div class="modal-content">
-    <a (click)="close()" class="modal-close">&#10005; </a>
+    <a (click)="onClose()" class="modal-close">&#10005; </a>
     <h2 class="modal-content-header">{{ message }}</h2>
     <p class="modal-content-text">
       {{ textMessage }}
     </p>
-    <button (click)="close()" class="modal-content-button">
+    <button (click)="onClose()" class="modal-content-button">
       OK
     </button>
   </div>

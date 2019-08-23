@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from "@angular/core/testing";
+import { TestBed, inject } from "@angular/core/testing";
 
 import { SubjectPageGuard } from "./subject-page.guard";
 
@@ -10,6 +10,7 @@ describe("SubjectPageGuard", () => {
   });
 
   it("should ...", inject([SubjectPageGuard], (guard: SubjectPageGuard) => {
-    expect(guard).toBeTruthy();
+    console.log(guard.canActivate());
+    expect(guard.canActivate());
   }));
 });
