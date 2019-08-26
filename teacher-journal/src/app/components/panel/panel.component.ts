@@ -32,6 +32,7 @@ export class PanelComponent implements OnInit {
   }
 
   public init(): void {
+    localStorage.setItem("Jurnal_App_access", "false" );
     this.modalCloseComponent = this.closeComponent.bind(this);
     this.dataService.getNamePanel(PANEL_NAVIGATION).subscribe((data: string[]) => (this.navigationName = data));
   }

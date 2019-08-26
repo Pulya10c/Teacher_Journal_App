@@ -5,20 +5,17 @@ import { Observable } from "rxjs";
 @Injectable()
 export class SubjectPageGuard implements CanActivate {
   public router: Router;
-  public isLoggerIn: boolean | undefined;
+  public authTeacher: boolean;
   constructor(router: Router) {
     this.router = router;
   }
 
   public canActivate(): Observable<boolean> | boolean {
-    this.isLoggerIn = localStorage.getItem("Jurnal_App_access")
-    ? localStorage.getItem("Jurnal_App_access") === "true" ? true : false
-    : undefined;
-
-    if (this.isLoggerIn) {
+    this.authTeacher = localStorage.getItem("Jurnal_App_access") === "true" ? true : false;
+    if (this.authTeacher) {
       return true;
     } else {
-      this.router.navigate(["/"]);
+      this.router.navigate(["/forbidden"]);
       return false;
     }
   }

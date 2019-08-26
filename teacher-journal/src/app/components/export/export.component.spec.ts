@@ -31,13 +31,13 @@ describe("ExportComponent", () => {
   it("should have relevant icon pdf in tags", () => {
     pdfDE = fixture.debugElement.query(By.css(".export-pdf-img"));
     elementPdf = pdfDE.nativeElement;
-    expect(elementPdf.src).toContain("/assets/PDG-icon-2.png");
+    expect(elementPdf.src).toContain("/pdf-icon.png");
   });
 
   it("should have relevant icon excel in tags", () => {
     excelDE = fixture.debugElement.query(By.css(".export-excel-img"));
     elementExcel = excelDE.nativeElement;
-    expect(elementExcel.src).toContain("/assets/Microsoft-Excel-2010-icon.png");
+    expect(elementExcel.src).toContain("/xlsx-icon.png");
   });
 
 });

@@ -13,6 +13,7 @@ import { ExitSubjectPageGuard } from "./common/guards/exit-subject-page.guard";
 import { StatisticsSubjectsComponent } from "./components/statistics/statistics-subjects/statistics-subjects.component";
 import { StatisticsStudentsComponent } from "./components/statistics/statistics-students/statistics-students.component";
 import { StatisticsInfoComponent } from "./components/statistics/statistics-info/statistics-info.component";
+import { ForbidComponent } from "./shared/components/forbid/forbid.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "students", pathMatch: "full" },
@@ -29,23 +30,18 @@ const routes: Routes = [
   {
     path: "statistics",
     component: StatisticsComponent,
-    children:
-      [
-        { path: "", redirectTo: "students", pathMatch: "full" },
-        { path: "subjects", component: StatisticsSubjectsComponent },
-        { path: "students", component: StatisticsStudentsComponent, children:
-          [
-            { path: ":name", component: StatisticsInfoComponent }
-          ]
-        }
-      ]
+    children: [
+      { path: "", redirectTo: "students", pathMatch: "full" },
+      { path: "subjects", component: StatisticsSubjectsComponent },
+      { path: "students", component: StatisticsStudentsComponent, children: [{ path: ":name", component: StatisticsInfoComponent }] }
+    ]
   },
-  { path: "export", component: ExportComponent }
+  { path: "export", component: ExportComponent },
+  { path: "forbidden", component: ForbidComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
 export class AppRoutingModule {}

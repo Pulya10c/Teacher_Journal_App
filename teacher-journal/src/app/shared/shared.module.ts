@@ -7,26 +7,12 @@ import { MatNativeDateModule } from "@angular/material";
 import { MessageComponent } from "./components/message/message.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { ForbidComponent } from "./components/forbid/forbid.component";
 
 @NgModule({
-  declarations: [
-    MessageComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
-  exports: [
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MessageComponent,
-  ],
-  entryComponents: [
-    MessageComponent
-  ]
+  declarations: [MessageComponent, ForbidComponent],
+  imports: [CommonModule, FormsModule],
+  exports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MessageComponent],
+  entryComponents: [MessageComponent]
 })
-export class SharedModule {
-}
+export class SharedModule {}

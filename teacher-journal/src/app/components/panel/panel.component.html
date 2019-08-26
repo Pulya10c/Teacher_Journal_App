@@ -10,11 +10,10 @@
       </select>
     </label>
     <label for = "checkbox" class="header__you-are-teacher">
-      {{ "checkTeacher" | translate }} 
       <input id="checkbox" class = "header__you-are-teacher-input" type="checkbox" [(ngModel)]="isCheckbox" data-md-icheck (change)="toggleVisibility($event)" />
+      <span class="header__you-are-teacher-text">{{ "checkTeacher" | translate }}</span>
     </label>
   </header>
-
   <nav class="navigation">
     <a
       elementSize
