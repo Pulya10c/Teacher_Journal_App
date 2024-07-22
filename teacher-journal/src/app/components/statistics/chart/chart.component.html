@@ -1,0 +1,17 @@
+<div 
+  class="student-chart" 
+  style="display: block;"
+>
+  <canvas baseChart
+    class="student-chart-line"
+    [data]="pieChartData"
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [legend]="pieChartLegend"
+    [labels]="pieChartLabels"
+    width="100" 
+    height="100"
+    (click) = "onIsViewLegend()"
+    >
+  </canvas>
+</div>

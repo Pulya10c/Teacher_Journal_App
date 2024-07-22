@@ -1,0 +1,156 @@
+@import "./variables.scss";
+
+html {
+  background-color: #808080;
+}
+
+html body {
+  .cdk-overlay-container {
+    top: 30%;
+    left: 47%;
+    .cdk-overlay-connected-position-bounding-box {
+      top: 32%;
+      left: 60%;
+      .cdk-overlay-pane.mat-datepicker-popup {
+        top: 0;
+      }
+    }
+  }
+
+  max-height: fit-content;
+  font-size: 1.5rem;
+  margin: 1% auto;
+  max-width: 1000px;
+  background-color: $color;
+  color: $text-color;
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+}
+
+.class__invalid {
+  color: red;
+}
+
+button.scale {
+  transform: scale(1.01);
+}
+
+.swal-overlay {
+  background-color: rgba(65, 65, 65, 0.65);
+}
+
+.swal-modal {
+  background-color: rgba(25, 26, 25, 0.95);
+  border: 3px solid $active-color;
+}
+
+.swal-title {
+  font-size: 2rem;
+  color: wheat;
+}
+
+.swal-text {
+  font-size: 1.4rem;
+  color: wheat;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.dropdown {
+  width: 27.5rem;
+  position: absolute;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+  margin-left: 0.5rem;
+  color: $gray;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 25px;
+    height: 25px;
+  }
+
+  & ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 50px;
+    height: 50px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 12px;
+    background-color: #474747;
+    border: 7px solid black;
+  }
+
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+}
+
+button.btn-outline-secondary {
+  width: 91% !important;
+  text-align: center !important;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  display: inline-block;
+  position: relative;
+  padding: 15px 30px;
+  border: 1px solid;
+  border-image: linear-gradient(180deg, $active-color, $active-color, $active-color, $active-color);
+  border-image-slice: 1;
+  margin: 6px 0 6px 20px !important;
+  text-transform: uppercase;
+  overflow: hidden;
+  letter-spacing: 2px;
+  transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: $active-color;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0);
+  }
+  &:active {
+    margin: 8px 20px 4px 20px;
+  }
+}
+
+.treeview-container {
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 25px;
+    height: 25px;
+  }
+
+  & ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 50px;
+    height: 50px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 12px;
+    background-color: #474747;
+    border: 7px solid black;
+  }
+
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  .row-item {
+    display: flex;
+    align-items: flex-end;
+  }
+}

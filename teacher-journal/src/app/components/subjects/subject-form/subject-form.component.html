@@ -1,0 +1,102 @@
+<section class="wrapper">
+  <h2 class="subjects__list-text">
+    {{"SUBJECTS_ADD" | translate}}:
+  </h2>
+  <form class="subject__form" [formGroup]="subjectForm" (submit)="onSubmit()">
+    <table class="subject__form-table" cellspacing="0">
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('nameSubject')">
+          * {{"SABJECT_NAME" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="subject__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                (isControlInvalid('nameSubject') ? 'NEW_SABJECT_NAME' : 'Mathematics') | translate
+              "
+              id="nameSubject"
+              formControlName="nameSubject"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('teacher')">
+          * {{ "TEACHER" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="subject__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                (isControlInvalid('teacher') ? 'NEW_TEACHER_NAME' : 'TEACHER_NAME') | translate
+              "
+              id="teacher"
+              formControlName="teacher"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          {{ "ROOM" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="subject__form-table-cell">
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [placeholder]="
+                (isControlInvalid('cabiner') ? 'Enter number' : '106') | translate
+              "
+              id="cabiner"
+              formControlName="cabiner"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{"DESCRIPTION" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="subject__form-table-cell">
+            <textarea
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="'INFO_SUBJECT' | translate"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <div class="subject__form-buttons">
+      <button
+        class="subject__form-buttons-item"
+        mat-stroked-button
+        type="submit"
+      >
+      {{"ADD" | translate}}
+      </button>
+      <button
+        class="subject__form-buttons-item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
+      {{"BACK" | translate}}
+      </button>
+    </div>
+  </form>
+</section>

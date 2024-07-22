@@ -1,0 +1,47 @@
+@import "../../../../styles/variables.scss";
+
+.wrapper {
+  .student {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    .student-name {
+      flex: 1;
+      font-size: 2.5rem;
+      margin: 1rem 0 1rem;
+    }
+
+    .student-rating {
+      flex: 2;
+      height: 4rem;
+      .stars__out {
+        position: relative;
+        margin-right: 5px;
+        color: $gray;
+        z-index: 1;
+      }
+      .stars__in {
+        position: absolute;
+        z-index: 2;
+        color: $active-color;
+        font-size: inherit;
+        display: block;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        overflow: hidden;
+        width: 0;
+      }
+    }
+    .student-chart {
+      flex: 5;
+      height: 26rem;
+    }
+  }
+  .student-screen-saver {
+    width: 27rem;
+    height: 36rem;
+    background-size: contain;
+    background: url(../../../../assets/logo.png) no-repeat center/80%;
+  }
+}

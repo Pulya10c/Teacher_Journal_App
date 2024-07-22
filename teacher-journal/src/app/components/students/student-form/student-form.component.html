@@ -1,0 +1,100 @@
+<section class="wrapper">
+  <h2 class="students__form-text">
+      {{"STUDENTS_ADD" | translate}}:
+  </h2>
+  <form class="student__form" [formGroup]="studentsForm" (submit)="onSubmit()">
+    <table class="student__form-table" cellspacing="0">
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('name')">
+          * {{"name" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                (isControlInvalid('name') ? 'Enter first name' : 'Jack') | translate
+              "
+              id="name"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td [class.class__invalid]="isControlInvalid('lastName')">
+          * {{"lastName" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="
+                (isControlInvalid('lastName') ? 'Enter last name' : 'Black') | translate
+              "
+              id="lastName"
+              formControlName="lastName"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          {{"address" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="'STREET' | translate"
+              id="address"
+              formControlName="address"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{"DESCRIPTION" | translate}}:
+        </td>
+        <td>
+          <mat-form-field class="student__form-table-cell">
+            <textarea
+              matInput
+              type="text"
+              autocomplete="off"
+              [placeholder]="'INFO' | translate"
+              id="about"
+              formControlName="about"
+            ></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <div class="student__form-buttons">
+      <button
+        class="student__form-buttons-item"
+        mat-stroked-button
+        type="submit"
+      >
+      {{"ADD" | translate}}
+      </button>
+      <button
+        class="student__form-buttons-item"
+        mat-stroked-button
+        type="button"
+        (click)="onCancel()"
+      >
+      {{"BACK" | translate}}
+      </button>
+    </div>
+  </form>
+</section>

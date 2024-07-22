@@ -1,0 +1,33 @@
+<section class="wrapper">
+  <section
+  *ngIf = "isVisible else screenSaver" 
+  class="student"
+  >
+    <h2 class="student-name">
+      {{ student.name + " " + student.lastName }}
+    </h2>
+    <div class="student-rating">
+      <p>
+        {{ "RATING" | translate}}
+      </p>
+      <div class="student-rating-stars">
+        <i
+        *ngFor="let star of rating" 
+        class="fas fa-star stars__out fa-2x"
+        >
+          <i class="fas fa-star stars__in" 
+          [style.width]="star"
+          > 
+          </i>
+        </i>
+      </div>
+    </div>
+    <div class="student-chart">
+      <app-chart [marksListView] = "studentDataForDraw"></app-chart>
+    </div>
+  </section>
+  <ng-template #screenSaver>
+    <section class="student-screen-saver">
+    </section>
+  </ng-template>
+</section>

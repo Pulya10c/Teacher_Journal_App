@@ -1,0 +1,57 @@
+@import "../../../../styles/variables.scss";
+
+.wrapper {
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+  margin: 0 auto 3rem;
+
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: $text-color;
+    border-color: $text-color;
+  }
+
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $text-color;
+  }
+
+  ::ng-deep .mat-input-element {
+    caret-color: $text-color;
+  }
+
+  .students__form-text {
+    font-weight: 400;
+    margin-top: 0;
+    margin-left: 10%;
+    font-size: 2rem;
+  }
+
+  .student__form {
+    margin: 0 10%;
+    border: 0.3rem solid $gray;
+    border-radius: 1.5rem;
+
+    .student__form-table {
+      margin: 1.25rem auto;
+      width: 80%;
+      .student__form-table-cell {
+        width: 90%;
+      }
+      td {
+        padding-right: 0.5rem;
+      }
+    }
+  }
+
+  .student__form-buttons {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    .student__form-buttons-item {
+      width: 20%;
+      font-size: 1.5rem;
+      padding: 1%;
+      margin: 0 2%;
+      background-color: $gray;
+      color: $active-color;
+    }
+  }
+}
